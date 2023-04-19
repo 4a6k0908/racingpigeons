@@ -52,7 +52,7 @@ namespace Core.Database.Login
                 // TODO: Save Local
             }
             
-            SetUserToken(awsUserModel);
+            await SetUserToken(awsUserModel);
         }
     }
 }

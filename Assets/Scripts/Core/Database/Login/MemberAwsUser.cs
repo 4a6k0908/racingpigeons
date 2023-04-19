@@ -1,27 +1,31 @@
-﻿using System.Net.Http;
+﻿using System;
+using Core.Database.Models;
 using Core.User.Models;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Core.Database.Login
 {
-    public class MemberAwsUser : IGetAwsUser
+    public class MemberAwsUser : AwsUserBase, IGetAwsUser
     {
-        private readonly AwsGraphQL awsGraphQL;
+        private readonly Account account;
 
-        public MemberAwsUser(AwsGraphQL awsGraphQl)
+        public MemberAwsUser(Account account)
         {
-            awsGraphQL = awsGraphQl;
+            this.account = account;
         }
 
         public async UniTask Execute(AwsUserModel awsUserModel)
         {
             try
             {
-                
+                awsUserModel.account = account;
+
+                await SetUserToken(awsUserModel);
             }
-            catch (HttpRequestException e)
+            catch (Exception e)
             {
-                // TODO: Error Handler
+                Debug.Log(e.Message);
             }
         }
     }
