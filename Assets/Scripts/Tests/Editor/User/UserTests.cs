@@ -16,11 +16,14 @@ namespace Tests.Editor.User
             awsUserModel = new AwsUserModel();
             loginSystem  = new LoginSystem(awsUserModel);
             awsGraphQL   = new AwsGraphQL();
+            
+            testAccount = new Account("test99", "Aa+123456789");
         }
 
         private AwsUserModel awsUserModel;
         private LoginSystem  loginSystem;
         private AwsGraphQL   awsGraphQL;
+        private Account      testAccount;
 
         [Test]
         public async Task _01_Should_Guest_Sign_In_Success()
@@ -36,7 +39,6 @@ namespace Tests.Editor.User
         [Test]
         public async Task _02_Should_Member_Sign_In_Success()
         {
-            var testAccount   = new Account("test99", "Aa+123456789");
             var memberAwsUser = new MemberAwsUser(testAccount);
 
             await loginSystem.Login(memberAwsUser);
@@ -49,7 +51,6 @@ namespace Tests.Editor.User
         [Test]
         public async Task _03_Should_Get_User_Info_Success()
         {
-            var testAccount   = new Account("test99", "Aa+123456789");
             var memberAwsUser = new MemberAwsUser(testAccount);
             var userInfoModel = new UserInfoModel(awsGraphQL);
 
@@ -64,7 +65,6 @@ namespace Tests.Editor.User
         [Test]
         public async Task _04_Should_Get_User_Wallet_Success()
         {
-            var testAccount     = new Account("test99", "Aa+123456789");
             var memberAwsUser   = new MemberAwsUser(testAccount);
             var userWalletModel = new UserWalletModel(awsGraphQL);
 
