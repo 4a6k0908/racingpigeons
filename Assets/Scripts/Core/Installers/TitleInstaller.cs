@@ -1,0 +1,22 @@
+﻿using Core.Database.Login;
+using Core.Title;
+using Core.User.Models;
+using Zenject;
+
+namespace Core.Installers
+{
+    public class TitleInstaller: MonoInstaller<TitleInstaller>
+    {
+        public override void InstallBindings()
+        {
+            SignalBusInstaller.Install(Container);
+
+            Container.DeclareSignal<OnStateChange>();
+
+            Container.Bind<StateHandler>().AsSingle();
+
+            Container.Bind<AwsUserModel>().AsSingle();
+            Container.Bind<LoginSystem>().AsSingle();
+        }
+    }
+}
