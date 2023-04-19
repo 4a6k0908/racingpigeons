@@ -53,8 +53,7 @@ namespace Core.User.Models
 
             var responseContent = await awsGraphQL.Post(query, awsUserModel.accessToken);
             var data            = JsonUtility.FromJson<GQL_GetUserInfo>(responseContent);
-
-
+            
             if (data == null)
                 return false;
 

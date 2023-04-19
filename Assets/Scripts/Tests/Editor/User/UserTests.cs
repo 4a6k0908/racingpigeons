@@ -47,7 +47,7 @@ namespace Tests.Editor.User
         }
 
         [Test]
-        public async Task _03_Should_User_Get_Info_Success()
+        public async Task _03_Should_Get_User_Info_Success()
         {
             var testAccount   = new Account("test99", "Aa+123456789");
             var memberAwsUser = new MemberAwsUser(testAccount);
@@ -61,20 +61,51 @@ namespace Tests.Editor.User
             EmailShouldBe("taboi40145@gmail.com", userInfoModel.email);
         }
 
-        private void EmailShouldBe(string expected, string compare)
+        [Test]
+        public async Task _04_Should_Get_User_Wallet_Success()
         {
-            Assert.AreEqual(expected, compare);
+            var testAccount     = new Account("test99", "Aa+123456789");
+            var memberAwsUser   = new MemberAwsUser(testAccount);
+            var userWalletModel = new UserWalletModel(awsGraphQL);
+
+            await loginSystem.Login(memberAwsUser);
+
+            await userWalletModel.GetWalletInfo(awsUserModel);
+
+            BalanceShouldBe(10000, userWalletModel.balance);
+            CoinShouldBe(10000, userWalletModel.coin);
+            TicketShouldBe(0, userWalletModel.ticket);
         }
 
-        private void NicknameShouldBe(string expected, string compare)
+        private static void TicketShouldBe(int expected, int ticket)
         {
-            Assert.AreEqual(expected, compare);
+            Assert.AreEqual(expected, ticket);
+        }
+
+        private static void CoinShouldBe(int expected, int coin)
+        {
+            Assert.AreEqual(expected, coin);
+        }
+
+        private static void BalanceShouldBe(int expected, int balance)
+        {
+            Assert.AreEqual(expected, balance);
+        }
+
+        private void EmailShouldBe(string expected, string email)
+        {
+            Assert.AreEqual(expected, email);
+        }
+
+        private void NicknameShouldBe(string expected, string nickname)
+        {
+            Assert.AreEqual(expected, nickname);
         }
 
 
-        private void UsernameShouldBeEqual(string expected, string compare)
+        private void UsernameShouldBeEqual(string expected, string username)
         {
-            Assert.AreEqual(expected, compare);
+            Assert.AreEqual(expected, username);
         }
 
         private void UsernameShouldBeGuest(string username)
