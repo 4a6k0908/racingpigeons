@@ -56,9 +56,19 @@ namespace Tests.Editor.User
             await loginSystem.Login(memberAwsUser);
 
             await userInfoModel.GetUserInfo(awsUserModel);
-            
-            Assert.AreEqual("test", userInfoModel.nickname);
-            Assert.AreEqual("taboi40145@gmail.com", userInfoModel.email);
+
+            NicknameShouldBe("test", userInfoModel.nickname);
+            EmailShouldBe("taboi40145@gmail.com", userInfoModel.email);
+        }
+
+        private void EmailShouldBe(string expected, string compare)
+        {
+            Assert.AreEqual(expected, compare);
+        }
+
+        private void NicknameShouldBe(string expected, string compare)
+        {
+            Assert.AreEqual(expected, compare);
         }
 
 
