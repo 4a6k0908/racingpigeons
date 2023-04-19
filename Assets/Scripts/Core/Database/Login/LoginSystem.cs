@@ -1,11 +1,7 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using Amazon;
-using Amazon.CognitoIdentityProvider;
-using Amazon.Extensions.CognitoAuthentication;
 using Core.User.Models;
 using Cysharp.Threading.Tasks;
-using UnityEngine;
 
 namespace Core.Database.Login
 {
@@ -16,11 +12,6 @@ namespace Core.Database.Login
 
     public class LoginSystem
     {
-        //Cognito 新加坡
-        //static string _ClientID = "2je98tckqete6fd92q6urvpg7f";
-        //static string _UserPoolID = "ap-southeast-1_GWhzgdMgB";
-        //static RegionEndpoint _CognitoRegion = RegionEndpoint.APSoutheast1;
-
         private readonly AwsUserModel awsUserModel;
 
         // Cognito 東京
@@ -38,20 +29,6 @@ namespace Core.Database.Login
             try
             {
                 await getAwsUser.Execute(awsUserModel);
-
-                var provider = new AmazonCognitoIdentityProviderClient(null, cognitoRegion);
-                var pool     = new CognitoUserPool(cognitoPoolKey, cognitoClientKey, provider);
-                var user     = new CognitoUser(awsUserModel.account.username, cognitoClientKey, pool, provider);
-
-                await user.StartWithSrpAuthAsync(new InitiateSrpAuthRequest {
-                    Password = awsUserModel.account.password,
-                }).ConfigureAwait(false);
-
-                awsUserModel.idToken      = user.SessionTokens.IdToken;
-                awsUserModel.accessToken  = user.SessionTokens.AccessToken;
-                awsUserModel.refreshToken = user.SessionTokens.RefreshToken;
-
-                Debug.Log($"Aws User: \n{JsonUtility.ToJson(awsUserModel)}");
             }
             catch (HttpRequestException e)
             {

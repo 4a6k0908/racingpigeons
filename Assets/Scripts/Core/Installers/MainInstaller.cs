@@ -1,4 +1,5 @@
 ﻿using Core.Database;
+using Core.User.Models;
 using SoapUtils.SceneSystem;
 using Zenject;
 
@@ -16,6 +17,7 @@ namespace Core.Installers
         private void BindAws()
         {
             Container.Bind<AwsGraphQL>().AsSingle();
+            Container.Bind<AwsUserModel>().AsSingle();
         }
 
         private void BindScene()

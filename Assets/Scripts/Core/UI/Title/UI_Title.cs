@@ -1,4 +1,5 @@
 ﻿using System;
+using AnimeTask;
 using Core.Title;
 using UnityEngine;
 using Zenject;
@@ -43,8 +44,7 @@ namespace UI.Title
         {
             if (e.preState == State.Login && e.state != State.Title)
             {
-                
-                
+                await Easing.Create<Linear>(0, 0.25f).ToColorA(canvasGroup);
                 canvasGroup.interactable = canvasGroup.blocksRaycasts = false;
             }
         }

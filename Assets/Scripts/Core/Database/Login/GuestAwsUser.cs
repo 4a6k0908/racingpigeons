@@ -6,9 +6,9 @@ using UnityEngine;
 
 namespace Core.Database.Login
 {
-    public class GuestGetAwsUser : IGetAwsUser
+    public class GuestGetAwsUser : AwsUserBase, IGetAwsUser
     {
-        private AwsGraphQL awsGraphQL;
+        private readonly AwsGraphQL awsGraphQL;
 
         public GuestGetAwsUser(AwsGraphQL awsGraphQl)
         {
@@ -40,6 +40,7 @@ namespace Core.Database.Login
 
             // TODO: Fail Condition
             // if(data == null)
+            
             var account = data.data.getGuestAccount;
 
             if (account.username != null && !string.IsNullOrEmpty(account.username))
@@ -50,6 +51,8 @@ namespace Core.Database.Login
 
                 // TODO: Save Local
             }
+            
+            SetUserToken(awsUserModel);
         }
     }
 }

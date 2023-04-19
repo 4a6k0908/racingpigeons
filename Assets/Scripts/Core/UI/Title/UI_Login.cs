@@ -1,4 +1,5 @@
 ﻿using System;
+using AnimeTask;
 using Core.Database;
 using Core.Database.Login;
 using Core.Title;
@@ -14,6 +15,11 @@ namespace UI.Title
         private AwsGraphQL  awsGraphQl;
 
         private CanvasGroup canvasGroup;
+
+        private void Awake()
+        {
+            canvasGroup = GetComponent<CanvasGroup>();
+        }
 
         [Inject]
         private void Inject(SignalBus signalBus, LoginSystem loginSystem, AwsGraphQL awsGraphQl)
@@ -33,7 +39,14 @@ namespace UI.Title
             signalBus.Unsubscribe<OnStateChange>(OnStateChange);
         }
 
-        private void OnStateChange(OnStateChange e) { }
+        private async void OnStateChange(OnStateChange e)
+        {
+            if (e.preState == State.Title && e.state == State.Login)
+            {
+                canvasGroup.blocksRaycasts = canvasGroup.interactable = true;
+                await Easing.Create<Linear>(1, 0.25f).ToColorA(canvasGroup);
+            }
+        }
 
         public async void Button_Guest_Login()
         {

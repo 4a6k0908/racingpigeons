@@ -44,7 +44,6 @@ public class AwsCognito : MonoBehaviour
     {
         public string password;
         public string username;
-
     }
 
     [Serializable]

@@ -21,6 +21,17 @@ namespace Tests.Editor.User
             ProviderShouldBe("guest", awsUserModel.provider);
         }
 
+        [Test]
+        public async Task _02_Should_Member_Sign_In_Success()
+        {
+            var awsUserModel = new AwsUserModel();
+            var loginSystem  = new LoginSystem(awsUserModel);
+
+            await loginSystem.Login(new MemberAwsUser(new AwsGraphQL()));
+
+            
+        }
+
         private void ShouldBeGuestUsername(AwsUserModel awsUserModel)
         {
             Assert.AreEqual(true, awsUserModel.account.username.Contains("guest"));
