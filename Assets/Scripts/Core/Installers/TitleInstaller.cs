@@ -1,4 +1,5 @@
 ﻿using Core.Database.Login;
+using Core.Database.Models;
 using Core.Title;
 using Core.User.Models;
 using Zenject;

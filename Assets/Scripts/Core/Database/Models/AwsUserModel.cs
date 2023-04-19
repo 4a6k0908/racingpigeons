@@ -1,7 +1,6 @@
 ﻿using System;
-using Core.Database.Models;
 
-namespace Core.User.Models
+namespace Core.Database.Models
 {
     [Serializable]
     public class AwsUserModel

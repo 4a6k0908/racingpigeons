@@ -3,6 +3,7 @@ using System.Net.Http;
 using Amazon;
 using Amazon.CognitoIdentityProvider;
 using Amazon.Extensions.CognitoAuthentication;
+using Core.Database.Models;
 using Core.User.Models;
 using Cysharp.Threading.Tasks;
 using UnityEngine;

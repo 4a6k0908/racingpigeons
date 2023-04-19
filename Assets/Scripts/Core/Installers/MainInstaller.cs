@@ -1,4 +1,5 @@
 ﻿using Core.Database;
+using Core.Database.Models;
 using Core.User.Models;
 using SoapUtils.SceneSystem;
 using Zenject;

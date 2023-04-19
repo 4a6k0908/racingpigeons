@@ -1,5 +1,6 @@
 ﻿using System.Net.Http;
 using Amazon;
+using Core.Database.Models;
 using Core.User.Models;
 using Cysharp.Threading.Tasks;
 
