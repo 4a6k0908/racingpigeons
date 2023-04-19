@@ -4,8 +4,9 @@ namespace Core.Title
 {
     public enum State
     {
-        Title = 0,
-        Login = 1,
+        Title     = 0,
+        Login     = 1,
+        AwsLogin  = 2,
     }
 
     public class StateHandler
@@ -13,19 +14,19 @@ namespace Core.Title
         private readonly SignalBus signalBus;
 
         private State currentState = State.Title;
-        
+
         public StateHandler(SignalBus signalBus)
         {
             this.signalBus = signalBus;
         }
-        
+
         public void ChangeState(State nextState)
         {
-            if(currentState == nextState)
+            if (currentState == nextState)
                 return;
 
             signalBus.Fire(new OnStateChange(currentState, nextState));
-            
+
             currentState = nextState;
         }
 

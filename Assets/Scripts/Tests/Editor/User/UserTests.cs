@@ -2,7 +2,7 @@
 using Core.Database;
 using Core.Database.Login;
 using Core.Database.Models;
-using Core.User.Models;
+using Core.Title;
 using NUnit.Framework;
 
 namespace Tests.Editor.User
@@ -15,15 +15,18 @@ namespace Tests.Editor.User
         {
             awsUserModel = new AwsUserModel();
             loginSystem  = new LoginSystem(awsUserModel);
+            awsGraphQL   = new AwsGraphQL();
         }
 
         private AwsUserModel awsUserModel;
         private LoginSystem  loginSystem;
+        private AwsGraphQL   awsGraphQL;
 
         [Test]
         public async Task _01_Should_Guest_Sign_In_Success()
         {
-            await loginSystem.Login(new GuestGetAwsUser(new AwsGraphQL()));
+            var guestGetAwsUser = new GuestGetAwsUser(awsGraphQL);
+            await loginSystem.Login(guestGetAwsUser);
 
             UsernameShouldBeGuest(awsUserModel.account.username);
             IdTokenShouldNotEmpty();
@@ -33,9 +36,10 @@ namespace Tests.Editor.User
         [Test]
         public async Task _02_Should_Member_Sign_In_Success()
         {
-            var testAccount = new Account("test99", "Aa+123456789");
+            var testAccount   = new Account("test99", "Aa+123456789");
+            var memberAwsUser = new MemberAwsUser(testAccount);
 
-            await loginSystem.Login(new MemberAwsUser(testAccount));
+            await loginSystem.Login(memberAwsUser);
 
             UsernameShouldBeEqual(testAccount.username, awsUserModel.account.username);
             IdTokenShouldNotEmpty();

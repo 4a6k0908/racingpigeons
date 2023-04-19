@@ -1,16 +1,9 @@
 ﻿using System.Net.Http;
-using Amazon;
 using Core.Database.Models;
-using Core.User.Models;
 using Cysharp.Threading.Tasks;
 
 namespace Core.Database.Login
 {
-    public interface IGetAwsUser
-    {
-        UniTask Execute(AwsUserModel awsUserModel);
-    }
-
     public class LoginSystem
     {
         private readonly AwsUserModel awsUserModel;
