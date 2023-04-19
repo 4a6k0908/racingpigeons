@@ -31,9 +31,14 @@ namespace Tests.Editor.Title
 
             stateHandler.ChangeState(State.Login);
 
-            Assert.AreEqual(State.Login, stateHandler.GetCurrentState());
-            Assert.AreEqual(State.Title, stateChange.preState);
-            Assert.AreEqual(State.Login, stateChange.state);
+            StateShouldBe(State.Login, stateHandler.GetCurrentState());
+            StateShouldBe(State.Title, stateChange.preState);
+            StateShouldBe(State.Login, stateChange.state);
+        }
+
+        private static void StateShouldBe(State expected, State compareState)
+        {
+            Assert.AreEqual(expected, compareState);
         }
     }
 }
