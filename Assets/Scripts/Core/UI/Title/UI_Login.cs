@@ -89,7 +89,7 @@ namespace UI.Title
                     await Easing.Create<Linear>(1, 0.25f).ToColorA(canvasGroup);
                     break;
                 case State.Login when e.state == State.AwsLogin:
-                    stateText.text = "資料讀取中...";
+                    stateText.text = "登入中...";
                     break;
                 case State.AwsLogin when e.state == State.Login:
                     stateText.text = "登入遊戲";

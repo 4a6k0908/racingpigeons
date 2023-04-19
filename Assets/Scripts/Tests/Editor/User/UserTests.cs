@@ -2,7 +2,7 @@
 using Core.Database;
 using Core.Database.Login;
 using Core.Database.Models;
-using Core.Title;
+using Core.User.Models;
 using NUnit.Framework;
 
 namespace Tests.Editor.User
@@ -45,6 +45,22 @@ namespace Tests.Editor.User
             IdTokenShouldNotEmpty();
             ProviderShouldBe("", awsUserModel.provider);
         }
+
+        [Test]
+        public async Task _03_Should_User_Get_Info_Success()
+        {
+            var testAccount   = new Account("test99", "Aa+123456789");
+            var memberAwsUser = new MemberAwsUser(testAccount);
+            var userInfoModel = new UserInfoModel(awsGraphQL);
+
+            await loginSystem.Login(memberAwsUser);
+
+            await userInfoModel.GetUserInfo(awsUserModel);
+            
+            Assert.AreEqual("test", userInfoModel.nickname);
+            Assert.AreEqual("taboi40145@gmail.com", userInfoModel.email);
+        }
+
 
         private void UsernameShouldBeEqual(string expected, string compare)
         {

@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19da41c67d724c419bf8a8d479941187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateText: {fileID: 0}
+  stateText: {fileID: 1316829335}
   accountIF: {fileID: 1968631271}
   passwordIF: {fileID: 2143290228}
 --- !u!1 &277458240
