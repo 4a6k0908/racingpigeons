@@ -2,6 +2,7 @@
 using Core.Database;
 using Core.Database.Login;
 using Core.Database.Models;
+using Core.Player.Models;
 using Core.User.Models;
 using NUnit.Framework;
 
@@ -13,26 +14,28 @@ namespace Tests.Editor.User
         [SetUp]
         public void SetUp()
         {
-            awsUserModel = new AwsUserModel();
-            loginSystem  = new LoginSystem(awsUserModel);
-            awsGraphQL   = new AwsGraphQL();
+            awsGraphQL  = new AwsGraphQL();
+            playerData  = new PlayerData(awsGraphQL);
             
-            testAccount = new Account("test99", "Aa+123456789");
+            loginSystem = new LoginSystem(playerData.GetAwsUserModel());
         }
 
-        private AwsUserModel awsUserModel;
-        private LoginSystem  loginSystem;
-        private AwsGraphQL   awsGraphQL;
-        private Account      testAccount;
+        private Account     testAccount = new("test99", "Aa+123456789");
+        private AwsGraphQL  awsGraphQL;
+        private PlayerData  playerData;
+        private LoginSystem loginSystem;
 
         [Test]
         public async Task _01_Should_Guest_Sign_In_Success()
         {
             var guestGetAwsUser = new GuestGetAwsUser(awsGraphQL);
+            
             await loginSystem.Login(guestGetAwsUser);
 
+            var awsUserModel = playerData.GetAwsUserModel();
+            
             UsernameShouldBeGuest(awsUserModel.account.username);
-            IdTokenShouldNotEmpty();
+            IdTokenShouldNotEmpty(awsUserModel.idToken);
             ProviderShouldBe("guest", awsUserModel.provider);
         }
 
@@ -43,8 +46,10 @@ namespace Tests.Editor.User
 
             await loginSystem.Login(memberAwsUser);
 
+            var awsUserModel = playerData.GetAwsUserModel();
+            
             UsernameShouldBeEqual(testAccount.username, awsUserModel.account.username);
-            IdTokenShouldNotEmpty();
+            IdTokenShouldNotEmpty(awsUserModel.idToken);
             ProviderShouldBe("", awsUserModel.provider);
         }
 
@@ -52,11 +57,12 @@ namespace Tests.Editor.User
         public async Task _03_Should_Get_User_Info_Success()
         {
             var memberAwsUser = new MemberAwsUser(testAccount);
-            var userInfoModel = new UserInfoModel(awsGraphQL);
 
             await loginSystem.Login(memberAwsUser);
 
-            await userInfoModel.GetUserInfo(awsUserModel);
+            await playerData.SyncUserInfo();
+            
+            var userInfoModel = playerData.GetUserInfoModel();
 
             NicknameShouldBe("test", userInfoModel.nickname);
             EmailShouldBe("taboi40145@gmail.com", userInfoModel.email);
@@ -66,16 +72,17 @@ namespace Tests.Editor.User
         public async Task _04_Should_Get_User_Wallet_Success()
         {
             var memberAwsUser   = new MemberAwsUser(testAccount);
-            var userWalletModel = new UserWalletModel(awsGraphQL);
 
             await loginSystem.Login(memberAwsUser);
 
-            await userWalletModel.GetWalletInfo(awsUserModel);
+            await playerData.SyncUserWallet();
 
+            var userWalletModel = playerData.GetUserWalletModel();
+            
             BalanceShouldBe(10000, userWalletModel.balance);
             CoinShouldBe(10000, userWalletModel.coin);
             TicketShouldBe(0, userWalletModel.ticket);
-        }
+        } 
 
         private static void TicketShouldBe(int expected, int ticket)
         {
@@ -113,9 +120,9 @@ namespace Tests.Editor.User
             Assert.AreEqual(true, username.Contains("guest"));
         }
 
-        private void IdTokenShouldNotEmpty()
+        private void IdTokenShouldNotEmpty(string idToken)
         {
-            Assert.AreNotEqual("", awsUserModel.idToken);
+            Assert.AreNotEqual("", idToken);
         }
 
         private void ProviderShouldBe(string expected, string provider)

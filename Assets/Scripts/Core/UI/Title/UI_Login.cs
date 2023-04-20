@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
 using AnimeTask;
 using Core.Database;
 using Core.Database.Login;
 using Core.Database.Models;
 using Core.Title;
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -49,33 +51,27 @@ namespace UI.Title
 
         public async void Button_Guest_Login()
         {
-            if (!CanLogin())
-                return;
-
             var guestGetAwsUser = new GuestGetAwsUser(awsGraphQL);
 
-            await loginSystem.Login(guestGetAwsUser);
+            await Login(guestGetAwsUser);
         }
 
         public async void Button_Member_Login()
         {
-            if(!CanLogin())
-                return;
-
             var account       = new Account(accountIF.text, passwordIF.text);
             var memberAwsUser = new MemberAwsUser(account);
 
-            await loginSystem.Login(memberAwsUser);
+            await Login(memberAwsUser);
         }
 
-        private bool CanLogin()
+        private async UniTask Login(IGetAwsUser guestGetAwsUser)
         {
             if (stateHandler.GetCurrentState() != State.Login)
-                return false;
+                return;
 
             stateHandler.ChangeState(State.AwsLogin);
-            
-            return true;
+
+            await loginSystem.Login(guestGetAwsUser);
         }
 
         private async void OnStateChange(OnStateChange e)
