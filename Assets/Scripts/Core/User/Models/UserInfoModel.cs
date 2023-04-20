@@ -1,6 +1,6 @@
 ﻿using System;
-using Core.Database;
-using Core.Database.Models;
+using Core.Aws;
+using Core.Aws.Models;
 using Core.User.GraphQL;
 using Cysharp.Threading.Tasks;
 using UnityEngine;

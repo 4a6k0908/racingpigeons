@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Core.Database;
-using Core.Database.Login;
-using Core.Database.Models;
+using Core.Aws;
+using Core.Aws.Login;
+using Core.Aws.Models;
 using Core.Player.Models;
 using Core.User.Models;
 using NUnit.Framework;

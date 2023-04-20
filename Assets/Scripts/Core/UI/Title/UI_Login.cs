@@ -1,7 +1,7 @@
 ﻿using System;
 using AnimeTask;
-using Core.Database.Login;
-using Core.Database.Models;
+using Core.Aws.Login;
+using Core.Aws.Models;
 using Core.Player.Models;
 using Core.Title;
 using Cysharp.Threading.Tasks;

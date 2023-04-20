@@ -14,8 +14,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Core.Database;
-using Core.Database.Utils;
+using Core.Aws;
+using Core.Utils.Algorithm;
 using UnityEngine.SceneManagement;
 
 public class AwsCognito : MonoBehaviour

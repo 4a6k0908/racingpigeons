@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Core.Database;
-using Core.Database.Models;
+using Core.Aws;
+using Core.Aws.Models;
 using Core.Pigeon.GraphQL;
 using Cysharp.Threading.Tasks;
 using UnityEngine;

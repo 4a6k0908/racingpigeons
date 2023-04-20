@@ -1,5 +1,5 @@
-﻿using Core.Database.Login;
-using Core.Database.Models;
+﻿using Core.Aws.Login;
+using Core.Aws.Models;
 using Core.Title;
 using Core.User.Models;
 using Zenject;
