@@ -1,49 +1,88 @@
 ﻿using System;
+using System.Collections.Generic;
+using Core.Database;
+using Core.Database.Models;
+using Core.Pigeon.GraphQL;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Core.Pigeon.Models
 {
     [Serializable]
     public class PigeonModel
     {
-        public int    age;         //年紀
-        public int    age_feature; //年齡特性
-        public string breed_id;    //品種ID
-        public string breed_name;  //品種名稱
+        private List<PigeonStat> pigeonStatsList = new();
 
-        public int constitution; //體質
-        public int exp;          //經驗值
+        private readonly AwsGraphQL awsGraphQL;
 
-        public string father_pigeon_id; //鴿父ID
-        public int    fatigue;          //疲勞度
-        public int    feather_quality;  //羽質
-        public int    feather_size;     //羽型
-        public int    feature_a;        //特性A
-        public int    feature_b;        //特性B
-        public int    feature_c;        //特性C
-        public int    free_points;      //自由點數
+        public PigeonModel(AwsGraphQL awsGraphQl)
+        {
+            awsGraphQL = awsGraphQl;
+        }
 
-        public int    gender;                 //性別(0公 1母)
-        public string grand_father_pigeon_id; //鴿爺爺ID
-        public string grand_mother_pigeon_id; //鴿奶奶ID
-        public int    iq;                     //智商
-        public int    level;                  //等級
+        public async UniTask GetPigeonList(int queryCount, AwsUserModel awsUserModel)
+        {
+            var query = "{\"query\":\""                            +
+                        "query MyQuery {\\n"                       +
+                        "getPigeonList(page: {back: false, take: " + queryCount + "})" + "{\\n" +
+                        "items {\\n"                               +
+                        "age\\n"                                   +
+                        "age_feature\\n"                           +
+                        "breed_id\\n"                              +
+                        "breed_name\\n"                            +
+                        "constitution\\n"                          +
+                        "exp\\n"                                   +
+                        "father_pigeon_id\\n"                      +
+                        "fatigue\\n"                               +
+                        "feather_quality\\n"                       +
+                        "feather_size\\n"                          +
+                        "feature_a\\n"                             +
+                        "feature_b\\n"                             +
+                        "feature_c\\n"                             +
+                        "free_points\\n"                           +
+                        "gender\\n"                                +
+                        "grand_father_pigeon_id\\n"                +
+                        "grand_mother_pigeon_id\\n"                +
+                        "iq\\n"                                    +
+                        "level\\n"                                 +
+                        "max_constitution\\n"                      +
+                        "max_feather_quality\\n"                   +
+                        "max_feather_size\\n"                      +
+                        "max_iq\\n"                                +
+                        "max_muscle\\n"                            +
+                        "max_speed\\n"                             +
+                        "max_vision\\n"                            +
+                        "max_vitality\\n"                          +
+                        "mother_pigeon_id\\n"                      +
+                        "muscle\\n"                                +
+                        "pigeon_id\\n"                             +
+                        "pigeon_name\\n"                           +
+                        "pigeon_pigeonry\\n"                       +
+                        "speed\\n"                                 +
+                        "vision\\n"                                +
+                        "vitality\\n"                              +
+                        "}\\n"                                     +
+                        "next_cursor\\n"                           +
+                        "}\\n"                                     +
+                        "}"                                        +
+                        "\",\"variables\":{}}";
 
-        public int    max_constitution;    //體質上限
-        public int    max_feather_quality; //羽質上限
-        public int    max_feather_size;    //羽型上限
-        public int    max_iq;              //智商上限
-        public int    max_muscle;          //肌力上限
-        public int    max_speed;           //體型上限
-        public int    max_vision;          //眼睛上限
-        public int    max_vitality;        //心肺上限
-        public string mother_pigeon_id;    //鴿母ID 
-        public int    muscle;              //肌力
+            try
+            {
+                var responseContent = await awsGraphQL.Post(query, awsUserModel.accessToken);
 
-        public string pigeon_id;   //鴿子ID
-        public string pigeon_name; //暱稱
-        public string pigeon_pigeonry;
-        public int    speed;    //體型
-        public int    vision;   //眼睛
-        public int    vitality; //心肺
+                var data = JsonUtility.FromJson<GQL_GetPigeonList>(responseContent);
+
+                Debug.Log($"Pigeon List: \n {JsonUtility.ToJson(data)}");
+
+                pigeonStatsList = data.data.getPigeonList.items;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public List<PigeonStat> GetPigeonStatsList() => pigeonStatsList;
     }
 }

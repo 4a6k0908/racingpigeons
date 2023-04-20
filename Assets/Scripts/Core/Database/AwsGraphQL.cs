@@ -34,8 +34,6 @@ namespace Core.Database
 
             response = await client.PostAsync(API_URL, new StringContent(query, Encoding.UTF8, "application/json"));
 
-            Debug.Log($"Code:{response.StatusCode}\n ,Message:{response.RequestMessage}");
-
             try
             {
                 response.EnsureSuccessStatusCode();

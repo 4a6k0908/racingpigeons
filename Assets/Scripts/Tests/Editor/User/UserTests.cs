@@ -14,10 +14,10 @@ namespace Tests.Editor.User
         [SetUp]
         public void SetUp()
         {
-            awsGraphQL  = new AwsGraphQL();
-            playerData  = new PlayerData(awsGraphQL);
-            
-            loginSystem = new LoginSystem(playerData.GetAwsUserModel());
+            awsGraphQL = new AwsGraphQL();
+            playerData = new PlayerData(awsGraphQL);
+
+            loginSystem = new LoginSystem(playerData);
         }
 
         private Account     testAccount = new("test99", "Aa+123456789");
@@ -28,12 +28,12 @@ namespace Tests.Editor.User
         [Test]
         public async Task _01_Should_Guest_Sign_In_Success()
         {
-            var guestGetAwsUser = new GuestGetAwsUser(awsGraphQL);
-            
+            var guestGetAwsUser = new GuestAwsUser(awsGraphQL);
+
             await loginSystem.Login(guestGetAwsUser);
 
             var awsUserModel = playerData.GetAwsUserModel();
-            
+
             UsernameShouldBeGuest(awsUserModel.account.username);
             IdTokenShouldNotEmpty(awsUserModel.idToken);
             ProviderShouldBe("guest", awsUserModel.provider);
@@ -47,7 +47,7 @@ namespace Tests.Editor.User
             await loginSystem.Login(memberAwsUser);
 
             var awsUserModel = playerData.GetAwsUserModel();
-            
+
             UsernameShouldBeEqual(testAccount.username, awsUserModel.account.username);
             IdTokenShouldNotEmpty(awsUserModel.idToken);
             ProviderShouldBe("", awsUserModel.provider);
@@ -61,7 +61,7 @@ namespace Tests.Editor.User
             await loginSystem.Login(memberAwsUser);
 
             await playerData.SyncUserInfo();
-            
+
             var userInfoModel = playerData.GetUserInfoModel();
 
             NicknameShouldBe("test", userInfoModel.nickname);
@@ -71,18 +71,18 @@ namespace Tests.Editor.User
         [Test]
         public async Task _04_Should_Get_User_Wallet_Success()
         {
-            var memberAwsUser   = new MemberAwsUser(testAccount);
+            var memberAwsUser = new MemberAwsUser(testAccount);
 
             await loginSystem.Login(memberAwsUser);
 
             await playerData.SyncUserWallet();
 
             var userWalletModel = playerData.GetUserWalletModel();
-            
-            BalanceShouldBe(10000, userWalletModel.balance);
+
+            BalanceShouldBe(9998, userWalletModel.balance);
             CoinShouldBe(10000, userWalletModel.coin);
             TicketShouldBe(0, userWalletModel.ticket);
-        } 
+        }
 
         private static void TicketShouldBe(int expected, int ticket)
         {

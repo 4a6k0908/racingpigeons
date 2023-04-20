@@ -1,12 +1,11 @@
 ﻿using System;
 using Core.Database.Models;
-using Core.User.Models;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Core.Database.Login
 {
-    public class MemberAwsUser : AwsUserBase, IGetAwsUser
+    public class MemberAwsUser : GetAwsUserBase, IGetAwsUser
     {
         private readonly Account account;
 
@@ -22,6 +21,8 @@ namespace Core.Database.Login
                 awsUserModel.account = account;
 
                 await SetUserToken(awsUserModel);
+                
+                // TODO: Save To Local
             }
             catch (Exception e)
             {

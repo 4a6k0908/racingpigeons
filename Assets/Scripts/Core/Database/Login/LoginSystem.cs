@@ -1,28 +1,18 @@
 ﻿using System.Net.Http;
-using Core.Database.Models;
+using Core.Player.Models;
 using Cysharp.Threading.Tasks;
 
 namespace Core.Database.Login
 {
     public class LoginSystem
     {
-        private readonly AwsUserModel awsUserModel;
+        private readonly PlayerData playerData;
 
-        public LoginSystem(AwsUserModel awsUserModel)
+        public LoginSystem(PlayerData playerData)
         {
-            this.awsUserModel = awsUserModel;
+            this.playerData = playerData;
         }
 
-        public async UniTask Login(IGetAwsUser getAwsUser)
-        {
-            try
-            {
-                await getAwsUser.Execute(awsUserModel);
-            }
-            catch (HttpRequestException e)
-            {
-                // TODO: Error Handler
-            }
-        }
+        public async UniTask Login(IGetAwsUser getAwsUser) => await getAwsUser.Execute(playerData.GetAwsUserModel());
     }
 }

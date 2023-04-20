@@ -97,7 +97,7 @@ public class GamePlayer
     public int PigeonFeralQ;  //自來鴿數
    
     //鴿子資料
-    public List<PigeonStat> PigeonList;
+    public List<PigeonStatTemp> PigeonList;
     //public PigeonStat[] PigeonList;
 
 

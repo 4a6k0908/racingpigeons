@@ -30,7 +30,7 @@ namespace Core.User.Models
             this.awsGraphQL = awsGraphQL;
         }
 
-        public async UniTask<bool> GetUserInfo(AwsUserModel awsUserModel)
+        public async UniTask GetUserInfo(AwsUserModel awsUserModel)
         {
             var query = "{\"query\":\""           +
                         "query MyQuery {\\n"      +
@@ -51,30 +51,35 @@ namespace Core.User.Models
                         "}"                       +
                         "\",\"variables\":{}}";
 
-            var responseContent = await awsGraphQL.Post(query, awsUserModel.accessToken);
-            var data            = JsonUtility.FromJson<GQL_GetUserInfo>(responseContent);
-            
-            if (data == null)
-                return false;
+            try
+            {
+                var responseContent = await awsGraphQL.Post(query, awsUserModel.accessToken);
+                var data            = JsonUtility.FromJson<GQL_GetUserInfo>(responseContent);
 
-            Debug.Log($"User Info: \n {JsonUtility.ToJson(data.data.getUserInfo)}");
-            
-            var userInfo = data.data.getUserInfo;
+                if (data == null)
+                    throw new Exception("無法獲取玩家資訊");
 
-            address              = userInfo.address;
-            avatar_url           = userInfo.avatar_url;
-            birthdate            = userInfo.birthdate;
-            default_pigeonary_id = userInfo.default_pigeonary_id;
-            email                = userInfo.email;
-            gender               = userInfo.gender;
-            identity_id          = userInfo.identity_id;
-            name                 = userInfo.name;
-            nickname             = userInfo.nickname;
-            phone_number         = userInfo.phone_number;
-            user_code            = userInfo.user_code;
-            username             = userInfo.username;
+                Debug.Log($"User Info: \n {JsonUtility.ToJson(data.data.getUserInfo)}");
             
-            return true;
+                var userInfo = data.data.getUserInfo;
+
+                address              = userInfo.address;
+                avatar_url           = userInfo.avatar_url;
+                birthdate            = userInfo.birthdate;
+                default_pigeonary_id = userInfo.default_pigeonary_id;
+                email                = userInfo.email;
+                gender               = userInfo.gender;
+                identity_id          = userInfo.identity_id;
+                name                 = userInfo.name;
+                nickname             = userInfo.nickname;
+                phone_number         = userInfo.phone_number;
+                user_code            = userInfo.user_code;
+                username             = userInfo.username;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ using UnityEngine;
 //鴿子資料
 //------------------------------------------------------------------------------
 [Serializable]
-public class PigeonStat
+public class PigeonStatTemp
 {
     //屬性資料
     public int age;                   //年紀
@@ -64,7 +64,7 @@ public class GQL_getPigeonStat
     public class Data
     {
 
-        PigeonStat getPigeonStat;
+        PigeonStatTemp getPigeonStatTemp;
 
     }
     public Data data;
@@ -85,7 +85,7 @@ public class GQL_getPigeonList
         [Serializable]
         public class MyPigeons
         {
-            public List<PigeonStat> items;
+            public List<PigeonStatTemp> items;
             //public PigeonStat[] items;
             public string next_cursor;
         }
@@ -99,7 +99,7 @@ public class GQL_getPigeonList
 
 public class PigeonInfo
 {
-    public PigeonStat Stat;  //鴿子資料
+    public PigeonStatTemp StatTemp;  //鴿子資料
 
     public Sprite Icon;      //鴿子圖示
 

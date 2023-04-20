@@ -1,6 +1,5 @@
 ﻿using Core.Database;
-using Core.Database.Models;
-using Core.User.Models;
+using Core.Player.Models;
 using SoapUtils.SceneSystem;
 using Zenject;
 
@@ -11,14 +10,18 @@ namespace Core.Installers
         public override void InstallBindings()
         {
             BindScene();
-
             BindAws();
+            BindPlayer();
+        }
+
+        private void BindPlayer()
+        {
+            Container.Bind<PlayerData>().AsSingle();
         }
 
         private void BindAws()
         {
             Container.Bind<AwsGraphQL>().AsSingle();
-            Container.Bind<AwsUserModel>().AsSingle();
         }
 
         private void BindScene()

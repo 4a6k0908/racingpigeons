@@ -4,6 +4,7 @@ using AnimeTask;
 using Core.Database;
 using Core.Database.Login;
 using Core.Database.Models;
+using Core.Player.Models;
 using Core.Title;
 using Cysharp.Threading.Tasks;
 using TMPro;
@@ -16,8 +17,8 @@ namespace UI.Title
     {
         private SignalBus    signalBus;
         private LoginSystem  loginSystem;
-        private AwsGraphQL   awsGraphQL;
         private StateHandler stateHandler;
+        private PlayerData   playerData;
 
         private CanvasGroup canvasGroup;
 
@@ -31,12 +32,12 @@ namespace UI.Title
         }
 
         [Inject]
-        private void Inject(SignalBus signalBus, LoginSystem loginSystem, AwsGraphQL awsGraphQL, StateHandler stateHandler)
+        private void Inject(SignalBus signalBus, LoginSystem loginSystem, StateHandler stateHandler, PlayerData playerData)
         {
             this.loginSystem  = loginSystem;
             this.signalBus    = signalBus;
-            this.awsGraphQL   = awsGraphQL;
             this.stateHandler = stateHandler;
+            this.playerData   = playerData;
         }
 
         private void OnEnable()
@@ -51,7 +52,7 @@ namespace UI.Title
 
         public async void Button_Guest_Login()
         {
-            var guestGetAwsUser = new GuestGetAwsUser(awsGraphQL);
+            var guestGetAwsUser = new GuestAwsUser(playerData.GetGraphQL());
 
             await Login(guestGetAwsUser);
         }
@@ -71,7 +72,18 @@ namespace UI.Title
 
             stateHandler.ChangeState(State.AwsLogin);
 
-            await loginSystem.Login(guestGetAwsUser);
+            try
+            {
+                await loginSystem.Login(guestGetAwsUser);
+            
+                await playerData.SyncUserInfo();
+                await playerData.SyncUserWallet();
+            }
+            catch (Exception e)
+            {
+                // TODO: Error Handle
+                Debug.Log($"Error: {e.Message}");
+            }
         }
 
         private async void OnStateChange(OnStateChange e)

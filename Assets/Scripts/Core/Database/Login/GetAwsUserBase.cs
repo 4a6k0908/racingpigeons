@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Core.Database.Login
 {
-    public class AwsUserBase
+    public class GetAwsUserBase
     {
         private string         cognitoClientKey = "6bkme5fjo0qksgd6jhmqr1e41g";
         private string         cognitoPoolKey   = "ap-northeast-1_07PSOmDNc";

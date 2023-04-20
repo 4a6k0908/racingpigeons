@@ -21,7 +21,7 @@ namespace Core.User.Models
             this.awsGraphQL = awsGraphQL;
         }
 
-        public async UniTask<bool> GetWalletInfo(AwsUserModel awsUserModel)
+        public async UniTask GetWalletInfo(AwsUserModel awsUserModel)
         {
             var query = "{\"query\":\""      +
                         "query MyQuery {\\n" +
@@ -39,7 +39,7 @@ namespace Core.User.Models
                 var data            = JsonUtility.FromJson<GQL_GetUserWallet>(responseContent);
 
                 if (data == null)
-                    return false;
+                    throw new Exception("無法獲取錢包資料");
 
                 Debug.Log($"User Wallet: \n {JsonUtility.ToJson(data.data.getUserWallet)}");
                 
@@ -48,7 +48,6 @@ namespace Core.User.Models
                 coin    = userWallet.coin;
                 ticket  = userWallet.ticket;
 
-                return true;
             }
             catch (Exception e)
             {

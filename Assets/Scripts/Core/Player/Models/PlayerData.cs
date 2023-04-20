@@ -1,5 +1,7 @@
-﻿using Core.Database;
+﻿using System.Collections.Generic;
+using Core.Database;
 using Core.Database.Models;
+using Core.Pigeon.Models;
 using Core.User.Models;
 using Cysharp.Threading.Tasks;
 
@@ -9,6 +11,7 @@ namespace Core.Player.Models
     {
         private readonly AwsGraphQL   awsGraphQL;
         private readonly AwsUserModel awsUserModel;
+        private readonly PigeonModel  pigeonModel;
 
         private readonly UserInfoModel   userInfoModel;
         private readonly UserWalletModel userWalletModel;
@@ -21,6 +24,13 @@ namespace Core.Player.Models
 
             userInfoModel   = new UserInfoModel(awsGraphQL);
             userWalletModel = new UserWalletModel(awsGraphQL);
+
+            pigeonModel = new PigeonModel(awsGraphQL);
+        }
+
+        public AwsGraphQL GetGraphQL()
+        {
+            return awsGraphQL;
         }
 
         public AwsUserModel GetAwsUserModel()
@@ -33,9 +43,9 @@ namespace Core.Player.Models
             return userInfoModel;
         }
 
-        public async UniTask<bool> SyncUserInfo()
+        public async UniTask SyncUserInfo()
         {
-            return await userInfoModel.GetUserInfo(awsUserModel);
+            await userInfoModel.GetUserInfo(awsUserModel);
         }
 
         public UserWalletModel GetUserWalletModel()
@@ -43,9 +53,19 @@ namespace Core.Player.Models
             return userWalletModel;
         }
 
-        public async UniTask<bool> SyncUserWallet()
+        public async UniTask SyncUserWallet()
         {
-            return await userWalletModel.GetWalletInfo(awsUserModel);
+            await userWalletModel.GetWalletInfo(awsUserModel);
+        }
+
+        public List<PigeonStat> GetPigeonList()
+        {
+            return pigeonModel.GetPigeonStatsList();
+        }
+
+        public async UniTask SyncPigeonList(int queryCount)
+        {
+            await pigeonModel.GetPigeonList(queryCount, awsUserModel);
         }
     }
 }
