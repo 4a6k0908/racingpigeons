@@ -15,9 +15,6 @@ namespace Core.Installers
             Container.DeclareSignal<OnStateChange>();
 
             Container.Bind<StateHandler>().AsSingle();
-
-            Container.Bind<AwsUserModel>().AsSingle();
-            Container.Bind<LoginSystem>().AsSingle();
         }
     }
 }

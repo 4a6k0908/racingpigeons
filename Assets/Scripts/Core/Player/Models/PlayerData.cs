@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Core.Aws;
+using Core.Aws.Login;
 using Core.Aws.Models;
 using Core.Pigeon.Models;
 using Core.User.Models;
@@ -31,6 +32,11 @@ namespace Core.Player.Models
         public AwsGraphQL GetGraphQL()
         {
             return awsGraphQL;
+        }
+
+        public async UniTask Login(IGetAwsUser getAwsUser)
+        {
+            await awsUserModel.Login(getAwsUser, awsUserModel);
         }
 
         public AwsUserModel GetAwsUserModel()

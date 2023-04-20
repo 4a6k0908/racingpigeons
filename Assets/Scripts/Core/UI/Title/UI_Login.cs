@@ -17,7 +17,6 @@ namespace UI.Title
     {
         private ISceneService sceneService;
         private SignalBus     signalBus;
-        private LoginSystem   loginSystem;
         private StateHandler  stateHandler;
         private PlayerData    playerData;
 
@@ -33,10 +32,9 @@ namespace UI.Title
         }
 
         [Inject]
-        private void Inject(ISceneService sceneService, SignalBus signalBus, LoginSystem loginSystem, StateHandler stateHandler, PlayerData playerData)
+        private void Inject(ISceneService sceneService, SignalBus signalBus, StateHandler stateHandler, PlayerData playerData)
         {
             this.sceneService = sceneService;
-            this.loginSystem  = loginSystem;
             this.signalBus    = signalBus;
             this.stateHandler = stateHandler;
             this.playerData   = playerData;
@@ -76,7 +74,7 @@ namespace UI.Title
 
             try
             {
-                await loginSystem.Login(guestGetAwsUser);
+                await playerData.Login(guestGetAwsUser);
 
                 await playerData.SyncUserInfo();
                 await playerData.SyncUserWallet();
