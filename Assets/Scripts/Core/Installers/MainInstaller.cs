@@ -1,6 +1,8 @@
 ﻿using Core.Aws;
 using Core.Player.Models;
+using SoapUtils.NotifySystem;
 using SoapUtils.SceneSystem;
+using SoapUtils.SoundSystem;
 using Zenject;
 
 namespace Core.Installers
@@ -12,6 +14,23 @@ namespace Core.Installers
             BindScene();
             BindAws();
             BindPlayer();
+            BindSound();
+            BindNotify();
+        }
+
+        private void BindSound()
+        {
+            Container.Bind<BGMHandler>().AsSingle();
+            Container.Bind<EffectHandler>().AsSingle();
+            Container.Bind<LoopHandler>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SoundService>().AsSingle();
+            Container.Bind<SoundView>().FromComponentInHierarchy().AsSingle();
+        }
+
+        private void BindNotify()
+        {
+            Container.Bind<NotifyView>().FromComponentInHierarchy().AsSingle();
+            Container.BindInterfacesAndSelfTo<NotifyService>().AsSingle();
         }
 
         private void BindPlayer()

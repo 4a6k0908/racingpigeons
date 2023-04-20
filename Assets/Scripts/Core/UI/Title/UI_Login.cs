@@ -5,6 +5,7 @@ using Core.Aws.Models;
 using Core.Player.Models;
 using Core.Title;
 using Cysharp.Threading.Tasks;
+using SoapUtils.NotifySystem;
 using SoapUtils.SceneSystem;
 using TMPro;
 using UnityEngine;
@@ -15,10 +16,11 @@ namespace UI.Title
 {
     public class UI_Login : MonoBehaviour
     {
-        private ISceneService sceneService;
-        private SignalBus     signalBus;
-        private StateHandler  stateHandler;
-        private PlayerData    playerData;
+        private ISceneService  sceneService;
+        private INotifyService notifyService;
+        private SignalBus      signalBus;
+        private StateHandler   stateHandler;
+        private PlayerData     playerData;
 
         private CanvasGroup canvasGroup;
 
@@ -32,12 +34,13 @@ namespace UI.Title
         }
 
         [Inject]
-        private void Inject(ISceneService sceneService, SignalBus signalBus, StateHandler stateHandler, PlayerData playerData)
+        private void Inject(ISceneService sceneService, INotifyService notifyService, SignalBus signalBus, StateHandler stateHandler, PlayerData playerData)
         {
-            this.sceneService = sceneService;
-            this.signalBus    = signalBus;
-            this.stateHandler = stateHandler;
-            this.playerData   = playerData;
+            this.notifyService = notifyService;
+            this.sceneService  = sceneService;
+            this.signalBus     = signalBus;
+            this.stateHandler  = stateHandler;
+            this.playerData    = playerData;
         }
 
         private void OnEnable()
@@ -74,6 +77,8 @@ namespace UI.Title
 
             try
             {
+                notifyService.DoNotify("登入中，請稍候");
+                
                 await playerData.Login(guestGetAwsUser);
 
                 await playerData.SyncUserInfo();
@@ -81,11 +86,12 @@ namespace UI.Title
                 await playerData.SyncPigeonList(10);
                 
                 sceneService.DoLoadScene(1);
+                
+                notifyService.DoClose();
             }
             catch (Exception e)
             {
-                // TODO: Error Handle
-                Debug.Log($"Error: {e.Message}");
+                notifyService.DoNotify($"發生錯誤: {e.Message}");
             }
         }
 
@@ -94,16 +100,8 @@ namespace UI.Title
             switch (e.preState)
             {
                 case State.Title when e.state == State.Login:
-                    stateText.text = "登入遊戲";
-
                     canvasGroup.blocksRaycasts = canvasGroup.interactable = true;
                     await Easing.Create<Linear>(1, 0.25f).ToColorA(canvasGroup);
-                    break;
-                case State.Login when e.state == State.AwsLogin:
-                    stateText.text = "登入中...";
-                    break;
-                case State.AwsLogin when e.state == State.Login:
-                    stateText.text = "登入遊戲";
                     break;
             }
         }
