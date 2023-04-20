@@ -26,8 +26,8 @@ namespace Core.Installers
 
         private void BindScene()
         {
-            Container.Bind<StateHandler>().AsSingle();
-            Container.Bind<LoadHandler>().AsSingle();
+            Container.Bind<SceneStateHandler>().AsSingle();
+            Container.Bind<SceneLoadHandler>().AsSingle();
             Container.Bind<SceneView>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneService>().AsSingle();
         }

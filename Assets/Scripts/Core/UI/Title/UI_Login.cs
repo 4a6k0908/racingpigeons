@@ -1,24 +1,25 @@
 ﻿using System;
-using System.Threading.Tasks;
 using AnimeTask;
-using Core.Database;
 using Core.Database.Login;
 using Core.Database.Models;
 using Core.Player.Models;
 using Core.Title;
 using Cysharp.Threading.Tasks;
+using SoapUtils.SceneSystem;
 using TMPro;
 using UnityEngine;
 using Zenject;
+using StateHandler = Core.Title.StateHandler;
 
 namespace UI.Title
 {
     public class UI_Login : MonoBehaviour
     {
-        private SignalBus    signalBus;
-        private LoginSystem  loginSystem;
-        private StateHandler stateHandler;
-        private PlayerData   playerData;
+        private ISceneService sceneService;
+        private SignalBus     signalBus;
+        private LoginSystem   loginSystem;
+        private StateHandler  stateHandler;
+        private PlayerData    playerData;
 
         private CanvasGroup canvasGroup;
 
@@ -32,8 +33,9 @@ namespace UI.Title
         }
 
         [Inject]
-        private void Inject(SignalBus signalBus, LoginSystem loginSystem, StateHandler stateHandler, PlayerData playerData)
+        private void Inject(ISceneService sceneService, SignalBus signalBus, LoginSystem loginSystem, StateHandler stateHandler, PlayerData playerData)
         {
+            this.sceneService = sceneService;
             this.loginSystem  = loginSystem;
             this.signalBus    = signalBus;
             this.stateHandler = stateHandler;
@@ -75,9 +77,12 @@ namespace UI.Title
             try
             {
                 await loginSystem.Login(guestGetAwsUser);
-            
+
                 await playerData.SyncUserInfo();
                 await playerData.SyncUserWallet();
+                await playerData.SyncPigeonList(10);
+                
+                sceneService.DoLoadScene(1);
             }
             catch (Exception e)
             {
