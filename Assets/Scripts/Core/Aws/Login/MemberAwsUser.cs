@@ -16,18 +16,9 @@ namespace Core.Aws.Login
 
         public async UniTask Execute(AwsUserModel awsUserModel)
         {
-            try
-            {
-                awsUserModel.account = account;
+            awsUserModel.account = account;
 
-                await SetUserToken(awsUserModel);
-                
-                // TODO: Save To Local
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            await SetUserToken(awsUserModel);
         }
     }
 }

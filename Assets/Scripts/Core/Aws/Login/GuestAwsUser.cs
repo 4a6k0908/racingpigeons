@@ -35,32 +35,22 @@ namespace Core.Aws.Login
                         "}"                           +
                         "\",\"variables\":{}}";
 
-            try
+            var responseContent = await awsGraphQL.Post(query, null);
+
+            var data = JsonUtility.FromJson<GQL_GetGuestAccount>(responseContent);
+
+            var account = data.data.getGuestAccount;
+
+            if (account.username != null && !string.IsNullOrEmpty(account.username))
             {
-                var responseContent = await awsGraphQL.Post(query, null);
+                awsUserModel.account  = account;
+                awsUserModel.provider = "guest";
+                awsUserModel.idToken  = "";
 
-                var data = JsonUtility.FromJson<GQL_GetGuestAccount>(responseContent);
-
-                // TODO: Fail Condition
-                // if(data == null)
-            
-                var account = data.data.getGuestAccount;
-
-                if (account.username != null && !string.IsNullOrEmpty(account.username))
-                {
-                    awsUserModel.account  = account;
-                    awsUserModel.provider = "guest";
-                    awsUserModel.idToken  = "";
-
-                    // TODO: Save Local
-                }
-            
-                await SetUserToken(awsUserModel);
+                // TODO: Save Local
             }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+
+            await SetUserToken(awsUserModel);
         }
     }
 }

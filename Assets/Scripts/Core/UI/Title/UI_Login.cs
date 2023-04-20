@@ -92,6 +92,7 @@ namespace UI.Title
             catch (Exception e)
             {
                 notifyService.DoNotify(e.Message, () => { });
+                stateHandler.ChangeState(State.Login);
             }
         }
 

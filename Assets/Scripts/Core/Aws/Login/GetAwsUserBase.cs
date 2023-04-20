@@ -29,6 +29,8 @@ namespace Core.Aws.Login
             awsUserModel.refreshToken = user.SessionTokens.RefreshToken;
 
             Debug.Log($"Aws User: \n{JsonUtility.ToJson(awsUserModel)}");
+            
+            // TODO: Save Local
         }
     }
 }
