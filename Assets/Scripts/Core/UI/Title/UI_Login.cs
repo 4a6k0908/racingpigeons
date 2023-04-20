@@ -6,8 +6,10 @@ using Core.Player.Models;
 using Core.Title;
 using SoapUtils.NotifySystem;
 using SoapUtils.SceneSystem;
+using SoapUtils.SoundSystem;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using Zenject;
 using StateHandler = Core.Title.StateHandler;
 
@@ -16,6 +18,7 @@ namespace UI.Title
     public class UI_Login : MonoBehaviour
     {
         private ISceneService  sceneService;
+        private ISoundService  soundService;
         private INotifyService notifyService;
         private SignalBus      signalBus;
         private StateHandler   stateHandler;
@@ -23,9 +26,9 @@ namespace UI.Title
 
         private CanvasGroup canvasGroup;
 
-        [SerializeField] private TextMeshProUGUI stateText;
-        [SerializeField] private TMP_InputField  accountIF;
-        [SerializeField] private TMP_InputField  passwordIF;
+        [SerializeField] private TMP_InputField             accountIF;
+        [SerializeField] private TMP_InputField             passwordIF;
+        [SerializeField] private AssetReferenceT<AudioClip> clip_Click;
 
         private void Awake()
         {
@@ -33,10 +36,13 @@ namespace UI.Title
         }
 
         [Inject]
-        private void Inject(ISceneService sceneService, INotifyService notifyService, SignalBus signalBus, StateHandler stateHandler, PlayerData playerData)
+        private void Inject(
+            ISceneService sceneService, ISoundService soundService, INotifyService notifyService,
+            SignalBus signalBus, StateHandler stateHandler, PlayerData playerData)
         {
             this.notifyService = notifyService;
             this.sceneService  = sceneService;
+            this.soundService  = soundService;
             this.signalBus     = signalBus;
             this.stateHandler  = stateHandler;
             this.playerData    = playerData;
@@ -54,6 +60,8 @@ namespace UI.Title
 
         public void Button_Guest_Login()
         {
+            soundService.DoPlaySound(clip_Click);
+
             var guestGetAwsUser = new GuestAwsUser(playerData.GetGraphQL());
 
             Login(guestGetAwsUser);
@@ -61,6 +69,14 @@ namespace UI.Title
 
         public void Button_Member_Login()
         {
+            soundService.DoPlaySound(clip_Click);
+
+            if (string.IsNullOrEmpty(accountIF.text) || string.IsNullOrEmpty(passwordIF.text))
+            {
+                notifyService.DoNotify("帳號與密碼不能留空", () => { });
+                return;
+            }
+
             var account       = new Account(accountIF.text, passwordIF.text);
             var memberAwsUser = new MemberAwsUser(account);
 
@@ -77,15 +93,20 @@ namespace UI.Title
             try
             {
                 notifyService.DoNotify("登入中，請稍候");
-                
+
                 await playerData.Login(guestGetAwsUser);
 
+                notifyService.DoNotify("取得玩家資訊中");
                 await playerData.SyncUserInfo();
+
+                notifyService.DoNotify("取得玩家錢包資訊中");
                 await playerData.SyncUserWallet();
+
+                notifyService.DoNotify("取得鴿子資訊中");
                 await playerData.SyncPigeonList(10);
 
                 notifyService.DoClose();
-                
+
                 sceneService.DoLoadScene(1);
             }
             catch (Exception e)
