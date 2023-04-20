@@ -4,7 +4,6 @@ using Core.Aws.Login;
 using Core.Aws.Models;
 using Core.Player.Models;
 using Core.Title;
-using Cysharp.Threading.Tasks;
 using SoapUtils.NotifySystem;
 using SoapUtils.SceneSystem;
 using TMPro;
