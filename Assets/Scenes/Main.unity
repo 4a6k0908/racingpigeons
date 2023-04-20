@@ -1233,15 +1233,15 @@ MonoBehaviour:
   cancelBtn: {fileID: 146531002}
   confirmBtn: {fileID: 1561236588}
   clip_Click:
-    m_AssetGUID: 
+    m_AssetGUID: 08482be4a8af2274891f2e204caa7bf7
     m_SubObjectName: 
     m_SubObjectType: 
-    m_EditorAssetChanged: 0
+    m_EditorAssetChanged: 1
   clip_Cancel:
-    m_AssetGUID: 
+    m_AssetGUID: 9861b92bffe1c9d4c92b9173eff8872c
     m_SubObjectName: 
     m_SubObjectType: 
-    m_EditorAssetChanged: 0
+    m_EditorAssetChanged: 1
 --- !u!1 &739843888
 GameObject:
   m_ObjectHideFlags: 0

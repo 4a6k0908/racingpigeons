@@ -33,26 +33,18 @@ namespace Core.User.Models
                         "}"                  +
                         "\",\"variables\":{}}";
 
-            try
-            {
-                var responseContent = await awsGraphQL.Post(query, awsUserModel.accessToken);
-                var data            = JsonUtility.FromJson<GQL_GetUserWallet>(responseContent);
+            var responseContent = await awsGraphQL.Post(query, awsUserModel.accessToken);
+            var data            = JsonUtility.FromJson<GQL_GetUserWallet>(responseContent);
 
-                if (data == null)
-                    throw new Exception("無法獲取錢包資料");
+            if (data == null)
+                throw new Exception("無法獲取錢包資料");
 
-                Debug.Log($"User Wallet: \n {JsonUtility.ToJson(data.data.getUserWallet)}");
-                
-                var userWallet = data.data.getUserWallet;
-                balance = userWallet.balance;
-                coin    = userWallet.coin;
-                ticket  = userWallet.ticket;
+            Debug.Log($"User Wallet: \n {JsonUtility.ToJson(data.data.getUserWallet)}");
 
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            var userWallet = data.data.getUserWallet;
+            balance = userWallet.balance;
+            coin    = userWallet.coin;
+            ticket  = userWallet.ticket;
         }
     }
 }

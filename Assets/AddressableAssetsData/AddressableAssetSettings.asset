@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 9dd1939185e73ed4da7c30f6460b0f4e
   m_currentHash:
     serializedVersion: 2
-    Hash: 04458d38f56ab4261f6f7f3de5b01616
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -47,6 +47,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 477763f655115754ba39f08d0b7495e0, type: 2}
   - {fileID: 11400000, guid: 2ad1726d45ccba141a882e8e0ed30110, type: 2}
   - {fileID: 11400000, guid: ee5fba5379111b34185647ac754275b5, type: 2}
+  - {fileID: 11400000, guid: 19fbce16ade820d4393898cfa9f238df, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -89,6 +90,7 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - scene
+    - sound
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: fd4f780236b316f4cb0a7eacd6a494bd, type: 2}

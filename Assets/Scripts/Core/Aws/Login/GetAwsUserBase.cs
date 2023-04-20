@@ -16,26 +16,19 @@ namespace Core.Aws.Login
 
         protected async UniTask SetUserToken(AwsUserModel awsUserModel)
         {
-            try
-            {
-                var provider = new AmazonCognitoIdentityProviderClient(null, cognitoRegion);
-                var pool     = new CognitoUserPool(cognitoPoolKey, cognitoClientKey, provider);
-                var user     = new CognitoUser(awsUserModel.account.username, cognitoClientKey, pool, provider);
+            var provider = new AmazonCognitoIdentityProviderClient(null, cognitoRegion);
+            var pool     = new CognitoUserPool(cognitoPoolKey, cognitoClientKey, provider);
+            var user     = new CognitoUser(awsUserModel.account.username, cognitoClientKey, pool, provider);
 
-                await user.StartWithSrpAuthAsync(new InitiateSrpAuthRequest {
-                    Password = awsUserModel.account.password,
-                }).ConfigureAwait(false);
+            await user.StartWithSrpAuthAsync(new InitiateSrpAuthRequest {
+                Password = awsUserModel.account.password,
+            });
 
-                awsUserModel.idToken      = user.SessionTokens.IdToken;
-                awsUserModel.accessToken  = user.SessionTokens.AccessToken;
-                awsUserModel.refreshToken = user.SessionTokens.RefreshToken;
+            awsUserModel.idToken      = user.SessionTokens.IdToken;
+            awsUserModel.accessToken  = user.SessionTokens.AccessToken;
+            awsUserModel.refreshToken = user.SessionTokens.RefreshToken;
 
-                Debug.Log($"Aws User: \n{JsonUtility.ToJson(awsUserModel)}");
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            Debug.Log($"Aws User: \n{JsonUtility.ToJson(awsUserModel)}");
         }
     }
 }

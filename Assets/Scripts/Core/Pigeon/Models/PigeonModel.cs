@@ -67,20 +67,13 @@ namespace Core.Pigeon.Models
                         "}"                                        +
                         "\",\"variables\":{}}";
 
-            try
-            {
-                var responseContent = await awsGraphQL.Post(query, awsUserModel.accessToken);
+            var responseContent = await awsGraphQL.Post(query, awsUserModel.accessToken);
 
-                var data = JsonUtility.FromJson<GQL_GetPigeonList>(responseContent);
+            var data = JsonUtility.FromJson<GQL_GetPigeonList>(responseContent);
 
-                Debug.Log($"Pigeon List: \n {JsonUtility.ToJson(data)}");
+            Debug.Log($"Pigeon List: \n {JsonUtility.ToJson(data)}");
 
-                pigeonStatsList = data.data.getPigeonList.items;
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            pigeonStatsList = data.data.getPigeonList.items;
         }
 
         public List<PigeonStat> GetPigeonStatsList() => pigeonStatsList;

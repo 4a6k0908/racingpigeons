@@ -26,7 +26,7 @@ namespace Core.Aws.Login
             }
             catch (Exception e)
             {
-                Debug.Log(e.Message);
+                throw new Exception(e.Message);
             }
         }
     }

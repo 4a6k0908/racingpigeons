@@ -53,22 +53,22 @@ namespace UI.Title
             signalBus.Unsubscribe<OnStateChange>(OnStateChange);
         }
 
-        public async void Button_Guest_Login()
+        public void Button_Guest_Login()
         {
             var guestGetAwsUser = new GuestAwsUser(playerData.GetGraphQL());
 
-            await Login(guestGetAwsUser);
+            Login(guestGetAwsUser);
         }
 
-        public async void Button_Member_Login()
+        public void Button_Member_Login()
         {
             var account       = new Account(accountIF.text, passwordIF.text);
             var memberAwsUser = new MemberAwsUser(account);
 
-            await Login(memberAwsUser);
+            Login(memberAwsUser);
         }
 
-        private async UniTask Login(IGetAwsUser guestGetAwsUser)
+        private async void Login(IGetAwsUser guestGetAwsUser)
         {
             if (stateHandler.GetCurrentState() != State.Login)
                 return;
@@ -84,14 +84,14 @@ namespace UI.Title
                 await playerData.SyncUserInfo();
                 await playerData.SyncUserWallet();
                 await playerData.SyncPigeonList(10);
+
+                notifyService.DoClose();
                 
                 sceneService.DoLoadScene(1);
-                
-                notifyService.DoClose();
             }
             catch (Exception e)
             {
-                notifyService.DoNotify($"發生錯誤: {e.Message}");
+                notifyService.DoNotify(e.Message, () => { });
             }
         }
 
