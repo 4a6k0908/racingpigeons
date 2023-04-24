@@ -3,6 +3,7 @@ using Amazon;
 using Amazon.CognitoIdentityProvider;
 using Amazon.Extensions.CognitoAuthentication;
 using Core.Aws.Models;
+using Core.Save;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ namespace Core.Aws.Login
 {
     public class GetAwsUserBase
     {
+        private SaveSystem saveSystem = new();
+
         private string         cognitoClientKey = "6bkme5fjo0qksgd6jhmqr1e41g";
         private string         cognitoPoolKey   = "ap-northeast-1_07PSOmDNc";
         private RegionEndpoint cognitoRegion    = RegionEndpoint.APNortheast1;
@@ -29,8 +32,8 @@ namespace Core.Aws.Login
             awsUserModel.refreshToken = user.SessionTokens.RefreshToken;
 
             Debug.Log($"Aws User: \n{JsonUtility.ToJson(awsUserModel)}");
-            
-            // TODO: Save Local
+
+            saveSystem.Save(awsUserModel, "user.dat");
         }
     }
 }

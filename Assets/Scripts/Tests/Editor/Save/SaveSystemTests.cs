@@ -22,20 +22,22 @@ namespace Tests.Editor.Save
         {
             var testData = new TestData(1, 5, "test");
 
-            saveSystem.Save(testData, "Test.dat");
+            saveSystem.Save(testData, "test.dat");
 
-            var filePath = Path.Combine(Application.persistentDataPath, "Test.dat");
+            var filePath = Path.Combine(Application.persistentDataPath, "test.dat");
             FileShouldExist(filePath);
         }
 
         [Test]
         public void _02_Should_Load_Data_From_Local_Storage_Success_And_Correct()
         {
-            var testData = saveSystem.Load<TestData>("Test.dat");
+            var testData = saveSystem.Load<TestData>("test.dat");
 
             MoneyShouldBe(1, testData.money);
             CountShouldBe(5, testData.count);
             NameShouldBe("test", testData.name);
+
+            saveSystem.Delete("test.dat");
         }
 
         private static void NameShouldBe(string expected, string name)

@@ -19,5 +19,15 @@ namespace Core.Save
 
             return JsonUtility.FromJson<T>(content);
         }
+
+        public void Delete(string fileName)
+        {
+            var filePath = Path.Combine(Application.persistentDataPath, fileName);
+            
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+        }
     }
 }

@@ -3,6 +3,7 @@ using AnimeTask;
 using Core.Aws.Login;
 using Core.Aws.Models;
 using Core.Player.Models;
+using Core.Save;
 using Core.Title;
 using SoapUtils.NotifySystem;
 using SoapUtils.SceneSystem;
@@ -26,8 +27,6 @@ namespace UI.Title
 
         private CanvasGroup canvasGroup;
 
-        [SerializeField] private TMP_InputField             accountIF;
-        [SerializeField] private TMP_InputField             passwordIF;
         [SerializeField] private AssetReferenceT<AudioClip> clip_Click;
 
         private void Awake()
@@ -67,20 +66,14 @@ namespace UI.Title
             Login(guestGetAwsUser);
         }
 
-        public void Button_Member_Login()
+        public void Button_Google_Login()
         {
             soundService.DoPlaySound(clip_Click);
+        }
 
-            if (string.IsNullOrEmpty(accountIF.text) || string.IsNullOrEmpty(passwordIF.text))
-            {
-                notifyService.DoNotify("帳號與密碼不能留空", () => { });
-                return;
-            }
-
-            var account       = new Account(accountIF.text, passwordIF.text);
-            var memberAwsUser = new MemberAwsUser(account);
-
-            Login(memberAwsUser);
+        public void Button_Line_Login()
+        {
+            soundService.DoPlaySound(clip_Click);
         }
 
         private async void Login(IGetAwsUser guestGetAwsUser)
@@ -126,9 +119,5 @@ namespace UI.Title
                     break;
             }
         }
-
-        public void Button_Google_Login() { }
-
-        public void Button_Line_Login() { }
     }
 }

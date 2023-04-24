@@ -3,6 +3,7 @@ using Core.Aws;
 using Core.Aws.Login;
 using Core.Aws.Models;
 using Core.Player.Models;
+using Core.Save;
 using Core.User.Models;
 using Cysharp.Threading.Tasks;
 using NUnit.Framework;
@@ -19,9 +20,9 @@ namespace Tests.Editor.User
             playerData = new PlayerData(awsGraphQL);
         }
 
-        private Account     testAccount = new("test99", "Aa+123456789");
-        private AwsGraphQL  awsGraphQL;
-        private PlayerData  playerData;
+        private Account    testAccount = new("test99", "Aa+123456789");
+        private AwsGraphQL awsGraphQL;
+        private PlayerData playerData;
 
         [Test]
         public async Task _01_Should_Guest_Sign_In_Success()

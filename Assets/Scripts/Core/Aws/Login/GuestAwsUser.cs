@@ -1,6 +1,7 @@
 ﻿using System;
 using Core.Aws.GraphQL;
 using Core.Aws.Models;
+using Core.Save;
 using Core.Utils.Algorithm;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -11,9 +12,9 @@ namespace Core.Aws.Login
     {
         private readonly AwsGraphQL awsGraphQL;
 
-        public GuestAwsUser(AwsGraphQL awsGraphQl)
+        public GuestAwsUser(AwsGraphQL awsGraphQL)
         {
-            awsGraphQL = awsGraphQl;
+            this.awsGraphQL = awsGraphQL;
         }
 
         public async UniTask Execute(AwsUserModel awsUserModel)
