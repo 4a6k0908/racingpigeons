@@ -42,7 +42,7 @@ namespace UI.Title
 
         private async void OnStateChange(OnStateChange e)
         {
-            if (e.preState == State.Login && e.state != State.Title)
+            if (e.preState == State.Title && e.state == State.Login)
             {
                 canvasGroup.interactable = canvasGroup.blocksRaycasts = false;
                 await Easing.Create<Linear>(0, 0.25f).ToColorA(canvasGroup);

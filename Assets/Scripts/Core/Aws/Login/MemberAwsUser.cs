@@ -1,7 +1,5 @@
-﻿using System;
-using Core.Aws.Models;
+﻿using Core.Aws.Models;
 using Cysharp.Threading.Tasks;
-using UnityEngine;
 
 namespace Core.Aws.Login
 {

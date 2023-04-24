@@ -4,7 +4,6 @@ using Core.Aws.Login;
 using Core.Aws.Models;
 using Core.Player.Models;
 using Core.Save;
-using Core.User.Models;
 using Cysharp.Threading.Tasks;
 using NUnit.Framework;
 
@@ -20,6 +19,7 @@ namespace Tests.Editor.User
             playerData = new PlayerData(awsGraphQL);
         }
 
+        private SaveSystem saveSystem;
         private Account    testAccount = new("test99", "Aa+123456789");
         private AwsGraphQL awsGraphQL;
         private PlayerData playerData;
@@ -47,7 +47,6 @@ namespace Tests.Editor.User
 
             UsernameShouldBeEqual(testAccount.username, awsUserModel.account.username);
             IdTokenShouldNotEmpty(awsUserModel.idToken);
-            ProviderShouldBe("", awsUserModel.provider);
         }
 
         [Test]

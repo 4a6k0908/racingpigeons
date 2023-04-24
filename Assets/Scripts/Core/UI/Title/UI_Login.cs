@@ -76,6 +76,22 @@ namespace UI.Title
             soundService.DoPlaySound(clip_Click);
         }
 
+        private void CheckAutoLogin()
+        {
+            var awsUserModel = playerData.GetAwsUserModel();
+
+            Debug.Log($"Provider: {awsUserModel.provider}");
+
+            if (awsUserModel.provider == null || !awsUserModel.provider.Equals("guest"))
+                return;
+
+            var account = new Account(awsUserModel.account.username, awsUserModel.account.password);
+
+            var memberGetAwsUser = new MemberAwsUser(account);
+
+            Login(memberGetAwsUser);
+        }
+
         private async void Login(IGetAwsUser guestGetAwsUser)
         {
             if (stateHandler.GetCurrentState() != State.Login)
@@ -114,6 +130,7 @@ namespace UI.Title
             switch (e.preState)
             {
                 case State.Title when e.state == State.Login:
+                    CheckAutoLogin();
                     canvasGroup.blocksRaycasts = canvasGroup.interactable = true;
                     await Easing.Create<Linear>(1, 0.25f).ToColorA(canvasGroup);
                     break;

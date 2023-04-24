@@ -1,8 +1,6 @@
 ﻿using System;
-using System.IO;
 using Core.Save;
 using NUnit.Framework;
-using UnityEngine;
 
 namespace Tests.Editor.Save
 {
@@ -16,28 +14,45 @@ namespace Tests.Editor.Save
         }
 
         private SaveSystem saveSystem;
+        private string     fileName = "test.dat";
 
         [Test]
         public void _01_Should_Save_Data_To_Json_In_Local_Storage_Success()
         {
             var testData = new TestData(1, 5, "test");
 
-            saveSystem.Save(testData, "test.dat");
+            saveSystem.Save(testData, fileName);
 
-            var filePath = Path.Combine(Application.persistentDataPath, "test.dat");
-            FileShouldExist(filePath);
+            FileIsNeedExist(true, fileName);
         }
 
         [Test]
-        public void _02_Should_Load_Data_From_Local_Storage_Success_And_Correct()
+        public void _02_Should_Saved_Data_Exist()
         {
-            var testData = saveSystem.Load<TestData>("test.dat");
+            FileIsNeedExist(true, fileName);
+        }
+
+        [Test]
+        public void _03_Should_Load_Data_From_Local_Storage_Success_And_Correct()
+        {
+            var testData = saveSystem.Load<TestData>(fileName);
 
             MoneyShouldBe(1, testData.money);
             CountShouldBe(5, testData.count);
             NameShouldBe("test", testData.name);
+        }
 
-            saveSystem.Delete("test.dat");
+        [Test]
+        public void _04_Should_Delete_File_From_Local_Storage_Success()
+        {
+            saveSystem.Delete(fileName);
+
+            FileIsNeedExist(false, fileName);
+        }
+
+        private void FileIsNeedExist(bool expected, string fileName)
+        {
+            Assert.AreEqual(expected, saveSystem.IsExist(fileName));
         }
 
         private static void NameShouldBe(string expected, string name)
@@ -53,11 +68,6 @@ namespace Tests.Editor.Save
         private static void MoneyShouldBe(int expected, int money)
         {
             Assert.AreEqual(expected, money);
-        }
-
-        private void FileShouldExist(string filePath)
-        {
-            Assert.That(File.Exists(filePath));
         }
 
         [Serializable]

@@ -24,10 +24,17 @@ namespace Core.Save
         {
             var filePath = Path.Combine(Application.persistentDataPath, fileName);
             
-            if (File.Exists(filePath))
+            if (IsExist(fileName))
             {
                 File.Delete(filePath);
             }
+        }
+
+        public bool IsExist(string fileName)
+        {
+            var filePath = Path.Combine(Application.persistentDataPath, fileName);
+            
+            return File.Exists(filePath);
         }
     }
 }

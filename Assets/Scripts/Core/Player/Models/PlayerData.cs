@@ -3,6 +3,7 @@ using Core.Aws;
 using Core.Aws.Login;
 using Core.Aws.Models;
 using Core.Pigeon.Models;
+using Core.Save;
 using Core.User.Models;
 using Cysharp.Threading.Tasks;
 
@@ -10,9 +11,12 @@ namespace Core.Player.Models
 {
     public class PlayerData
     {
+        private readonly SaveSystem saveSystem;
+
         private readonly AwsGraphQL   awsGraphQL;
         private readonly AwsUserModel awsUserModel;
-        private readonly PigeonModel  pigeonModel;
+
+        private readonly PigeonModel pigeonModel;
 
         private readonly UserInfoModel   userInfoModel;
         private readonly UserWalletModel userWalletModel;
@@ -21,7 +25,10 @@ namespace Core.Player.Models
         {
             this.awsGraphQL = awsGraphQL;
 
-            awsUserModel = new AwsUserModel();
+            saveSystem = new SaveSystem();
+
+            awsUserModel = new AwsUserModel(saveSystem);
+            awsUserModel.LoadCache();
 
             userInfoModel   = new UserInfoModel(awsGraphQL);
             userWalletModel = new UserWalletModel(awsGraphQL);
