@@ -1,7 +1,5 @@
-﻿using System;
-using Core.Aws.GraphQL;
+﻿using Core.Aws.GraphQL;
 using Core.Aws.Models;
-using Core.Save;
 using Core.Utils.Algorithm;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -48,10 +46,10 @@ namespace Core.Aws.Login
                 awsUserModel.provider = "guest";
                 awsUserModel.idToken  = "";
 
-                // TODO: Save Local
+                await SetUserToken(awsUserModel);
             }
-
-            await SetUserToken(awsUserModel);
+            
+            // TODO: 沒有取得資料的 Handle ?
         }
     }
 }
