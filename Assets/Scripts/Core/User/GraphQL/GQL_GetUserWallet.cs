@@ -1,4 +1,5 @@
 ﻿using System;
+using Core.User.Models;
 
 namespace Core.User.GraphQL
 {
@@ -8,7 +9,7 @@ namespace Core.User.GraphQL
         [Serializable]
         public struct Data
         {
-            public UserWallet getUserWallet;
+            public UserWalletModel getUserWallet;
         }
 
         public Data data;
