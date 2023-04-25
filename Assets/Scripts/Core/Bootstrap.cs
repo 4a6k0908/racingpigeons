@@ -4,7 +4,7 @@ using Zenject;
 
 public class Bootstrap : MonoBehaviour
 {
-    [Inject] private ISceneService sceneService;
+    private ISceneService sceneService;
 
     [Inject]
     private void Inject(ISceneService sceneService)

@@ -6,15 +6,15 @@ public class ProcessDeepLink : MonoBehaviour
    public static ProcessDeepLink Instance { get; private set; }
 
    private string deeplinkURL;
-   private LoginProc _uiInputManager;
+   // private LoginProc _uiInputManager;
 
    private void onDeepLinkActivated(string url)
    {
       // Update DeepLink Manager global variable, so URL can be accessed from anywhere.
       deeplinkURL = url;
 
-      _uiInputManager = FindObjectOfType<LoginProc>();
-      _uiInputManager.ProcessDeepLink(deeplinkURL);
+      // _uiInputManager = FindObjectOfType<LoginProc>();
+      // _uiInputManager.ProcessDeepLink(deeplinkURL);
    }
 
    private void Awake()
