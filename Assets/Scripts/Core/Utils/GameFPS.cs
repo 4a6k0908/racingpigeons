@@ -4,7 +4,7 @@ namespace Core.Utils
 {
     public class GameFPS : MonoBehaviour
     {
-        private float  updateInterval = 0.5f;
+        private float  updateInterval = 0.1f;
         private float  nextUpdate;
         private int    frameCount;
         private float  fps;

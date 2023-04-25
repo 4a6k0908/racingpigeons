@@ -1,4 +1,5 @@
 ﻿using Core.Aws;
+using Core.CameraSystem;
 using Core.Player.Models;
 using Core.Save;
 using SoapUtils.NotifySystem;
@@ -17,6 +18,14 @@ namespace Core.Installers
             BindPlayer();
             BindSound();
             BindNotify();
+            BindCamera();
+        }
+
+        private void BindCamera()
+        {
+            Container.Bind<CameraView>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<CameraFollowHandler>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CameraService>().AsSingle();
         }
 
         private void BindSound()
