@@ -37,9 +37,9 @@ namespace Tests.Editor.Save
         {
             var testData = saveSystem.Load<TestData>(fileName);
 
-            MoneyShouldBe(1, testData.money);
-            CountShouldBe(5, testData.count);
-            NameShouldBe("test", testData.name);
+            MoneyShouldBeSame(1, testData.money);
+            CountShouldBeSame(5, testData.count);
+            NameShouldBeSame("test", testData.name);
         }
 
         [Test]
@@ -55,17 +55,17 @@ namespace Tests.Editor.Save
             Assert.AreEqual(expected, saveSystem.IsExist(fileName));
         }
 
-        private static void NameShouldBe(string expected, string name)
+        private static void NameShouldBeSame(string expected, string name)
         {
             Assert.AreEqual(expected, name);
         }
 
-        private static void CountShouldBe(int expected, int count)
+        private static void CountShouldBeSame(int expected, int count)
         {
             Assert.AreEqual(expected, count);
         }
 
-        private static void MoneyShouldBe(int expected, int money)
+        private static void MoneyShouldBeSame(int expected, int money)
         {
             Assert.AreEqual(expected, money);
         }

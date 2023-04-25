@@ -31,12 +31,12 @@ namespace Tests.Editor.Title
 
             stateHandler.ChangeState(State.Login);
 
-            StateShouldBe(State.Login, stateHandler.GetCurrentState());
-            StateShouldBe(State.Title, stateChange.preState);
-            StateShouldBe(State.Login, stateChange.state);
+            StateShouldBeSame(State.Login, stateHandler.GetCurrentState());
+            StateShouldBeSame(State.Title, stateChange.preState);
+            StateShouldBeSame(State.Login, stateChange.state);
         }
 
-        private static void StateShouldBe(State expected, State compareState)
+        private static void StateShouldBeSame(State expected, State compareState)
         {
             Assert.AreEqual(expected, compareState);
         }

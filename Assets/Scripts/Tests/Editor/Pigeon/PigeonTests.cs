@@ -30,17 +30,17 @@ namespace Tests.Editor.Pigeon
             await playerData.SyncPigeonList(10);
 
             var pigeonList = playerData.GetPigeonList();
-            PigeonCountShouldBe(2, pigeonList.Count);
-            PigeonNameShouldBe("Jonathan Dennis", pigeonList[0].pigeon_name);
-            PigeonNameShouldBe("Vernon Manning", pigeonList[1].pigeon_name);
+            PigeonCountShouldBeSame(2, pigeonList.Count);
+            PigeonNameShouldBeSame("Jonathan Dennis", pigeonList[0].pigeon_name);
+            PigeonNameShouldBeSame("Vernon Manning", pigeonList[1].pigeon_name);
         }
 
-        private void PigeonNameShouldBe(string expected, string pigeonName)
+        private void PigeonNameShouldBeSame(string expected, string pigeonName)
         {
             Assert.AreEqual(expected, pigeonName);
         }
 
-        private void PigeonCountShouldBe(int expected, int pigeonCount)
+        private void PigeonCountShouldBeSame(int expected, int pigeonCount)
         {
             Assert.AreEqual(expected, pigeonCount);
         }

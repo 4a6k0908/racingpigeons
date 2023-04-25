@@ -32,21 +32,20 @@ namespace Tests.Editor.User
 
             var awsUserModel = playerData.GetAwsUserModel();
 
-            UsernameShouldBeGuest(awsUserModel.account.username);
-            IdTokenShouldNotEmpty(awsUserModel.idToken);
-            ProviderShouldBe("guest", awsUserModel.provider);
+            UsernameShouldContainGuest(awsUserModel.account.username);
+            IdTokenShouldNotEmpty();
+            ProviderShouldBe("guest");
         }
 
         [Test]
         public async Task _02_Should_Member_Sign_In_Success()
         {
             var memberAwsUser = new MemberAwsUser(testAccount);
+
             await PlayerLogin(memberAwsUser);
 
-            var awsUserModel = playerData.GetAwsUserModel();
-
-            UsernameShouldBeEqual(testAccount.username, awsUserModel.account.username);
-            IdTokenShouldNotEmpty(awsUserModel.idToken);
+            UsernameShouldBe(testAccount.username);
+            IdTokenShouldNotEmpty();
         }
 
         [Test]
@@ -57,9 +56,8 @@ namespace Tests.Editor.User
 
             await playerData.SyncUserInfo();
 
-            var userInfoModel = playerData.GetUserInfoModel();
-            NicknameShouldBe("test", userInfoModel.nickname);
-            EmailShouldBe("taboi40145@gmail.com", userInfoModel.email);
+            NicknameShouldBe("test");
+            EmailShouldBe("taboi40145@gmail.com");
         }
 
         [Test]
@@ -70,11 +68,9 @@ namespace Tests.Editor.User
 
             await playerData.SyncUserWallet();
 
-            var userWalletModel = playerData.GetUserWalletModel();
-
-            BalanceShouldBe(9998, userWalletModel.balance);
-            CoinShouldBe(10000, userWalletModel.coin);
-            TicketShouldBe(0, userWalletModel.ticket);
+            BalanceShouldBe(9998);
+            CoinShouldBe(10000);
+            TicketShouldBe(0);
         }
 
         private async UniTask PlayerLogin(IGetAwsUser getAwsUser)
@@ -82,49 +78,65 @@ namespace Tests.Editor.User
             await playerData.Login(getAwsUser);
         }
 
-        private static void TicketShouldBe(int expected, int ticket)
+        private void TicketShouldBe(int expected)
         {
-            Assert.AreEqual(expected, ticket);
+            var wallet = playerData.GetUserWalletModel();
+
+            Assert.AreEqual(expected, wallet.ticket);
         }
 
-        private static void CoinShouldBe(int expected, int coin)
+        private void CoinShouldBe(int expected)
         {
-            Assert.AreEqual(expected, coin);
+            var wallet = playerData.GetUserWalletModel();
+
+            Assert.AreEqual(expected, wallet.coin);
         }
 
-        private static void BalanceShouldBe(int expected, int balance)
+        private void BalanceShouldBe(int expected)
         {
-            Assert.AreEqual(expected, balance);
+            var wallet = playerData.GetUserWalletModel();
+
+            Assert.AreEqual(expected, wallet.balance);
         }
 
-        private void EmailShouldBe(string expected, string email)
+        private void EmailShouldBe(string expected)
         {
-            Assert.AreEqual(expected, email);
+            var info = playerData.GetUserInfoModel();
+
+            Assert.AreEqual(expected, info.email);
         }
 
-        private void NicknameShouldBe(string expected, string nickname)
+        private void NicknameShouldBe(string expected)
         {
-            Assert.AreEqual(expected, nickname);
+            var info = playerData.GetUserInfoModel();
+
+            Assert.AreEqual(expected, info.nickname);
         }
 
-        private void UsernameShouldBeEqual(string expected, string username)
+        private void UsernameShouldBe(string expected)
         {
-            Assert.AreEqual(expected, username);
+            var awsUser = playerData.GetAwsUserModel();
+
+            Assert.AreEqual(expected, awsUser.account.username);
         }
 
-        private void UsernameShouldBeGuest(string username)
+        private void UsernameShouldContainGuest(string username)
         {
             Assert.AreEqual(true, username.Contains("guest"));
         }
 
-        private void IdTokenShouldNotEmpty(string idToken)
+        private void IdTokenShouldNotEmpty()
         {
-            Assert.AreNotEqual("", idToken);
+            var awsUser = playerData.GetAwsUserModel();
+
+            Assert.AreNotEqual("", awsUser.idToken);
         }
 
-        private void ProviderShouldBe(string expected, string provider)
+        private void ProviderShouldBe(string expected)
         {
-            Assert.AreEqual(expected, provider);
+            var awsUser = playerData.GetAwsUserModel();
+
+            Assert.AreEqual(expected, awsUser.provider);
         }
     }
 }
