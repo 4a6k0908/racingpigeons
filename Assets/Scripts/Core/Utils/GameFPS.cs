@@ -2,6 +2,7 @@
 
 namespace Core.Utils
 {
+    // 用來顯示遊戲中目前的偵數
     public class GameFPS : MonoBehaviour
     {
         private float  updateInterval = 0.1f;

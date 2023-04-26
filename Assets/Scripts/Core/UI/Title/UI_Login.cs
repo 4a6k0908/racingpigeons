@@ -17,13 +17,13 @@ namespace UI.Title
     {
         [SerializeField] private AssetReferenceT<AudioClip> clip_Click;
 
-        private CanvasGroup    canvasGroup;
-        private INotifyService notifyService;
-        private PlayerData     playerData;
-        private ISceneService  sceneService;
-        private SignalBus      signalBus;
-        private ISoundService  soundService;
-        private StateHandler   stateHandler;
+        private CanvasGroup       canvasGroup;
+        private PlayerData        playerData;        // 玩家資料
+        private SignalBus         signalBus;         // 事件發送器
+        private TitleStateHandler titleStateHandler; // Title 場景的遊戲狀態
+        private INotifyService    notifyService;     // 彈窗功能
+        private ISceneService     sceneService;      // 場景轉換功能
+        private ISoundService     soundService;      // 播放音效功能
 
         private void Awake()
         {
@@ -32,27 +32,29 @@ namespace UI.Title
 
         private void OnEnable()
         {
-            signalBus.Subscribe<OnStateChange>(OnStateChange);
+            signalBus.Subscribe<OnTitleStateChange>(OnStateChange);
         }
 
         private void OnDisable()
         {
-            signalBus.Unsubscribe<OnStateChange>(OnStateChange);
+            signalBus.Unsubscribe<OnTitleStateChange>(OnStateChange);
         }
 
+        // 注入 class
         [Inject]
         private void Inject(
             ISceneService sceneService, ISoundService soundService, INotifyService notifyService,
-            SignalBus signalBus, StateHandler stateHandler, PlayerData playerData)
+            SignalBus signalBus, TitleStateHandler titleStateHandler, PlayerData playerData)
         {
-            this.notifyService = notifyService;
-            this.sceneService  = sceneService;
-            this.soundService  = soundService;
-            this.signalBus     = signalBus;
-            this.stateHandler  = stateHandler;
-            this.playerData    = playerData;
+            this.notifyService     = notifyService;
+            this.sceneService      = sceneService;
+            this.soundService      = soundService;
+            this.signalBus         = signalBus;
+            this.titleStateHandler = titleStateHandler;
+            this.playerData        = playerData;
         }
 
+        // 訪客登入
         public void Button_Guest_Login()
         {
             soundService.DoPlaySound(clip_Click);
@@ -62,6 +64,7 @@ namespace UI.Title
             Login(guestGetAwsUser);
         }
 
+        // Google 登入
         public void Button_Google_Login()
         {
             soundService.DoPlaySound(clip_Click);
@@ -69,6 +72,7 @@ namespace UI.Title
             notifyService.DoNotify("尚未開放", () => { });
         }
 
+        // Line 登入
         public void Button_Line_Login()
         {
             soundService.DoPlaySound(clip_Click);
@@ -76,6 +80,7 @@ namespace UI.Title
             notifyService.DoNotify("尚未開放", () => { });
         }
 
+        // 確認是否玩家已登入過
         private void CheckAutoLogin()
         {
             var awsUserModel = playerData.GetAwsUserModel();
@@ -90,12 +95,13 @@ namespace UI.Title
             Login(memberGetAwsUser);
         }
 
+        // 處理登入的功能
         private async void Login(IGetAwsUser guestGetAwsUser)
         {
-            if (stateHandler.GetCurrentState() != State.Login)
+            if (titleStateHandler.GetCurrentState() != State.Login)
                 return;
 
-            stateHandler.ChangeState(State.AwsLogin);
+            titleStateHandler.ChangeState(State.AwsLogin);
 
             try
             {
@@ -119,11 +125,12 @@ namespace UI.Title
             catch (Exception e)
             {
                 notifyService.DoNotify(e.Message, () => { });
-                stateHandler.ChangeState(State.Login);
+                titleStateHandler.ChangeState(State.Login);
             }
         }
 
-        private async void OnStateChange(OnStateChange e)
+        // 收到狀態更改事件後，依條件淡出s
+        private async void OnStateChange(OnTitleStateChange e)
         {
             switch (e.preState)
             {

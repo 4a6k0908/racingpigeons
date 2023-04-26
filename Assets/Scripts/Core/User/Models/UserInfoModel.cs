@@ -10,7 +10,7 @@ namespace Core.User.Models
     [Serializable]
     public class UserInfoModel
     {
-        private readonly AwsGraphQL awsGraphQL;
+        private readonly AwsGraphQL awsGraphQL; // 呼叫 GraphQL
 
         public string address; //地址
         public string avatar_url;
@@ -30,6 +30,7 @@ namespace Core.User.Models
             this.awsGraphQL = awsGraphQL;
         }
 
+        // 取得玩家資訊
         public async UniTask GetUserInfo(AwsUserModel awsUserModel)
         {
             var query = "{\"query\":\""           +

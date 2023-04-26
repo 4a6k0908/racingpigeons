@@ -9,9 +9,9 @@ namespace Core.Installers
         {
             SignalBusInstaller.Install(Container);
 
-            Container.DeclareSignal<OnStateChange>();
+            Container.DeclareSignal<OnTitleStateChange>();
 
-            Container.Bind<StateHandler>().AsSingle();
+            Container.Bind<TitleStateHandler>().AsSingle();
         }
     }
 }

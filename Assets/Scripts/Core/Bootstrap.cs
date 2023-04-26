@@ -2,6 +2,7 @@
 using UnityEngine;
 using Zenject;
 
+// 在一開始讀取初始場景並銷毀
 public class Bootstrap : MonoBehaviour
 {
     private ISceneService sceneService;

@@ -13,7 +13,7 @@ namespace Tests.Editor.Title
 
             SignalBusInstaller.Install(Container);
 
-            Container.DeclareSignal<OnStateChange>();
+            Container.DeclareSignal<OnTitleStateChange>();
 
             signalBus = Container.Resolve<SignalBus>();
         }
@@ -23,11 +23,11 @@ namespace Tests.Editor.Title
         [Test]
         public void _01_Should_Change_State_To_Login_Success()
         {
-            var stateHandler = new StateHandler(signalBus);
+            var stateHandler = new TitleStateHandler(signalBus);
 
-            var stateChange = new OnStateChange();
+            var stateChange = new OnTitleStateChange();
 
-            signalBus.Subscribe<OnStateChange>(e => stateChange = e);
+            signalBus.Subscribe<OnTitleStateChange>(e => stateChange = e);
 
             stateHandler.ChangeState(State.Login);
 

@@ -9,17 +9,18 @@ namespace Core.Title
         AwsLogin = 2,
     }
 
-    public class StateHandler
+    public class TitleStateHandler
     {
-        private readonly SignalBus signalBus;
+        private readonly SignalBus signalBus; // 事件發送器
 
         private State currentState = State.Title;
 
-        public StateHandler(SignalBus signalBus)
+        public TitleStateHandler(SignalBus signalBus)
         {
             this.signalBus = signalBus;
         }
 
+        // 更改事件
         public void ChangeState(State nextState)
         {
             if (currentState == nextState)
@@ -29,9 +30,10 @@ namespace Core.Title
 
             currentState = nextState;
 
-            signalBus.Fire(new OnStateChange(preState, nextState));
+            signalBus.Fire(new OnTitleStateChange(preState, nextState)); // 發送更改狀態事件
         }
 
+        // 取得當前狀態
         public State GetCurrentState()
         {
             return currentState;
