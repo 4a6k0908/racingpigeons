@@ -69,18 +69,20 @@ namespace UI.Title
         public void Button_Google_Login()
         {
             soundService.DoPlaySound(clip_Click);
+
+            notifyService.DoNotify("尚未開放", () => { });
         }
 
         public void Button_Line_Login()
         {
             soundService.DoPlaySound(clip_Click);
+            
+            notifyService.DoNotify("尚未開放", () => { });
         }
 
         private void CheckAutoLogin()
         {
             var awsUserModel = playerData.GetAwsUserModel();
-
-            Debug.Log($"Provider: {awsUserModel.provider}");
 
             if (awsUserModel.provider == null || !awsUserModel.provider.Equals("guest"))
                 return;

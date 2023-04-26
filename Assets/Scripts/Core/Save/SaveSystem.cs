@@ -12,18 +12,24 @@ namespace Core.Save
             File.WriteAllText(savePath, JsonUtility.ToJson(saveData));
         }
 
-        public T Load<T>(string fileName)
+        public T Load<T>(string fileName) where T : class
         {
             var filePath = Path.Combine(Application.persistentDataPath, fileName);
-            var content  = File.ReadAllText(filePath);
 
+            var content = "";
+
+            if (!File.Exists(filePath))
+                return null;
+            
+            content = File.ReadAllText(filePath);
             return JsonUtility.FromJson<T>(content);
+
         }
 
         public void Delete(string fileName)
         {
             var filePath = Path.Combine(Application.persistentDataPath, fileName);
-            
+
             if (IsExist(fileName))
             {
                 File.Delete(filePath);
@@ -33,7 +39,7 @@ namespace Core.Save
         public bool IsExist(string fileName)
         {
             var filePath = Path.Combine(Application.persistentDataPath, fileName);
-            
+
             return File.Exists(filePath);
         }
     }

@@ -6,6 +6,7 @@ namespace Core.Utils
     {
         private float  updateInterval = 0.1f;
         private float  nextUpdate;
+        private float  deltaTime;
         private int    frameCount;
         private float  fps;
         private string fpsText;
@@ -18,13 +19,14 @@ namespace Core.Utils
         private void Update()
         {
             frameCount++;
-            
+            deltaTime += Time.deltaTime;
+
             if (!(Time.realtimeSinceStartup > nextUpdate))
                 return;
-            
-            fps        =  frameCount / updateInterval;
+
+            fps        =  frameCount / deltaTime;
             fpsText    =  $"FPS: {fps:F2}";
-            frameCount =  0;
+            deltaTime  =  frameCount = 0;
             nextUpdate += updateInterval;
         }
 
@@ -32,11 +34,11 @@ namespace Core.Utils
         {
             GUIStyle style = new GUIStyle {
                 fontSize = 24,
-                normal   = {
+                normal = {
                     textColor = Color.white,
                 },
             };
-            
+
             GUI.Label(new Rect(10, 10, 200, 100), fpsText, style);
         }
     }

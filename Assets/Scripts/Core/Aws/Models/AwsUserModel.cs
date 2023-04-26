@@ -33,6 +33,9 @@ namespace Core.Aws.Models
         {
             var loadedData = saveSystem.Load<AwsUserModel>("user.dat");
 
+            if (loadedData == null)
+                return;
+            
             deviceID     = loadedData.deviceID;
             account      = loadedData.account;
             idToken      = loadedData.idToken;
