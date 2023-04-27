@@ -1,7 +1,6 @@
 ﻿using System;
 using Core.Aws;
 using Core.Aws.Models;
-using Core.User.GraphQL;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -20,7 +19,7 @@ namespace Core.User.Models
         {
             this.awsGraphQL = awsGraphQL;
         }
-        
+
         // 取得玩家錢包資訊
         public async UniTask GetWalletInfo(AwsUserModel awsUserModel)
         {
@@ -46,6 +45,20 @@ namespace Core.User.Models
             balance = userWallet.balance;
             coin    = userWallet.coin;
             ticket  = userWallet.ticket;
+        }
+
+
+        // 用於取得玩家錢包的結構
+        [Serializable]
+        public class GQL_GetUserWallet
+        {
+            [Serializable]
+            public struct Data
+            {
+                public UserWalletModel getUserWallet;
+            }
+
+            public Data data;
         }
     }
 }

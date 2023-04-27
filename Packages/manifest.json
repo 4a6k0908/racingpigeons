@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.cysharp.unitask": "2.3.3",
+    "com.unity.uiextensions": "2.3.0",
     "com.neuecc.unirx": "7.1.0",
     "com.svermeulen.extenject": "9.2.0-stcf3",
     "com.unity.2d.spriteshape": "7.0.7",
@@ -53,7 +54,8 @@
       "scopes": [
         "com.svermeulen.extenject",
         "com.cysharp.unitask",
-        "com.neuecc.unirx"
+        "com.neuecc.unirx",
+        "com.unity.uiextensions"
       ]
     }
   ]

@@ -1,7 +1,6 @@
 ﻿using System;
 using Core.Aws;
 using Core.Aws.Models;
-using Core.User.GraphQL;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -74,6 +73,19 @@ namespace Core.User.Models
             phone_number         = userInfo.phone_number;
             user_code            = userInfo.user_code;
             username             = userInfo.username;
+        }
+        
+        // 用於取得玩家資訊的結構
+        [Serializable]
+        private class GQL_GetUserInfo
+        {
+            [Serializable]
+            public struct Data
+            {
+                public UserInfoModel getUserInfo;
+            }
+
+            public Data data;
         }
     }
 }
