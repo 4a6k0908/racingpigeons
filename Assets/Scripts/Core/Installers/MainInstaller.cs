@@ -8,6 +8,7 @@ using Zenject;
 
 namespace Core.Installers
 {
+    // 安裝主場景的 class，主場景的不會被消除
     public class MainInstaller : MonoInstaller<MainInstaller>
     {
         public override void InstallBindings()

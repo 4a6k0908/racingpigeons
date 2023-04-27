@@ -8,6 +8,7 @@ using UnityEngine;
 
 namespace Core.Pigeon.Models
 {
+    // 處理鴿子資料
     [Serializable]
     public class PigeonModel
     {

@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Core.Aws
 {
+    // 與 Aws 進行 GraphQL 的呼叫功能
     public class AwsGraphQL
     {
         // 東京

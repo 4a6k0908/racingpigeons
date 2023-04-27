@@ -10,9 +10,10 @@ using Zenject;
 
 namespace Core.NotifySystem
 {
+    // 取得彈窗的 UI
     public class NotifyView : MonoBehaviour
     {
-        [Inject] private readonly ISoundService soundService;
+        private ISoundService soundService;
 
         [SerializeField] private CanvasGroup     canvasGroup;
         [SerializeField] private RectTransform   bgPos;
@@ -25,6 +26,12 @@ namespace Core.NotifySystem
 
         private CancellationTokenSource tokenSource;
 
+        [Inject]
+        public void Inject(ISoundService soundService)
+        {
+            this.soundService = soundService;
+        }
+        
         public void SetContent(string content)
         {
             contentText.text = content;

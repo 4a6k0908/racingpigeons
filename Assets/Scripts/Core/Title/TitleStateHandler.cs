@@ -20,7 +20,7 @@ namespace Core.Title
             this.signalBus = signalBus;
         }
 
-        // 更改事件
+        // 更改狀態並發送事件
         public void ChangeState(State nextState)
         {
             if (currentState == nextState)

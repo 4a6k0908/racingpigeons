@@ -5,6 +5,7 @@ using Zenject;
 
 namespace Core.CameraSystem
 {
+    // 取得跟隨、虛擬攝影機的物件
     public class CameraView : MonoBehaviour
     {
         [SerializeField] private CinemachineVirtualCamera virtualCamera;

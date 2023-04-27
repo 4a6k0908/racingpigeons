@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 
 namespace Core.Aws.Login
 {
+    // 會員登入的實作
     public class MemberAwsUser : GetAwsUserBase, IGetAwsUser
     {
         private readonly Account account;

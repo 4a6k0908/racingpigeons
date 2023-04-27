@@ -1,14 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.AddressableAssets;
-using Zenject;
 
 namespace Core.SoundSystem
 {
+    // 處理循環音效播放
     public class LoopHandler
     {
-        [Inject] private readonly SoundView view;
+        private readonly SoundView view;
 
         private AudioClip currentClip;
+
+        public LoopHandler(SoundView view)
+        {
+            this.view = view;
+        }
 
         public async void Play(AssetReferenceT<AudioClip> clipAsset, float volume)
         {

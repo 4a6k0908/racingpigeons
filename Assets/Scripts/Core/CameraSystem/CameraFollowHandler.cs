@@ -9,6 +9,7 @@ namespace Core.CameraSystem
         LobbyCage   = 1
     }
 
+    // 處理攝影機跟隨的狀態
     public class CameraFollowHandler
     {
         private readonly CameraView               cameraView;
@@ -23,6 +24,7 @@ namespace Core.CameraSystem
             virtualCamera.Follow = this.cameraView.GetFollowTrans(0);
         }
 
+        // 更改目前視角的類型
         public void ChangeViewType(CameraViewType viewType)
         {
             cameraViewType = viewType;
@@ -30,8 +32,10 @@ namespace Core.CameraSystem
             virtualCamera.Follow = cameraView.GetFollowTrans((int)cameraViewType);
         }
 
+        // 取得目前的視角類型
         public CameraViewType GetCurrentViewType() => cameraViewType;
 
+        // 取得目前跟隨的物件
         public Transform GetCurrentFollowTrans() => virtualCamera.Follow;
     }
 }

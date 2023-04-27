@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace Core.Aws.Login
 {
+    // 儲存與設定 Aws 使用者的 token 資訊
     public class GetAwsUserBase
     {
         private string         cognitoClientKey = "6bkme5fjo0qksgd6jhmqr1e41g";

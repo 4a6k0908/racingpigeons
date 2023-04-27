@@ -5,6 +5,7 @@ using Cysharp.Threading.Tasks;
 
 namespace Core.Aws.Models
 {
+    // Aws 使用者的資訊
     [Serializable]
     public class AwsUserModel
     {

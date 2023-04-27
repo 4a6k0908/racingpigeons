@@ -9,17 +9,18 @@ using Cysharp.Threading.Tasks;
 
 namespace Core.Player.Models
 {
+    // 玩家整體資料的整合
     public class PlayerData
     {
-        private readonly SaveSystem saveSystem;
+        private readonly SaveSystem saveSystem; // 存檔系統
 
-        private readonly AwsGraphQL   awsGraphQL;
-        private readonly AwsUserModel awsUserModel;
+        private readonly AwsGraphQL   awsGraphQL; // AWS GraphQL 溝通
+        private readonly AwsUserModel awsUserModel; // Aws User 資料
 
-        private readonly PigeonModel pigeonModel;
-
-        private readonly UserInfoModel   userInfoModel;
-        private readonly UserWalletModel userWalletModel;
+        private readonly PigeonModel pigeonModel; // 鴿子資料
+ 
+        private readonly UserInfoModel   userInfoModel; // 玩家資訊
+        private readonly UserWalletModel userWalletModel; // 玩家錢包
 
         public PlayerData(AwsGraphQL awsGraphQL)
         {

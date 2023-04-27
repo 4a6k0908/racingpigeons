@@ -1,16 +1,22 @@
 ﻿using AnimeTask;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using Zenject;
 
 namespace Core.SoundSystem
 {
+    // 處理背景音樂
     public class BGMHandler
     {
-        [Inject] private readonly SoundView view;
+        private readonly SoundView view;
 
         private AudioClip currentClip;
 
+        public BGMHandler(SoundView view)
+        {
+            this.view = view;
+        }
+
+        // 播放背景音樂
         public async void Play(AssetReferenceT<AudioClip> clipAsset, float volume = 1)
         {
             if (clipAsset == null)
@@ -24,6 +30,7 @@ namespace Core.SoundSystem
             }
         }
 
+        // 更改背景音樂的實作
         private async void Change(AudioClip clip, float volume)
         {
             var sound = view.GetBgmSound();
@@ -37,8 +44,9 @@ namespace Core.SoundSystem
                 Addressables.Release(currentClip);
 
             currentClip = clip;
-            
-            if (clip == null) return;
+
+            if (clip == null)
+                return;
 
             sound.Play();
 

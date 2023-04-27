@@ -2,17 +2,18 @@
 
 namespace Core.SoundSystem
 {
+    // 取得 Unity 播放器物件
     public class SoundView : MonoBehaviour
     {
-        [SerializeField] private AudioSource   bgmSound;
-        [SerializeField] private AudioSource   loopSound;
-        [SerializeField] private AudioSource[] effectSound;
+        [SerializeField] private AudioSource   bgmSound; // 取得背景音樂物件
+        [SerializeField] private AudioSource   loopSound; // 取得循環音效物件
+        [SerializeField] private AudioSource[] effectSound; // 取得音效物件
 
-        private int effectSoundIndex = 0;
+        private int effectSoundIndex = 0; // 要用哪一個音效物件
 
-        public AudioSource GetBgmSound() => bgmSound;
-        public AudioSource GetLoopSound() => loopSound;
-        public AudioSource GetEffectSound()
+        public AudioSource GetBgmSound() => bgmSound; // 取得背景音效播放器
+        public AudioSource GetLoopSound() => loopSound; // 取得循環音效播放器
+        public AudioSource GetEffectSound() // 取得音效播放器
         {
             AudioSource sound = effectSound[effectSoundIndex];
 

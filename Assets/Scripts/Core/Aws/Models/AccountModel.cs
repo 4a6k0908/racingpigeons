@@ -2,6 +2,7 @@
 
 namespace Core.Aws.Models
 {
+    // 登入帳密的資料
     [Serializable]
     public class Account
     {

@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Core.Aws.Login
 {
+    // 訪客登入的實作
     public class GuestAwsUser : GetAwsUserBase, IGetAwsUser
     {
         private readonly AwsGraphQL awsGraphQL;

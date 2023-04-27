@@ -4,6 +4,7 @@ using Core.Pigeon.Models;
 
 namespace Core.Pigeon.GraphQL
 {
+    // 與 GraphQL 溝通的格式
     [Serializable]
     public class GQL_GetPigeonList
     {

@@ -11,12 +11,20 @@ namespace Core.SceneSystem
 {
     public class SceneLoadHandler
     {
-        [Inject] private readonly SceneStateHandler               stateHandler;
-        [Inject] private readonly SceneView                       view;
-        [Inject] private readonly SceneSettingsInstaller.Settings settings;
+        private readonly SceneStateHandler               stateHandler;
+        private readonly SceneView                       view;
+        private readonly SceneSettingsInstaller.Settings settings;
 
         private Queue<AsyncOperationHandle<SceneInstance>> loadedScenes = new();
 
+        public SceneLoadHandler(SceneStateHandler stateHandler, SceneView view, SceneSettingsInstaller.Settings settings)
+        {
+            this.stateHandler = stateHandler;
+            this.view         = view;
+            this.settings     = settings;
+        }
+
+        // 開始讀取場景
         public async void LoadScene(int sceneIndex, bool IsFadeOut = true)
         {
             if (!await PreLoadScene())
@@ -47,6 +55,7 @@ namespace Core.SceneSystem
             };
         }
 
+        // 讀取場景前的處理
         private async UniTask<bool> PreLoadScene()
         {
             if (stateHandler.GetState() != SceneState.Complete)
@@ -62,6 +71,7 @@ namespace Core.SceneSystem
             return true;
         }
 
+        // 淡出
         public void FadeOut()
         {
             if (stateHandler.GetState() != SceneState.Complete)

@@ -2,6 +2,7 @@
 
 namespace Core.Pigeon.Models
 {
+    // 鴿子的狀態
     [Serializable]
     public class PigeonStat
     {
