@@ -52,11 +52,10 @@ namespace Core.UI.Lobby.PigeonList
             muscleAbility.SetCurrentLevel(pigeonStat.muscle, pigeonStat.max_muscle, gemSprites);
             constitutionAbility.SetCurrentLevel(pigeonStat.constitution, pigeonStat.max_constitution, gemSprites);
             featherQualityAbility.SetCurrentLevel(pigeonStat.feather_quality, pigeonStat.max_feather_quality, gemSprites);
-            
+
             // TODO: 確認上限多少，現在假定 100
             fatigueBarImg.fillAmount = pigeonStat.fatigue / 100.0f;
             expBarImg.fillAmount     = pigeonStat.exp     / 100.0f;
-
         }
 
         public void Button_View() { }
@@ -71,14 +70,16 @@ namespace Core.UI.Lobby.PigeonList
             public void SetCurrentLevel(int stat, int statMax, IReadOnlyList<Sprite> gemSprites)
             {
                 gemImg.sprite = statMax switch {
-                    < 200            => gemSprites[0],
-                    >= 200 and < 300 => gemSprites[1],
-                    >= 300 and < 400 => gemSprites[2],
-                    >= 400 and < 500 => gemSprites[3],
-                    _                => gemSprites[4],
+                    0                => gemSprites[0],
+                    < 200            => gemSprites[1],
+                    >= 200 and < 300 => gemSprites[2],
+                    >= 300 and < 400 => gemSprites[3],
+                    >= 400 and < 500 => gemSprites[4],
+                    _                => gemSprites[5],
                 };
 
                 levelText.text = stat switch {
+                    0      => "?",
                     <= 60  => "C",
                     <= 148 => "B",
                     <= 232 => "A",

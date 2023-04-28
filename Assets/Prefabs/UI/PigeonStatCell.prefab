@@ -933,6 +933,7 @@ MonoBehaviour:
     gemImg: {fileID: 654086435518455633}
     levelText: {fileID: 654086434720902668}
   gemSprites:
+  - {fileID: 21300000, guid: 9b387c6a29a2b6a438f53a779eb4a796, type: 3}
   - {fileID: 21300000, guid: 63aeccaf3c1027749ae2edbeb6a634ff, type: 3}
   - {fileID: 21300000, guid: bf42738e72afb04408116d38ff439872, type: 3}
   - {fileID: 21300000, guid: d939f0e95994ea946b69520c9437ab1e, type: 3}
