@@ -2,21 +2,25 @@
 using System.Collections.Generic;
 using Core.Aws;
 using Core.Aws.Models;
+using Core.MainScene;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Zenject;
 
 namespace Core.Pigeon.Models
 {
     // 處理鴿子資料
     public class PigeonModel
     {
-        private List<PigeonStat> pigeonStatsList = new();
-
+        private readonly SignalBus  signalBus;
         private readonly AwsGraphQL awsGraphQL;
 
-        public PigeonModel(AwsGraphQL awsGraphQl)
+        private List<PigeonStat> pigeonStatsList = new();
+
+        public PigeonModel(SignalBus signalBus, AwsGraphQL awsGraphQL)
         {
-            awsGraphQL = awsGraphQl;
+            this.signalBus  = signalBus;
+            this.awsGraphQL = awsGraphQL;
         }
 
         public async UniTask GetPigeonList(int queryCount, AwsUserModel awsUserModel)
@@ -73,6 +77,8 @@ namespace Core.Pigeon.Models
             Debug.Log($"Pigeon List: \n {JsonUtility.ToJson(data)}");
 
             pigeonStatsList = data.data.getPigeonList.items;
+
+            signalBus.Fire(new OnPigeonListUpdate(pigeonStatsList));
         }
 
         public List<PigeonStat> GetPigeonStatsList() => pigeonStatsList;

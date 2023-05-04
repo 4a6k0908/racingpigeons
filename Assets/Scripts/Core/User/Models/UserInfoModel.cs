@@ -1,14 +1,17 @@
 ﻿using System;
 using Core.Aws;
 using Core.Aws.Models;
+using Core.MainScene;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Zenject;
 
 namespace Core.User.Models
 {
     [Serializable]
     public class UserInfoModel
     {
+        private readonly SignalBus  signalBus;  // 事件發送器
         private readonly AwsGraphQL awsGraphQL; // 呼叫 GraphQL
 
         public string address; //地址
@@ -24,8 +27,9 @@ namespace Core.User.Models
         public string user_code;            //使用者代碼
         public string username;             //帳號
 
-        public UserInfoModel(AwsGraphQL awsGraphQL)
+        public UserInfoModel(SignalBus signalBus, AwsGraphQL awsGraphQL)
         {
+            this.signalBus  = signalBus;
             this.awsGraphQL = awsGraphQL;
         }
 
@@ -73,8 +77,10 @@ namespace Core.User.Models
             phone_number         = userInfo.phone_number;
             user_code            = userInfo.user_code;
             username             = userInfo.username;
+
+            signalBus.Fire(new OnUserInfoUpdate(this));
         }
-        
+
         // 用於取得玩家資訊的結構
         [Serializable]
         private class GQL_GetUserInfo

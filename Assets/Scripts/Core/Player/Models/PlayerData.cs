@@ -9,29 +9,28 @@ using Zenject;
 
 namespace Core.Player.Models
 {
-    // 玩家整體資料的整合
     public class PlayerData
     {
-        private readonly AwsGraphQL   awsGraphQL;   // AWS GraphQL 溝通
+        private readonly AwsGraphQL awsGraphQL; // AWS GraphQL 溝通
+
         private readonly AwsUserModel awsUserModel; // Aws User 資料
 
         private readonly PigeonModel pigeonModel; // 鴿子資料
-        private readonly SignalBus   signalBus;
 
         private readonly UserInfoModel   userInfoModel;   // 玩家資訊
         private readonly UserWalletModel userWalletModel; // 玩家錢包
 
-        public PlayerData(AwsGraphQL awsGraphQL)
+        public PlayerData(SignalBus signalBus, AwsGraphQL awsGraphQL)
         {
             this.awsGraphQL = awsGraphQL;
 
             awsUserModel = new AwsUserModel();
             awsUserModel.LoadCache();
 
-            userInfoModel   = new UserInfoModel(awsGraphQL);
-            userWalletModel = new UserWalletModel(awsGraphQL);
+            userInfoModel   = new UserInfoModel(signalBus, awsGraphQL);
+            userWalletModel = new UserWalletModel(signalBus, awsGraphQL);
 
-            pigeonModel = new PigeonModel(awsGraphQL);
+            pigeonModel = new PigeonModel(signalBus, awsGraphQL);
         }
 
         public AwsGraphQL GetGraphQL()
@@ -79,4 +78,6 @@ namespace Core.Player.Models
             await pigeonModel.GetPigeonList(queryCount, awsUserModel);
         }
     }
+
+    // 玩家整體資料的整合
 }
