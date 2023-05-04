@@ -104,6 +104,12 @@ namespace Core.UI.Lobby.PigeonList
             lobbyStateHandler.ChangeState(LobbyState.Lobby);
         }
 
+        // 返回上一層
+        public void Button_Previous()
+        {
+            lobbyStateHandler.ChangeToPreState();
+        }
+
         // 到 2-1-3
         public void Button_To_Half()
         {

@@ -1,4 +1,6 @@
-﻿using Zenject;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using Zenject;
 
 namespace Core.LobbyScene
 {
@@ -12,22 +14,35 @@ namespace Core.LobbyScene
     {
         private readonly SignalBus signalBus;
 
-        private LobbyState preState     = LobbyState.Lobby;
-        private LobbyState currentState = LobbyState.Lobby;
+        private LobbyState        currentState     = LobbyState.Lobby;
+        private Queue<LobbyState> allPreStateQueue = new Queue<LobbyState>();
 
         public LobbyStateHandler(SignalBus signalBus)
         {
             this.signalBus = signalBus;
         }
-
         public void ChangeState(LobbyState nextState)
         {
             if (currentState == nextState)
                 return;
 
-            preState     = currentState;
+            LobbyState preState = currentState;
             currentState = nextState;
 
+            allPreStateQueue.Enqueue(preState);
+            if(currentState == LobbyState.Lobby)
+                allPreStateQueue.Clear();
+            
+            signalBus.Fire(new OnLobbyStateChange(preState, currentState));
+        }
+
+        public void ChangeToPreState()
+        {
+            var nextState = allPreStateQueue.Dequeue();
+
+            LobbyState preState = currentState;
+            currentState = nextState;
+            
             signalBus.Fire(new OnLobbyStateChange(preState, currentState));
         }
     }

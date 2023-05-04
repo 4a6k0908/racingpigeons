@@ -78,6 +78,4 @@ namespace Core.Player.Models
             await pigeonModel.GetPigeonList(queryCount, awsUserModel);
         }
     }
-
-    // 玩家整體資料的整合
 }
