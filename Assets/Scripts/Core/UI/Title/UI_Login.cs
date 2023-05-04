@@ -6,7 +6,7 @@ using Core.NotifySystem;
 using Core.Player.Models;
 using Core.SceneSystem;
 using Core.SoundSystem;
-using Core.Title;
+using Core.TitleScene;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
@@ -106,7 +106,6 @@ namespace UI.Title
             try
             {
                 notifyService.DoNotify("登入中，請稍候");
-
                 await playerData.Login(guestGetAwsUser);
 
                 notifyService.DoNotify("取得玩家資訊中");
@@ -132,9 +131,9 @@ namespace UI.Title
         // 收到狀態更改事件後，依條件淡出s
         private async void OnStateChange(OnTitleStateChange e)
         {
-            switch (e.PreTitleState)
+            switch (e.preState)
             {
-                case TitleState.Title when e.TitleState == TitleState.Login:
+                case TitleState.Title when e.state == TitleState.Login:
                     CheckAutoLogin();
                     canvasGroup.blocksRaycasts = canvasGroup.interactable = true;
                     await Easing.Create<Linear>(1, 0.25f).ToColorA(canvasGroup);

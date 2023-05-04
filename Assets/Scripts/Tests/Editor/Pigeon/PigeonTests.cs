@@ -30,7 +30,7 @@ namespace Tests.Editor.Pigeon
             await playerData.SyncPigeonList(10);
 
             var pigeonList = playerData.GetPigeonList();
-            PigeonCountShouldBeSame(2, pigeonList.Count);
+            PigeonCountShouldBeSame(3, pigeonList.Count);
             PigeonNameShouldBeSame("Jonathan Dennis", pigeonList[0].pigeon_name);
             PigeonNameShouldBeSame("Vernon Manning", pigeonList[1].pigeon_name);
         }

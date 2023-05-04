@@ -3,6 +3,7 @@ using Core.Aws;
 using Core.Aws.Models;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Zenject;
 
 namespace Core.User.Models
 {

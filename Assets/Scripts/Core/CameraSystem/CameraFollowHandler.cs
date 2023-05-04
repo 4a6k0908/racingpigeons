@@ -1,3 +1,4 @@
+using System;
 using Cinemachine;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ namespace Core.CameraSystem
         private readonly CameraView               cameraView;
         private readonly CinemachineVirtualCamera virtualCamera;
 
-        private CameraViewType cameraViewType = CameraViewType.LobbyNormal;
+        private CameraViewType currentViewType = CameraViewType.LobbyNormal;
 
         public CameraFollowHandler(CameraView cameraView)
         {
@@ -27,13 +28,28 @@ namespace Core.CameraSystem
         // 更改目前視角的類型
         public void ChangeViewType(CameraViewType viewType)
         {
-            cameraViewType = viewType;
+            currentViewType = viewType;
 
-            virtualCamera.Follow = cameraView.GetFollowTrans((int)cameraViewType);
+            virtualCamera.Follow = cameraView.GetFollowTrans((int)currentViewType);
+        }
+
+        public void ChangeViewType()
+        {
+            switch (currentViewType)
+            {
+                case CameraViewType.LobbyNormal:
+                    currentViewType = CameraViewType.LobbyCage;
+                    break;
+                case CameraViewType.LobbyCage:
+                    currentViewType = CameraViewType.LobbyNormal;
+                    break;
+            }
+
+            virtualCamera.Follow = cameraView.GetFollowTrans((int)currentViewType);
         }
 
         // 取得目前的視角類型
-        public CameraViewType GetCurrentViewType() => cameraViewType;
+        public CameraViewType GetCurrentViewType() => currentViewType;
 
         // 取得目前跟隨的物件
         public Transform GetCurrentFollowTrans() => virtualCamera.Follow;

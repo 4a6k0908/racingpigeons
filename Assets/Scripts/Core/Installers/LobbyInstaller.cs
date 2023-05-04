@@ -1,4 +1,4 @@
-﻿using Core.Lobby;
+﻿using Core.LobbyScene;
 using Zenject;
 
 namespace Core.Installers

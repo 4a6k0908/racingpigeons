@@ -31,11 +31,11 @@ namespace Core.CameraSystem
         {
             if (Keyboard.current.numpad1Key.isPressed)
             {
-                cameraService.ChangePigeonHouseView(CameraViewType.LobbyNormal);
+                cameraService.DoChangePigeonHouseView(CameraViewType.LobbyNormal);
             }
             else if (Keyboard.current.numpad2Key.isPressed)
             {
-                cameraService.ChangePigeonHouseView(CameraViewType.LobbyCage);
+                cameraService.DoChangePigeonHouseView(CameraViewType.LobbyCage);
             }
         }
 

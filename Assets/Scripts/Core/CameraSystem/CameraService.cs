@@ -9,6 +9,7 @@
             this.cameraFollowHandler = cameraFollowHandler;
         }
 
-        public void ChangePigeonHouseView(CameraViewType viewType) => cameraFollowHandler.ChangeViewType(viewType);
+        public void DoChangePigeonHouseView(CameraViewType viewType) => cameraFollowHandler.ChangeViewType(viewType);
+        public void DoChangePigeonHouseView() => cameraFollowHandler.ChangeViewType();
     }
 }

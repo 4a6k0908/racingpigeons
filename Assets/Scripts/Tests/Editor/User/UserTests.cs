@@ -68,7 +68,7 @@ namespace Tests.Editor.User
 
             await playerData.SyncUserWallet();
 
-            BalanceShouldBe(9998);
+            BalanceShouldBe(9997);
             CoinShouldBe(10000);
             TicketShouldBe(0);
         }

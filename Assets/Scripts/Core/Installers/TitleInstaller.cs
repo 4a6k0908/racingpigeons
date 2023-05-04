@@ -1,4 +1,4 @@
-﻿using Core.Title;
+﻿using Core.TitleScene;
 using Zenject;
 
 namespace Core.Installers

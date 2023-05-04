@@ -1,6 +1,6 @@
 ﻿using System;
 using AnimeTask;
-using Core.Title;
+using Core.TitleScene;
 using UnityEngine;
 using Zenject;
 
@@ -44,7 +44,7 @@ namespace UI.Title
         // 當接收到狀態變更時處理淡出功能
         private async void OnStateChange(OnTitleStateChange e)
         {
-            if (e.PreTitleState == TitleState.Title && e.TitleState == TitleState.Login)
+            if (e.preState == TitleState.Title && e.state == TitleState.Login)
             {
                 canvasGroup.interactable = canvasGroup.blocksRaycasts = false;
                 await Easing.Create<Linear>(0, 0.25f).ToColorA(canvasGroup);

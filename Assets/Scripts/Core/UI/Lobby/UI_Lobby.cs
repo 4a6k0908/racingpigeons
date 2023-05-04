@@ -1,6 +1,6 @@
-﻿using System;
-using AnimeTask;
-using Core.Lobby;
+﻿using AnimeTask;
+using Core.CameraSystem;
+using Core.LobbyScene;
 using Core.UI.Lobby.PigeonList;
 using UnityEngine;
 using Zenject;
@@ -11,6 +11,7 @@ namespace SoapUtils.Utils.Lobby
     {
         private SignalBus         signalBus;
         private LobbyStateHandler lobbyStateHandler;
+        private ICameraService    cameraService;
 
         private CanvasGroup   canvasGroup;
         
@@ -22,10 +23,11 @@ namespace SoapUtils.Utils.Lobby
         }
 
         [Inject]
-        public void Inject(SignalBus signalBus, LobbyStateHandler lobbyStateHandler)
+        public void Inject(SignalBus signalBus, LobbyStateHandler lobbyStateHandler, ICameraService cameraService)
         {
             this.signalBus         = signalBus;
             this.lobbyStateHandler = lobbyStateHandler;
+            this.cameraService     = cameraService;
         }
 
         private void OnEnable()
@@ -45,6 +47,11 @@ namespace SoapUtils.Utils.Lobby
             pigeonListUI.Toggle_Change_Filter(filter);
         }
 
+        public void Button_Camera_ChangeView()
+        {
+            cameraService.DoChangePigeonHouseView();
+        }
+
         private void OnLobbyStateChange(OnLobbyStateChange e)
         {
             if (e.currentState == LobbyState.Lobby)
@@ -60,7 +67,7 @@ namespace SoapUtils.Utils.Lobby
         private void SetActive(bool IsActive)
         {
             canvasGroup.blocksRaycasts = canvasGroup.interactable = IsActive;
-            Easing.Create<Linear>(IsActive ? 1 : 0, 0.25f).ToColorA(canvasGroup);
+            Easing.Create<Linear>(IsActive ? 1 : 0, 0.15f).ToColorA(canvasGroup);
         }
     }
 }

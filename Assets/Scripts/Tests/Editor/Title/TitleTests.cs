@@ -1,4 +1,4 @@
-﻿using Core.Title;
+﻿using Core.TitleScene;
 using NUnit.Framework;
 using Zenject;
 
@@ -32,8 +32,8 @@ namespace Tests.Editor.Title
             stateHandler.ChangeState(TitleState.Login);
 
             StateShouldBeSame(TitleState.Login, stateHandler.GetCurrentState());
-            StateShouldBeSame(TitleState.Title, stateChange.PreTitleState);
-            StateShouldBeSame(TitleState.Login, stateChange.TitleState);
+            StateShouldBeSame(TitleState.Title, stateChange.preState);
+            StateShouldBeSame(TitleState.Login, stateChange.state);
         }
 
         private static void StateShouldBeSame(TitleState expected, TitleState compareTitleState)

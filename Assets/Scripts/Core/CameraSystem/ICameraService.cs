@@ -2,6 +2,7 @@
 {
     public interface ICameraService
     {
-        void ChangePigeonHouseView(CameraViewType viewType);
+        void DoChangePigeonHouseView(CameraViewType viewType);
+        void DoChangePigeonHouseView();
     }
 }

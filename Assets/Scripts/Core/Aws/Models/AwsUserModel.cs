@@ -23,9 +23,9 @@ namespace Core.Aws.Models
         public string provider; // guest(遊客) ,google,line
         // 此參數不為guest或空白,代表巳綁定
 
-        public AwsUserModel(SaveSystem saveSystem)
+        public AwsUserModel()
         {
-            this.saveSystem = saveSystem;
+            saveSystem = new SaveSystem();
         }
 
         public async UniTask Login(IGetAwsUser getAwsUser, AwsUserModel awsUserModel) => await getAwsUser.Execute(awsUserModel);

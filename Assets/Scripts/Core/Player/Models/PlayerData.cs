@@ -3,32 +3,29 @@ using Core.Aws;
 using Core.Aws.Login;
 using Core.Aws.Models;
 using Core.Pigeon.Models;
-using Core.Save;
 using Core.User.Models;
 using Cysharp.Threading.Tasks;
+using Zenject;
 
 namespace Core.Player.Models
 {
     // 玩家整體資料的整合
     public class PlayerData
     {
-        private readonly SaveSystem saveSystem; // 存檔系統
-
-        private readonly AwsGraphQL   awsGraphQL; // AWS GraphQL 溝通
+        private readonly AwsGraphQL   awsGraphQL;   // AWS GraphQL 溝通
         private readonly AwsUserModel awsUserModel; // Aws User 資料
 
         private readonly PigeonModel pigeonModel; // 鴿子資料
- 
-        private readonly UserInfoModel   userInfoModel; // 玩家資訊
+        private readonly SignalBus   signalBus;
+
+        private readonly UserInfoModel   userInfoModel;   // 玩家資訊
         private readonly UserWalletModel userWalletModel; // 玩家錢包
 
         public PlayerData(AwsGraphQL awsGraphQL)
         {
             this.awsGraphQL = awsGraphQL;
 
-            saveSystem = new SaveSystem();
-
-            awsUserModel = new AwsUserModel(saveSystem);
+            awsUserModel = new AwsUserModel();
             awsUserModel.LoadCache();
 
             userInfoModel   = new UserInfoModel(awsGraphQL);

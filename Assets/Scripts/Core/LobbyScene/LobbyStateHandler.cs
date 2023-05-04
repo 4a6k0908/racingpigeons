@@ -1,6 +1,6 @@
 ﻿using Zenject;
 
-namespace Core.Lobby
+namespace Core.LobbyScene
 {
     public enum LobbyState
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using AnimeTask;
-using Core.Lobby;
+using Core.LobbyScene;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -222,7 +222,7 @@ namespace Core.UI.Lobby.PigeonList
         private async void SetActive(bool IsActive)
         {
             canvasGroup.blocksRaycasts = canvasGroup.interactable = IsActive;
-            await Easing.Create<Linear>(IsActive ? 1 : 0, 0.25f).ToColorA(canvasGroup);
+            await Easing.Create<Linear>(IsActive ? 1 : 0, 0.15f).ToColorA(canvasGroup);
 
             if (IsActive)
                 return;

@@ -1,6 +1,6 @@
 using Zenject;
 
-namespace Core.Title
+namespace Core.TitleScene
 {
     public enum TitleState
     {

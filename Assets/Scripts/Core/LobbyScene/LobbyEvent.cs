@@ -1,4 +1,4 @@
-﻿namespace Core.Lobby
+﻿namespace Core.LobbyScene
 {
     public struct OnLobbyStateChange
     {
