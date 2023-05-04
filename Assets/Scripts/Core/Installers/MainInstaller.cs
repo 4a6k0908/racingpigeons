@@ -1,9 +1,12 @@
 ﻿using Core.Aws;
 using Core.CameraSystem;
+using Core.LobbyScene;
+using Core.MainScene;
 using Core.NotifySystem;
 using Core.Player.Models;
 using Core.SceneSystem;
 using Core.SoundSystem;
+using Core.TitleScene;
 using Zenject;
 
 namespace Core.Installers
@@ -13,12 +16,26 @@ namespace Core.Installers
     {
         public override void InstallBindings()
         {
+            BindEvent();
             BindScene();
             BindAws();
             BindPlayer();
             BindSound();
             BindNotify();
             BindCamera();
+        }
+
+        private void BindEvent()
+        {
+            SignalBusInstaller.Install(Container);
+            
+            Container.DeclareSignal<OnUserWalletUpdate>();
+            Container.DeclareSignal<OnUserInfoUpdate>();
+            Container.DeclareSignal<OnPigeonListUpdate>();
+            
+            Container.DeclareSignal<OnTitleStateChange>();
+
+            Container.DeclareSignal<OnLobbyStateChange>();
         }
 
         private void BindCamera()

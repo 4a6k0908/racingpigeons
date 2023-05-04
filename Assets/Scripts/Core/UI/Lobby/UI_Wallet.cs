@@ -1,4 +1,5 @@
 ﻿using System;
+using Core.MainScene;
 using Core.Player.Models;
 using Core.User.Models;
 using TMPro;
@@ -26,14 +27,19 @@ namespace SoapUtils.Utils.Lobby
 
         private void OnEnable()
         {
-            
+            signalBus.Subscribe<OnUserWalletUpdate>(OnUserWalletUpdate);
         }
 
         private void OnDisable()
         {
-            
+            signalBus.Unsubscribe<OnUserWalletUpdate>(OnUserWalletUpdate);
         }
 
+        private void OnUserWalletUpdate(OnUserWalletUpdate e)
+        {
+            SetWallet(e.userWalletModel);
+        }
+        
         private void SetWallet(UserWalletModel userWalletModel)
         {
             pigeonCashText.text = userWalletModel.coin.ToString();

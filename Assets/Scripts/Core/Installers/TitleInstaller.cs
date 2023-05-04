@@ -8,10 +8,6 @@ namespace Core.Installers
     {
         public override void InstallBindings()
         {
-            SignalBusInstaller.Install(Container);
-
-            Container.DeclareSignal<OnTitleStateChange>();
-
             Container.Bind<TitleStateHandler>().AsSingle();
         }
     }

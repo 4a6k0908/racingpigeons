@@ -7,10 +7,6 @@ namespace Core.Installers
     {
         public override void InstallBindings()
         {
-            SignalBusInstaller.Install(Container);
-
-            Container.DeclareSignal<OnLobbyStateChange>();
-            
             Container.Bind<LobbyStateHandler>().AsSingle();
         }
     }
