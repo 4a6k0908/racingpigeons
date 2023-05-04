@@ -29,16 +29,16 @@ namespace Tests.Editor.Title
 
             signalBus.Subscribe<OnTitleStateChange>(e => stateChange = e);
 
-            stateHandler.ChangeState(State.Login);
+            stateHandler.ChangeState(TitleState.Login);
 
-            StateShouldBeSame(State.Login, stateHandler.GetCurrentState());
-            StateShouldBeSame(State.Title, stateChange.preState);
-            StateShouldBeSame(State.Login, stateChange.state);
+            StateShouldBeSame(TitleState.Login, stateHandler.GetCurrentState());
+            StateShouldBeSame(TitleState.Title, stateChange.PreTitleState);
+            StateShouldBeSame(TitleState.Login, stateChange.TitleState);
         }
 
-        private static void StateShouldBeSame(State expected, State compareState)
+        private static void StateShouldBeSame(TitleState expected, TitleState compareTitleState)
         {
-            Assert.AreEqual(expected, compareState);
+            Assert.AreEqual(expected, compareTitleState);
         }
     }
 }

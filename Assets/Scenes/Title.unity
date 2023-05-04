@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 191996929}
   - component: {fileID: 191996930}
   m_Layer: 5
-  m_Name: LoginPanel
+  m_Name: 0-2_LoginPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -767,7 +767,7 @@ GameObject:
   - component: {fileID: 2029927958}
   - component: {fileID: 2029927959}
   m_Layer: 5
-  m_Name: TitlePanel
+  m_Name: 0-1_TitlePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

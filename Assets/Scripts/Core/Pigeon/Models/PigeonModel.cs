@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using Core.Aws;
 using Core.Aws.Models;
-using Core.Pigeon.GraphQL;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Core.Pigeon.Models
 {
     // 處理鴿子資料
-    [Serializable]
     public class PigeonModel
     {
         private List<PigeonStat> pigeonStatsList = new();
@@ -78,5 +76,25 @@ namespace Core.Pigeon.Models
         }
 
         public List<PigeonStat> GetPigeonStatsList() => pigeonStatsList;
+
+        [Serializable]
+        public class GQL_GetPigeonList
+        {
+            [Serializable]
+            public class Data
+            {
+                [Serializable]
+                public class MyPigeons
+                {
+                    public List<PigeonStat> items;
+
+                    public string next_cursor;
+                }
+
+                public MyPigeons getPigeonList;
+            }
+
+            public Data data;
+        }
     }
 }

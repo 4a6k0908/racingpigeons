@@ -98,10 +98,10 @@ namespace UI.Title
         // 處理登入的功能
         private async void Login(IGetAwsUser guestGetAwsUser)
         {
-            if (titleStateHandler.GetCurrentState() != State.Login)
+            if (titleStateHandler.GetCurrentState() != TitleState.Login)
                 return;
 
-            titleStateHandler.ChangeState(State.AwsLogin);
+            titleStateHandler.ChangeState(TitleState.AwsLogin);
 
             try
             {
@@ -125,16 +125,16 @@ namespace UI.Title
             catch (Exception e)
             {
                 notifyService.DoNotify(e.Message, () => { });
-                titleStateHandler.ChangeState(State.Login);
+                titleStateHandler.ChangeState(TitleState.Login);
             }
         }
 
         // 收到狀態更改事件後，依條件淡出s
         private async void OnStateChange(OnTitleStateChange e)
         {
-            switch (e.preState)
+            switch (e.PreTitleState)
             {
-                case State.Title when e.state == State.Login:
+                case TitleState.Title when e.TitleState == TitleState.Login:
                     CheckAutoLogin();
                     canvasGroup.blocksRaycasts = canvasGroup.interactable = true;
                     await Easing.Create<Linear>(1, 0.25f).ToColorA(canvasGroup);

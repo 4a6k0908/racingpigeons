@@ -3,13 +3,13 @@
     // Title 場景的遊戲狀態事件結構
     public struct OnTitleStateChange
     {
-        public readonly State preState;
-        public readonly State state;
+        public readonly TitleState PreTitleState;
+        public readonly TitleState TitleState;
 
-        public OnTitleStateChange(State preState, State state)
+        public OnTitleStateChange(TitleState preTitleState, TitleState titleState)
         {
-            this.preState = preState;
-            this.state    = state;
+            this.PreTitleState = preTitleState;
+            this.TitleState    = titleState;
         }
     }
 }

@@ -38,13 +38,13 @@ namespace UI.Title
 
         public void Button_To_Login()
         {
-            titleStateHandler.ChangeState(State.Login);
+            titleStateHandler.ChangeState(TitleState.Login);
         }
 
         // 當接收到狀態變更時處理淡出功能
         private async void OnStateChange(OnTitleStateChange e)
         {
-            if (e.preState == State.Title && e.state == State.Login)
+            if (e.PreTitleState == TitleState.Title && e.TitleState == TitleState.Login)
             {
                 canvasGroup.interactable = canvasGroup.blocksRaycasts = false;
                 await Easing.Create<Linear>(0, 0.25f).ToColorA(canvasGroup);

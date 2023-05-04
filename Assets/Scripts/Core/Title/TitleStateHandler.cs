@@ -2,7 +2,7 @@ using Zenject;
 
 namespace Core.Title
 {
-    public enum State
+    public enum TitleState
     {
         Title    = 0,
         Login    = 1,
@@ -13,7 +13,7 @@ namespace Core.Title
     {
         private readonly SignalBus signalBus; // 事件發送器
 
-        private State currentState = State.Title;
+        private TitleState currentState = TitleState.Title;
 
         public TitleStateHandler(SignalBus signalBus)
         {
@@ -21,12 +21,12 @@ namespace Core.Title
         }
 
         // 更改狀態並發送事件
-        public void ChangeState(State nextState)
+        public void ChangeState(TitleState nextState)
         {
             if (currentState == nextState)
                 return;
 
-            State preState = currentState;
+            TitleState preState = currentState;
 
             currentState = nextState;
 
@@ -34,7 +34,7 @@ namespace Core.Title
         }
 
         // 取得當前狀態
-        public State GetCurrentState()
+        public TitleState GetCurrentState()
         {
             return currentState;
         }
