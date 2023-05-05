@@ -11,9 +11,14 @@ namespace Core
     // Lobby 測試用，用來跳過登入
     public class ONLY_FOR_TEST : MonoBehaviour
     {
+        [SerializeField] private bool EnableTest = true;
+        
         [Inject]
         public async void Inject(PlayerData playerData, INotifyService notifyService)
         {
+            if (!EnableTest)
+                return;
+            
             try
             {
                 var awsUserModel = playerData.GetAwsUserModel();

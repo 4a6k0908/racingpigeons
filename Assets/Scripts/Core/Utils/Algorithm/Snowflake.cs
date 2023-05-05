@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace Core.Utils.Algorithm
+namespace Core.UI.Algorithm
 {
     public class Snowflake
     {

@@ -11,7 +11,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
 
-namespace UI.Title
+namespace Core.UI.Title
 {
     public class UI_Login : MonoBehaviour
     {

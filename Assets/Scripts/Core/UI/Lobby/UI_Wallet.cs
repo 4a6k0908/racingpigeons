@@ -1,12 +1,11 @@
-﻿using System;
-using Core.MainScene;
+﻿using Core.MainScene;
 using Core.Player.Models;
 using Core.User.Models;
 using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace SoapUtils.Utils.Lobby
+namespace Core.UI.Lobby
 {
     public class UI_Wallet : MonoBehaviour
     {

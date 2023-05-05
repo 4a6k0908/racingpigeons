@@ -10937,33 +10937,6 @@ Transform:
   m_Father: {fileID: 125766821}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1002601871 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5418718114538076289, guid: 38399012563250842a6a12e7dfee7eb7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1620562810993989880}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1002601873
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1002601871}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 996c89974ef6ced43987417d9b863562, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1003250604
 GameObject:
   m_ObjectHideFlags: 0
@@ -18521,6 +18494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e757b665e694ad3a173ad1f4417573b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnableTest: 0
 --- !u!1 &1703967783
 GameObject:
   m_ObjectHideFlags: 0
@@ -22359,6 +22333,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae29aca0684d4990a3836fc8473c1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pigeonAnim: {fileID: 0}
+  followerTrans: {fileID: 0}
 --- !u!114 &543450651586176964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22407,6 +22383,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pigeon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620562811034018276, guid: 38399012563250842a6a12e7dfee7eb7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1620562811034018277, guid: 38399012563250842a6a12e7dfee7eb7,
         type: 3}

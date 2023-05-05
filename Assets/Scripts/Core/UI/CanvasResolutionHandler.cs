@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace SoapUtils.Utils
+namespace Core.UI
 {
     // 初始化時做自適應功能
     public class CanvasResolutionHandler : MonoBehaviour

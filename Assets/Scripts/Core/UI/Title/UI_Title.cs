@@ -1,10 +1,9 @@
-﻿using System;
-using AnimeTask;
+﻿using AnimeTask;
 using Core.TitleScene;
 using UnityEngine;
 using Zenject;
 
-namespace UI.Title
+namespace Core.UI.Title
 {
     public class UI_Title : MonoBehaviour
     {

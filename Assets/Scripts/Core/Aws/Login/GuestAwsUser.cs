@@ -1,6 +1,6 @@
 ﻿using Core.Aws.GraphQL;
 using Core.Aws.Models;
-using Core.Utils.Algorithm;
+using Core.UI.Algorithm;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 

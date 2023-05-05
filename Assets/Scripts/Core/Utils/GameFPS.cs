@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core.Utils
+namespace Core.UI
 {
     // 用來顯示遊戲中目前的偵數
     public class GameFPS : MonoBehaviour

@@ -9,7 +9,7 @@ using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace SoapUtils.Utils.Lobby
+namespace Core.UI.Lobby
 {
     public class UI_Lobby : MonoBehaviour
     {
