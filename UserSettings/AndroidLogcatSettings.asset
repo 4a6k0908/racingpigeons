@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "emulator-5554",
+    "m_SelectedDeviceId": "RFCR91GWMGM",
     "m_SelectedPackage": {
-        "deviceId": "emulator-5554",
-        "name": "com.DefaultCompany.Pigeon",
-        "processId": 6111,
+        "deviceId": "RFCR91GWMGM",
+        "name": "com.ctrls.pigeon",
+        "processId": 24276,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -42,6 +42,36 @@
             "deviceId": "emulator-5554",
             "name": "com.DefaultCompany.Pigeon",
             "processId": 6111,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR91GWMGM",
+            "name": "com.ctrls.pigeon",
+            "processId": 21347,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCR91GWMGM",
+            "name": "com.ctrls.pigeon",
+            "processId": 21680,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCR91GWMGM",
+            "name": "com.ctrls.pigeon",
+            "processId": 23295,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCR91GWMGM",
+            "name": "com.sec.android.app.launcher",
+            "processId": 3298,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCR91GWMGM",
+            "name": "com.ctrls.pigeon",
+            "processId": 24276,
             "exited": false
         }
     ],
