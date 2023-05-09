@@ -172,7 +172,7 @@ namespace Core.UI.Lobby.PigeonList
         }
 
         // 更換瀏覽模式時，執行移動動畫跟物件顯示
-        private void ChangeMode(PigeonListViewMode viewMode)
+        public void ChangeMode(PigeonListViewMode viewMode)
         {
             if (currentViewMode == viewMode)
                 return;

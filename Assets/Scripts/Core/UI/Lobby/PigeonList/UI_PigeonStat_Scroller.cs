@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using Core.Pigeon.Models;
+using Core.Player.Models;
 using UnityEngine;
 using UnityEngine.UI.Extensions;
 using UnityEngine.UI.Extensions.EasingCore;
+using Zenject;
 
 namespace Core.UI.Lobby.PigeonList
 {
     public class UI_PigeonStat_Scroller : FancyScrollRect<PigeonStat, Context>
     {
+        private PlayerData playerData;
+
         [SerializeField] private Scroller   scroller;
         [SerializeField] private GameObject cellPrefab;
         [SerializeField] private float      cellSize;
@@ -17,17 +21,23 @@ namespace Core.UI.Lobby.PigeonList
         protected override GameObject CellPrefab => cellPrefab;
         protected override float      CellSize   => cellSize;
 
-        private List<PigeonStat> originPigeonStatList  = new();
+        private List<PigeonStat> originPigeonStatList = new();
 
         private void Awake()
         {
             Relayout();
         }
 
+        [Inject]
+        public void Inject(PlayerData playerData)
+        {
+            this.playerData = playerData;
+        }
+
         private void Start()
         {
             // TODO: 之後要換成 PlayerData 來
-            originPigeonStatList = GetTestPigeons();
+            // originPigeonStatList = GetTestPigeons();
             ChangePresent(PigeonListFilter.None, PigeonListSort.IQ, PigeonListOrder.Descending);
         }
 

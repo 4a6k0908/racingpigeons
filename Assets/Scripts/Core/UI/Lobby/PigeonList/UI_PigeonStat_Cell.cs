@@ -36,6 +36,13 @@ namespace Core.UI.Lobby.PigeonList
         [SerializeField] private Image tiredBarImg;   // 疲勞條
         [SerializeField] private Image expBarImg;     // 經驗質
 
+        private UI_PigeonList uiPigeonList;
+        
+        private void Awake()
+        {
+            uiPigeonList = FindObjectOfType<UI_PigeonList>();
+        }
+
         // 更換鴿子資訊
         public override void UpdateContent(PigeonStat pigeonStat)
         {
@@ -57,7 +64,10 @@ namespace Core.UI.Lobby.PigeonList
             expBarImg.fillAmount     = pigeonStat.exp     / 100.0f;
         }
 
-        public void Button_View() { }
+        public void Button_View()
+        {
+            uiPigeonList.ChangeMode(PigeonListViewMode.HalfPigeon);
+        }
 
         [Serializable]
         private class AbilityData

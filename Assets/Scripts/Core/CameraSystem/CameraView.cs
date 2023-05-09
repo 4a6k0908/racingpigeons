@@ -14,31 +14,5 @@ namespace Core.CameraSystem
         public CinemachineVirtualCamera GetVirtualCamera() => virtualCamera;
 
         public Transform GetFollowTrans(int index) => followTrans[index];
-
-
-        // TODO: Delete this After test
-        #region For Test Need To Delete
-
-        private ICameraService cameraService;
-
-        [Inject]
-        private void Inject(ICameraService cameraService)
-        {
-            this.cameraService = cameraService;
-        }
-        
-        private void Update()
-        {
-            if (Keyboard.current.numpad1Key.isPressed)
-            {
-                cameraService.DoChangePigeonHouseView(CameraViewType.LobbyNormal);
-            }
-            else if (Keyboard.current.numpad2Key.isPressed)
-            {
-                cameraService.DoChangePigeonHouseView(CameraViewType.LobbyCage);
-            }
-        }
-
-        #endregion
     }
 }
