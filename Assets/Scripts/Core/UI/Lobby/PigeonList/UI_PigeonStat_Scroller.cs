@@ -36,8 +36,6 @@ namespace Core.UI.Lobby.PigeonList
         public void SetOriginData(List<PigeonStat> pigeonStats)
         {
             originPigeonStatList = pigeonStats;
-            
-            Debug.Log("Set Origin");
         }
         
         public void UpdateData(List<PigeonStat> pigeonStats)
@@ -61,8 +59,6 @@ namespace Core.UI.Lobby.PigeonList
         // 更改排序、過濾
         public void ChangePresent(PigeonListFilter filter, PigeonListSort sort, PigeonListOrder order)
         {
-            Debug.Log("Start filter");
-            
             // TODO: 這方法是先以有為主，後續可更換演算法
             var pigeonStats = new List<PigeonStat>();
 
