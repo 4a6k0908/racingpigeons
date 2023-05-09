@@ -56,8 +56,8 @@ namespace Core.UI.Lobby
         // 到鴿子檢視
         public void Button_To_PigeonList(int filter)
         {
+            pigeonListUI.ChangeFilter(filter);
             lobbyStateHandler.ChangeState(LobbyState.PigeonList);
-            pigeonListUI.Toggle_Change_Filter(filter);
         }
 
         public void Button_Camera_ChangeView()

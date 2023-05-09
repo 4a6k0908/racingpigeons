@@ -1,7 +1,6 @@
-﻿namespace Core.UI.Lobby
+﻿using UnityEngine;
+
+namespace Core.UI.Lobby
 {
-    public class UI_Race
-    {
-        
-    }
+    public class UI_Race : MonoBehaviour { }
 }

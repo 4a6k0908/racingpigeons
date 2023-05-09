@@ -12,8 +12,6 @@ namespace Core.UI.Lobby.PigeonList
 {
     public class UI_PigeonStat_Scroller : FancyScrollRect<PigeonStat, Context>
     {
-        private PlayerData playerData;
-
         [SerializeField] private Scroller   scroller;
         [SerializeField] private GameObject cellPrefab;
         [SerializeField] private float      cellSize;
@@ -28,19 +26,20 @@ namespace Core.UI.Lobby.PigeonList
             Relayout();
         }
 
-        [Inject]
-        public void Inject(PlayerData playerData)
-        {
-            this.playerData = playerData;
-        }
-
-        private void Start()
-        {
+        // private void Start()
+        // {
             // TODO: 之後要換成 PlayerData 來
             // originPigeonStatList = GetTestPigeons();
-            ChangePresent(PigeonListFilter.None, PigeonListSort.IQ, PigeonListOrder.Descending);
-        }
+            // ChangePresent(PigeonListFilter.None, PigeonListSort.IQ, PigeonListOrder.Descending);
+        // }
 
+        public void SetOriginData(List<PigeonStat> pigeonStats)
+        {
+            originPigeonStatList = pigeonStats;
+            
+            Debug.Log("Set Origin");
+        }
+        
         public void UpdateData(List<PigeonStat> pigeonStats)
         {
             UpdateContents(pigeonStats);
@@ -62,6 +61,8 @@ namespace Core.UI.Lobby.PigeonList
         // 更改排序、過濾
         public void ChangePresent(PigeonListFilter filter, PigeonListSort sort, PigeonListOrder order)
         {
+            Debug.Log("Start filter");
+            
             // TODO: 這方法是先以有為主，後續可更換演算法
             var pigeonStats = new List<PigeonStat>();
 

@@ -2,6 +2,8 @@
 using System.Threading;
 using AnimeTask;
 using Core.LobbyScene;
+using Core.NotifySystem;
+using Core.Player.Models;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -51,6 +53,8 @@ namespace Core.UI.Lobby.PigeonList
     {
         private SignalBus         signalBus;
         private LobbyStateHandler lobbyStateHandler;
+        private INotifyService    notifyService;
+        private PlayerData        playerData;
 
         private PigeonListViewMode currentViewMode = PigeonListViewMode.List;
         private PigeonListSort     currentSort     = PigeonListSort.IQ;
@@ -82,10 +86,12 @@ namespace Core.UI.Lobby.PigeonList
         }
 
         [Inject]
-        public void Inject(SignalBus signalBus, LobbyStateHandler lobbyStateHandler)
+        public void Inject(SignalBus signalBus, LobbyStateHandler lobbyStateHandler, INotifyService notifyService, PlayerData playerData)
         {
             this.signalBus         = signalBus;
             this.lobbyStateHandler = lobbyStateHandler;
+            this.notifyService     = notifyService;
+            this.playerData        = playerData;
         }
 
         private void OnEnable()
@@ -151,6 +157,13 @@ namespace Core.UI.Lobby.PigeonList
         // 更改過濾
         public void Toggle_Change_Filter(int filter)
         {
+            ChangeFilter(filter);
+
+            pigeonStatScroller.ChangePresent(currentFilter, currentSort, currentOrder);
+        }
+
+        public void ChangeFilter(int filter)
+        {
             PigeonListFilter nextFilter = (PigeonListFilter)filter;
 
             if (currentFilter == nextFilter)
@@ -167,8 +180,6 @@ namespace Core.UI.Lobby.PigeonList
                 if (nextFilter != PigeonListFilter.None)
                     filterToggles[filter - 1].SetIsOnWithoutNotify(true);
             }
-
-            pigeonStatScroller.ChangePresent(currentFilter, currentSort, currentOrder);
         }
 
         // 更換瀏覽模式時，執行移動動畫跟物件顯示
@@ -227,17 +238,33 @@ namespace Core.UI.Lobby.PigeonList
 
         private async void SetActive(bool IsActive)
         {
+            if (IsActive)
+            {
+                try
+                {
+                    // TODO: 暫定只找10隻
+                    notifyService.DoNotify("取得鴿子資料中");
+                    await playerData.SyncPigeonList(10);
+                    notifyService.DoClose();
+                    
+                    pigeonStatScroller.SetOriginData(playerData.GetPigeonList());
+                }
+                catch (Exception e)
+                {
+                    notifyService.DoNotify(e.Message, () => { });
+                    return;
+                }
+            }
+
             canvasGroup.blocksRaycasts = canvasGroup.interactable = IsActive;
             await Easing.Create<Linear>(IsActive ? 1 : 0, 0.15f).ToColorA(canvasGroup);
 
-            if (IsActive)
+            if (!IsActive)
                 return;
-            
-            currentFilter = PigeonListFilter.None;
-            currentSort   = PigeonListSort.IQ;
-            currentOrder  = PigeonListOrder.Descending;
 
-            pigeonBookImg.sprite = pigeonBookSprites[0];
+            pigeonStatScroller.ChangePresent(currentFilter, currentSort, currentOrder);
+            
+            pigeonBookImg.sprite = pigeonBookSprites[(int) currentSort];
         }
     }
 }
