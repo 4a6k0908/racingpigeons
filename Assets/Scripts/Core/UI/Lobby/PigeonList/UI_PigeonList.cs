@@ -248,6 +248,7 @@ namespace Core.UI.Lobby.PigeonList
                     notifyService.DoClose();
                     
                     pigeonStatScroller.SetOriginData(playerData.GetPigeonList());
+                    // pigeonStatScroller.SetTestOriginData();
                 }
                 catch (Exception e)
                 {

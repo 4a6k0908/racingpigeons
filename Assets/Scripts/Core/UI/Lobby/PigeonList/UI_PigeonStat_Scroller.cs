@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core.Pigeon.Lobby;
 using Core.Pigeon.Models;
-using Core.Player.Models;
 using UnityEngine;
 using UnityEngine.UI.Extensions;
 using UnityEngine.UI.Extensions.EasingCore;
-using Zenject;
 
 namespace Core.UI.Lobby.PigeonList
 {
@@ -19,23 +18,34 @@ namespace Core.UI.Lobby.PigeonList
         protected override GameObject CellPrefab => cellPrefab;
         protected override float      CellSize   => cellSize;
 
-        private List<PigeonStat> originPigeonStatList = new();
+        private List<PigeonStat> originPigeonStatList  = new();
+        private List<PigeonStat> currentPigeonStatList = new();
 
+        private Pigeon3DRenderTexture pigeon3DRenderTexture;
+        
         private void Awake()
         {
             Relayout();
+
+            pigeon3DRenderTexture = FindObjectOfType<Pigeon3DRenderTexture>();
         }
 
-        // private void Start()
-        // {
-            // TODO: 之後要換成 PlayerData 來
-            // originPigeonStatList = GetTestPigeons();
-            // ChangePresent(PigeonListFilter.None, PigeonListSort.IQ, PigeonListOrder.Descending);
-        // }
+        protected override void Initialize()
+        {
+            base.Initialize();
+
+            Context.OnCellClicked = OnCellClick;
+        }
 
         public void SetOriginData(List<PigeonStat> pigeonStats)
         {
             originPigeonStatList = pigeonStats;
+        }
+        
+        // TODO: 測試用
+        public void SetTestOriginData()
+        {
+            originPigeonStatList = GetTestPigeons();
         }
         
         public void UpdateData(List<PigeonStat> pigeonStats)
@@ -56,11 +66,22 @@ namespace Core.UI.Lobby.PigeonList
             JumpTo(index, 0.5f);
         }
 
+        private void OnCellClick(int index)
+        {
+            if (index < 0 || index >= ItemsSource.Count || index == Context.selectedIndex)
+            {
+                return;
+            } 
+            
+            pigeon3DRenderTexture.ChangeTexture(currentPigeonStatList[index].breed_id);
+        }
+
         // 更改排序、過濾
         public void ChangePresent(PigeonListFilter filter, PigeonListSort sort, PigeonListOrder order)
         {
+            // TODO: 這裡後續可以優化至 PigeonModel 處理
             // TODO: 這方法是先以有為主，後續可更換演算法
-            var pigeonStats = new List<PigeonStat>();
+            currentPigeonStatList = new List<PigeonStat>();
 
             // 過濾
             switch (filter)
@@ -68,18 +89,18 @@ namespace Core.UI.Lobby.PigeonList
                 case PigeonListFilter.None:
                 case PigeonListFilter.Feral:
                 case PigeonListFilter.Favorite:
-                    pigeonStats = originPigeonStatList;
+                    currentPigeonStatList = originPigeonStatList;
                     break;
                 case PigeonListFilter.Male:
-                    pigeonStats.AddRange(originPigeonStatList.Where(pigeonStat => pigeonStat.gender == 0));
+                    currentPigeonStatList.AddRange(originPigeonStatList.Where(pigeonStat => pigeonStat.gender == 0));
                     break;
                 case PigeonListFilter.Female:
-                    pigeonStats.AddRange(originPigeonStatList.Where(pigeonStat => pigeonStat.gender == 1));
+                    currentPigeonStatList.AddRange(originPigeonStatList.Where(pigeonStat => pigeonStat.gender == 1));
                     break;
             }
 
 
-            if (pigeonStats.Count > 0)
+            if (currentPigeonStatList.Count > 0)
             {
                 // 依能力排序
                 switch (sort)
@@ -87,33 +108,33 @@ namespace Core.UI.Lobby.PigeonList
                     case PigeonListSort.IQ:
                     case PigeonListSort.Sick:
                     case PigeonListSort.Other:
-                        pigeonStats = pigeonStats.OrderByDescending(pigeonStat => pigeonStat.iq).ToList();
+                        currentPigeonStatList = currentPigeonStatList.OrderByDescending(pigeonStat => pigeonStat.iq).ToList();
                         break;
                     case PigeonListSort.Vision:
-                        pigeonStats = pigeonStats.OrderByDescending(pigeonStat => pigeonStat.vision).ToList();
+                        currentPigeonStatList = currentPigeonStatList.OrderByDescending(pigeonStat => pigeonStat.vision).ToList();
                         break;
                     case PigeonListSort.Speed:
-                        pigeonStats = pigeonStats.OrderByDescending(pigeonStat => pigeonStat.speed).ToList();
+                        currentPigeonStatList = currentPigeonStatList.OrderByDescending(pigeonStat => pigeonStat.speed).ToList();
                         break;
                     case PigeonListSort.FeatherSize:
-                        pigeonStats = pigeonStats.OrderByDescending(pigeonStat => pigeonStat.feather_size).ToList();
+                        currentPigeonStatList = currentPigeonStatList.OrderByDescending(pigeonStat => pigeonStat.feather_size).ToList();
                         break;
                     case PigeonListSort.Vitality:
-                        pigeonStats = pigeonStats.OrderByDescending(pigeonStat => pigeonStat.vitality).ToList();
+                        currentPigeonStatList = currentPigeonStatList.OrderByDescending(pigeonStat => pigeonStat.vitality).ToList();
                         break;
                     case PigeonListSort.Muscle:
-                        pigeonStats = pigeonStats.OrderByDescending(pigeonStat => pigeonStat.muscle).ToList();
+                        currentPigeonStatList = currentPigeonStatList.OrderByDescending(pigeonStat => pigeonStat.muscle).ToList();
                         break;
                     case PigeonListSort.FeatherQuality:
-                        pigeonStats = pigeonStats.OrderByDescending(pigeonStat => pigeonStat.feather_quality).ToList();
+                        currentPigeonStatList = currentPigeonStatList.OrderByDescending(pigeonStat => pigeonStat.feather_quality).ToList();
                         break;
                 }
 
                 if (order == PigeonListOrder.Ascending)
-                    pigeonStats.Reverse();
+                    currentPigeonStatList.Reverse();
             }
 
-            UpdateData(pigeonStats);
+            UpdateData(currentPigeonStatList);
         }
 
         // TODO: 測試專用，之後刪掉
@@ -126,7 +147,7 @@ namespace Core.UI.Lobby.PigeonList
                 new() {
                     age                    = 0,
                     age_feature            = 0,
-                    breed_id               = null,
+                    breed_id               = "5",
                     breed_name             = null,
                     constitution           = 200,
                     exp                    = 10,
@@ -163,7 +184,7 @@ namespace Core.UI.Lobby.PigeonList
                 new() {
                     age                    = 0,
                     age_feature            = 0,
-                    breed_id               = null,
+                    breed_id               = "10",
                     breed_name             = null,
                     constitution           = 200,
                     exp                    = 30,

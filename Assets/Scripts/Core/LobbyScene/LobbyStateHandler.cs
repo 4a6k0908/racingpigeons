@@ -8,6 +8,7 @@ namespace Core.LobbyScene
     {
         Lobby      = 0,
         PigeonList = 1,
+        Race       = 5,
     }
 
     public class LobbyStateHandler
@@ -21,6 +22,7 @@ namespace Core.LobbyScene
         {
             this.signalBus = signalBus;
         }
+
         public void ChangeState(LobbyState nextState)
         {
             if (currentState == nextState)
@@ -30,9 +32,9 @@ namespace Core.LobbyScene
             currentState = nextState;
 
             allPreStateQueue.Enqueue(preState);
-            if(currentState == LobbyState.Lobby)
+            if (currentState == LobbyState.Lobby)
                 allPreStateQueue.Clear();
-            
+
             signalBus.Fire(new OnLobbyStateChange(preState, currentState));
         }
 
@@ -42,7 +44,7 @@ namespace Core.LobbyScene
 
             LobbyState preState = currentState;
             currentState = nextState;
-            
+
             signalBus.Fire(new OnLobbyStateChange(preState, currentState));
         }
     }

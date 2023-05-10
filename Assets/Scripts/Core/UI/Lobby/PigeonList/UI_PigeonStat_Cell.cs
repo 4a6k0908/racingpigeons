@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Core.Pigeon.Models;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,25 +11,27 @@ namespace Core.UI.Lobby.PigeonList
 {
     public class UI_PigeonStat_Cell : FancyScrollRectCell<PigeonStat, Context>
     {
-        [SerializeField] private Image avatarImg; // 鴿子的 Avatar
+        [SerializeField] private Image           avatarImg; // 鴿子的 Avatar
+        [SerializeField] private TextMeshProUGUI nameText;  // 鴿子的名字
 
-        [SerializeField] private TextMeshProUGUI nameText; // 鴿子的名字
+        [SerializeField] private Button     selectBtn;
+        [SerializeField] private GameObject selectedObj;
 
-        [SerializeField] private Image    favoriteImg; // 最愛
-        [SerializeField] private Sprite[] favoriteSprites;
-        [SerializeField] private Image    genderImg; // 性別
-        [SerializeField] private Sprite[] genderSprites;
-        [SerializeField] private Image    statusImg; // 狀態
-        [SerializeField] private Sprite[] statusSprites;
+        [FoldoutGroup("鴿子狀態")] [SerializeField] private Image    favoriteImg; // 最愛
+        [FoldoutGroup("鴿子狀態")] [SerializeField] private Sprite[] favoriteSprites;
+        [FoldoutGroup("鴿子狀態")] [SerializeField] private Image    genderImg; // 性別
+        [FoldoutGroup("鴿子狀態")] [SerializeField] private Sprite[] genderSprites;
+        [FoldoutGroup("鴿子狀態")] [SerializeField] private Image    statusImg; // 狀態
+        [FoldoutGroup("鴿子狀態")] [SerializeField] private Sprite[] statusSprites;
 
-        [SerializeField] private AbilityData iqAbility;             // 智力
-        [SerializeField] private AbilityData visionAbility;         // 眼睛
-        [SerializeField] private AbilityData speedAbility;          // 體型
-        [SerializeField] private AbilityData featherSizeAbility;    // 羽型
-        [SerializeField] private AbilityData vitalityAbility;       // 心肺
-        [SerializeField] private AbilityData muscleAbility;         // 肌力
-        [SerializeField] private AbilityData constitutionAbility;   // 腸胃
-        [SerializeField] private AbilityData featherQualityAbility; // 羽質
+        [FoldoutGroup("鴿子屬性")] [SerializeField] private AbilityData iqAbility;             // 智力
+        [FoldoutGroup("鴿子屬性")] [SerializeField] private AbilityData visionAbility;         // 眼睛
+        [FoldoutGroup("鴿子屬性")] [SerializeField] private AbilityData speedAbility;          // 體型
+        [FoldoutGroup("鴿子屬性")] [SerializeField] private AbilityData featherSizeAbility;    // 羽型
+        [FoldoutGroup("鴿子屬性")] [SerializeField] private AbilityData vitalityAbility;       // 心肺
+        [FoldoutGroup("鴿子屬性")] [SerializeField] private AbilityData muscleAbility;         // 肌力
+        [FoldoutGroup("鴿子屬性")] [SerializeField] private AbilityData constitutionAbility;   // 腸胃
+        [FoldoutGroup("鴿子屬性")] [SerializeField] private AbilityData featherQualityAbility; // 羽質
 
         [SerializeField] private Sprite[] gemSprites; // 寶石的 Sprites
 
@@ -37,10 +40,16 @@ namespace Core.UI.Lobby.PigeonList
         [SerializeField] private Image expBarImg;     // 經驗質
 
         private UI_PigeonList uiPigeonList;
-        
+
         private void Awake()
         {
+            // TODO: 待優化
             uiPigeonList = FindObjectOfType<UI_PigeonList>();
+        }
+
+        public override void Initialize()
+        {
+            selectBtn.onClick.AddListener(() => Context.OnCellClicked?.Invoke(Index));
         }
 
         // 更換鴿子資訊
@@ -62,6 +71,8 @@ namespace Core.UI.Lobby.PigeonList
             // TODO: 確認上限多少，現在假定 100
             fatigueBarImg.fillAmount = pigeonStat.fatigue / 100.0f;
             expBarImg.fillAmount     = pigeonStat.exp     / 100.0f;
+
+            selectedObj.SetActive(Context.selectedIndex == Index);
         }
 
         public void Button_View()
