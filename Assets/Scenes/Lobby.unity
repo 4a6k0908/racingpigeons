@@ -8229,7 +8229,7 @@ MonoBehaviour:
   bgImg: {fileID: 1609309577}
   bgSprites:
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 677a97a33331d794280ffec2077c208a, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
