@@ -247,8 +247,8 @@ namespace Core.UI.Lobby.PigeonList
                     await playerData.SyncPigeonList(10);
                     notifyService.DoClose();
                     
-                    // pigeonStatScroller.SetOriginData(playerData.GetPigeonList());
-                    pigeonStatScroller.SetTestOriginData();
+                    pigeonStatScroller.SetOriginData(playerData.GetPigeonList());
+                    // pigeonStatScroller.SetTestOriginData();
                 }
                 catch (Exception e)
                 {
