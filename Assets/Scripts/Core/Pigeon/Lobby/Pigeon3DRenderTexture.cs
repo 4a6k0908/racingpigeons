@@ -7,15 +7,14 @@ namespace Core.Pigeon.Lobby
     public class Pigeon3DRenderTexture : MonoBehaviour
     {
         private MaterialPropertyBlock materialPropertyBlock;
-
-        [SerializeField] private Renderer[]         renders;
+        
+        [SerializeField] private Renderer[]         renders; // 鴿子的 Render
         [SerializeField] private BreedTextureData[] breedTextures;
 
+        // 更換貼圖
         public void ChangeTexture(string breedID)
         {
-            var breedGroupID = breedID == null ? 25 : int.Parse(breedID);
-
-            Debug.Log($"change texture: {breedID}");
+            var breedGroupID = string.IsNullOrEmpty(breedID) ? 25 : int.Parse(breedID);
 
             for (int i = 0; i < renders.Length; i++)
             {
@@ -31,6 +30,7 @@ namespace Core.Pigeon.Lobby
             }
         }
 
+        // 貼圖品種 Group
         [Serializable]
         private class BreedTextureData
         {

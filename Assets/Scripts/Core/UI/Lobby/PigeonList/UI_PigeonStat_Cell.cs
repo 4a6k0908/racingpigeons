@@ -49,7 +49,12 @@ namespace Core.UI.Lobby.PigeonList
 
         public override void Initialize()
         {
-            selectBtn.onClick.AddListener(() => Context.OnCellClicked?.Invoke(Index));
+            Context.OnCellClicked += OnCellClicked;
+            
+            selectBtn.onClick.AddListener(() =>
+            {
+                Context.OnCellClicked?.Invoke(Index);
+            });
         }
 
         // 更換鴿子資訊
@@ -75,6 +80,11 @@ namespace Core.UI.Lobby.PigeonList
             selectedObj.SetActive(Context.selectedIndex == Index);
         }
 
+        private void OnCellClicked(int clickIndex)
+        {
+            selectedObj.SetActive(Index == clickIndex);
+        }
+        
         public void Button_View()
         {
             uiPigeonList.ChangeMode(PigeonListViewMode.HalfPigeon);

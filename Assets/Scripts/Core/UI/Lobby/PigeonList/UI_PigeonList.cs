@@ -247,12 +247,13 @@ namespace Core.UI.Lobby.PigeonList
                     await playerData.SyncPigeonList(10);
                     notifyService.DoClose();
                     
-                    pigeonStatScroller.SetOriginData(playerData.GetPigeonList());
-                    // pigeonStatScroller.SetTestOriginData();
+                    // pigeonStatScroller.SetOriginData(playerData.GetPigeonList());
+                    pigeonStatScroller.SetTestOriginData();
                 }
                 catch (Exception e)
                 {
                     notifyService.DoNotify(e.Message, () => { });
+                    lobbyStateHandler.ChangeToPreState();
                     return;
                 }
             }
@@ -263,7 +264,7 @@ namespace Core.UI.Lobby.PigeonList
             if (!IsActive)
                 return;
 
-            pigeonStatScroller.ChangePresent(currentFilter, currentSort, currentOrder);
+            pigeonStatScroller.Open(currentFilter, currentSort, currentOrder);
             
             pigeonBookImg.sprite = pigeonBookSprites[(int) currentSort];
         }

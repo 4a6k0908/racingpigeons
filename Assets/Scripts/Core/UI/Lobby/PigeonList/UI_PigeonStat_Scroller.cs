@@ -21,8 +21,10 @@ namespace Core.UI.Lobby.PigeonList
         private List<PigeonStat> originPigeonStatList  = new();
         private List<PigeonStat> currentPigeonStatList = new();
 
+        private string selectPigeonID = "";
+
         private Pigeon3DRenderTexture pigeon3DRenderTexture;
-        
+
         private void Awake()
         {
             Relayout();
@@ -34,20 +36,32 @@ namespace Core.UI.Lobby.PigeonList
         {
             base.Initialize();
 
-            Context.OnCellClicked = OnCellClick;
+            Context.OnCellClicked += OnCellClick;
+        }
+
+        // 每次打開會執行的動作，
+        public void Open(PigeonListFilter filter, PigeonListSort sort, PigeonListOrder order)
+        {
+            ChangePresent(filter, sort, order);
+
+            if (currentPigeonStatList.Count > 0)
+            {
+                selectPigeonID = currentPigeonStatList[0].pigeon_id;
+                Context.OnCellClicked?.Invoke(0);
+            }
         }
 
         public void SetOriginData(List<PigeonStat> pigeonStats)
         {
             originPigeonStatList = pigeonStats;
         }
-        
+
         // TODO: 測試用
         public void SetTestOriginData()
         {
             originPigeonStatList = GetTestPigeons();
         }
-        
+
         public void UpdateData(List<PigeonStat> pigeonStats)
         {
             UpdateContents(pigeonStats);
@@ -66,13 +80,16 @@ namespace Core.UI.Lobby.PigeonList
             JumpTo(index, 0.5f);
         }
 
-        private void OnCellClick(int index)
+        // 點擊 Cell 後該執行的動作
+        public void OnCellClick(int index)
         {
             if (index < 0 || index >= ItemsSource.Count || index == Context.selectedIndex)
             {
                 return;
-            } 
-            
+            }
+
+            Context.selectedIndex = index;
+            selectPigeonID        = currentPigeonStatList[index].pigeon_id;
             pigeon3DRenderTexture.ChangeTexture(currentPigeonStatList[index].breed_id);
         }
 
@@ -83,6 +100,9 @@ namespace Core.UI.Lobby.PigeonList
             // TODO: 這方法是先以有為主，後續可更換演算法
             currentPigeonStatList = new List<PigeonStat>();
 
+            Context.selectedIndex = -1;
+            int selectIndex = 0;
+            
             // 過濾
             switch (filter)
             {
@@ -98,7 +118,6 @@ namespace Core.UI.Lobby.PigeonList
                     currentPigeonStatList.AddRange(originPigeonStatList.Where(pigeonStat => pigeonStat.gender == 1));
                     break;
             }
-
 
             if (currentPigeonStatList.Count > 0)
             {
@@ -130,11 +149,23 @@ namespace Core.UI.Lobby.PigeonList
                         break;
                 }
 
+                // 升序
                 if (order == PigeonListOrder.Ascending)
                     currentPigeonStatList.Reverse();
+
+                for (int i = 0; i < currentPigeonStatList.Count; i++)
+                {
+                    if (selectPigeonID != currentPigeonStatList[i].pigeon_id)
+                        continue;
+                    
+                    Context.selectedIndex = selectIndex = i;
+                    break;
+                }
             }
 
             UpdateData(currentPigeonStatList);
+
+            Context.OnCellClicked?.Invoke(selectIndex);
         }
 
         // TODO: 測試專用，之後刪掉
@@ -174,7 +205,7 @@ namespace Core.UI.Lobby.PigeonList
                     max_vitality           = 150,
                     mother_pigeon_id       = null,
                     muscle                 = 100,
-                    pigeon_id              = null,
+                    pigeon_id              = "01",
                     pigeon_name            = "Test",
                     pigeon_pigeonry        = null,
                     speed                  = 20,
@@ -211,7 +242,7 @@ namespace Core.UI.Lobby.PigeonList
                     max_vitality           = 150,
                     mother_pigeon_id       = null,
                     muscle                 = 100,
-                    pigeon_id              = null,
+                    pigeon_id              = "02",
                     pigeon_name            = "Test2",
                     pigeon_pigeonry        = null,
                     speed                  = 20,
@@ -248,7 +279,7 @@ namespace Core.UI.Lobby.PigeonList
                     max_vitality           = 150,
                     mother_pigeon_id       = null,
                     muscle                 = 500,
-                    pigeon_id              = null,
+                    pigeon_id              = "03",
                     pigeon_name            = "Test3",
                     pigeon_pigeonry        = null,
                     speed                  = 20,
@@ -285,7 +316,7 @@ namespace Core.UI.Lobby.PigeonList
                     max_vitality           = 150,
                     mother_pigeon_id       = null,
                     muscle                 = 100,
-                    pigeon_id              = null,
+                    pigeon_id              = "04",
                     pigeon_name            = "Test4",
                     pigeon_pigeonry        = null,
                     speed                  = 20,
@@ -322,7 +353,7 @@ namespace Core.UI.Lobby.PigeonList
                     max_vitality           = 150,
                     mother_pigeon_id       = null,
                     muscle                 = 300,
-                    pigeon_id              = null,
+                    pigeon_id              = "05",
                     pigeon_name            = "Test5",
                     pigeon_pigeonry        = null,
                     speed                  = 20,
@@ -359,7 +390,7 @@ namespace Core.UI.Lobby.PigeonList
                     max_vitality           = 150,
                     mother_pigeon_id       = null,
                     muscle                 = 10,
-                    pigeon_id              = null,
+                    pigeon_id              = "06",
                     pigeon_name            = "Test6",
                     pigeon_pigeonry        = null,
                     speed                  = 20,
@@ -396,7 +427,7 @@ namespace Core.UI.Lobby.PigeonList
                     max_vitality           = 150,
                     mother_pigeon_id       = null,
                     muscle                 = 75,
-                    pigeon_id              = null,
+                    pigeon_id              = "07",
                     pigeon_name            = "Test7",
                     pigeon_pigeonry        = null,
                     speed                  = 20,
@@ -433,7 +464,7 @@ namespace Core.UI.Lobby.PigeonList
                     max_vitality           = 150,
                     mother_pigeon_id       = null,
                     muscle                 = 150,
-                    pigeon_id              = null,
+                    pigeon_id              = "08",
                     pigeon_name            = "Test8",
                     pigeon_pigeonry        = null,
                     speed                  = 20,
@@ -470,7 +501,7 @@ namespace Core.UI.Lobby.PigeonList
                     max_vitality           = 0,
                     mother_pigeon_id       = null,
                     muscle                 = 0,
-                    pigeon_id              = null,
+                    pigeon_id              = "09",
                     pigeon_name            = "Test9",
                     pigeon_pigeonry        = null,
                     speed                  = 0,
