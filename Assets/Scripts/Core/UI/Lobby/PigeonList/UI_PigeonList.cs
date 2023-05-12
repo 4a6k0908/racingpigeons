@@ -74,8 +74,10 @@ namespace Core.UI.Lobby.PigeonList
 
         [SerializeField] private RectTransform expandBtnTrans; // 左上角擴展的按鈕位置
         [SerializeField] private GameObject    toListBtnObj;   // 返回檢視模式的按鈕物件
+        [SerializeField] private GameObject    operationBtnGroupObj;
 
         [SerializeField] private Toggle[] filterToggles; // 左邊四個的過濾器 Toggle
+        
 
         private CancellationTokenSource pigeonBookTaskToken;     // 能力背景的移動動畫 Token
         private CancellationTokenSource pigeon3DRenderTaskToken; // 3D RenderTexture 移動動畫 Token
@@ -218,9 +220,11 @@ namespace Core.UI.Lobby.PigeonList
 
             pigeon3DRenderObj.SetActive(currentViewMode                 != PigeonListViewMode.List);
             pigeon3DRenderTexTrans.gameObject.SetActive(currentViewMode != PigeonListViewMode.List);
-
+            
+            // TODO: 可以多增加判定優化
             expandBtnTrans.gameObject.SetActive(currentViewMode != PigeonListViewMode.List);
             toListBtnObj.SetActive(currentViewMode              == PigeonListViewMode.HalfPigeon);
+            operationBtnGroupObj.SetActive(currentViewMode == PigeonListViewMode.FullPigeon);
         }
 
         // 遊戲狀態更改時觸發

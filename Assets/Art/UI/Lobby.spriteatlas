@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Lobby
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 61cf44a8662d64a47b0fba3abed438fd, type: 3}
+    - {fileID: 102900000, guid: e7b8828ded0014446a2c539504de230f, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: cd52fd307b9a34b3f8abb6017d020e9e, type: 3}
+  - {fileID: 21300000, guid: 38442150d8b3efe46b07b76a8634fad9, type: 3}
+  - {fileID: 21300000, guid: 72317b9020efe4806a83c7819cb4f079, type: 3}
+  - {fileID: 21300000, guid: 968116f2385944a5a81e3cc08b67a9bb, type: 3}
+  - {fileID: 21300000, guid: 8fe926f22289b4c7a9465700cde5d7f5, type: 3}
+  - {fileID: 21300000, guid: f6dc3a33f4cde4586addabfa031df0bb, type: 3}
+  - {fileID: 21300000, guid: 81acdc33f2a4044b99fb46ad5e05c99a, type: 3}
+  - {fileID: 21300000, guid: 372645e357bf2435d996839d29403ae2, type: 3}
+  - {fileID: 21300000, guid: ea521794476c0403da6367ae9e23f940, type: 3}
+  - {fileID: 21300000, guid: 63d06415192ab41498a753e8355224da, type: 3}
+  - {fileID: 21300000, guid: aa78c0b5287fd4647a271f9d7f8f2359, type: 3}
+  - {fileID: 21300000, guid: ea88efb5190d1417a96a8106aacf735d, type: 3}
+  - {fileID: 21300000, guid: 9bd5f3f513967416d8431040d98a0a77, type: 3}
+  - {fileID: 21300000, guid: c8a0a036892bd4b9f893b0bf9f8096cc, type: 3}
+  - {fileID: 21300000, guid: 86d55736704bd4e54be76dbb11c2317a, type: 3}
+  - {fileID: 21300000, guid: 6eebf4a79a4b44615862a1c7484371b7, type: 3}
+  - {fileID: 21300000, guid: 92ebdda7574944243ad56ee056e45472, type: 3}
+  - {fileID: 21300000, guid: 4ba79db8f696e4afc8df63053cb2990a, type: 3}
+  - {fileID: 21300000, guid: 2db7abb9ec8374b56ade2c55bd49204a, type: 3}
+  - {fileID: 21300000, guid: 5a8bd83a8f61b4619bec711d6b7e02d1, type: 3}
+  - {fileID: 21300000, guid: 22597c5b89856475cb41af2d1f9c199c, type: 3}
+  - {fileID: 21300000, guid: 47333e6bd90ea4670865d1abe3a7b98b, type: 3}
+  - {fileID: 21300000, guid: 5d9e8a8bec30e4b6ca3e9a2aaba34fc6, type: 3}
+  - {fileID: 21300000, guid: 34deccac913e44291b0ded2e6493f61d, type: 3}
+  - {fileID: 21300000, guid: ed18b35d6584744729134a80cae6f8f1, type: 3}
+  - {fileID: 21300000, guid: a9e1c97ddee934c3bb9d8fc41d86f604, type: 3}
+  - {fileID: 21300000, guid: 4eb427ad07b6e4e07b62bd199c0895bc, type: 3}
+  - {fileID: 21300000, guid: b11a5bcd90f75485e8ba500c6381da16, type: 3}
+  - {fileID: 21300000, guid: 8f31a0ddbe60d4fc19502370458fc1ee, type: 3}
+  - {fileID: 21300000, guid: 5947c67e9164249b5be499c3be39945b, type: 3}
+  - {fileID: 21300000, guid: 06ded36fbbe524aa0af19d5c3e6e283f, type: 3}
+  - {fileID: 21300000, guid: f3b8929f271d64784a700f39f9fbfa8d, type: 3}
+  - {fileID: 21300000, guid: fe47b99f2063241e0892d2dddcd234a0, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Pigeonry_sys004
+  - Pigeonry_BG001
+  - Pigeonry_sys005
+  - Pigeonry_buttom005
+  - Pigeonry_buttom002
+  - Pigeonry_promo005
+  - BG_Login
+  - Pigeonry_buttom006
+  - Pigeonry_promo003
+  - Guest
+  - Pigeonry_BG002
+  - Pigeonry_buttom007
+  - Pigeonry_buttom004
+  - Pigeonry_sys006
+  - Pigeonry_promo001
+  - Google
+  - Pigeonry_buttom008
+  - Pigeonry_BG004
+  - Pigeonry_buttom003
+  - Pigeonry_button_03
+  - Pigeonry_buttom009
+  - Pigeonry_ column002
+  - Pigeonry_sys001
+  - Pigeonry_promo004
+  - Pigeonry_buttom001
+  - Pigeonry_promo002
+  - Pigeonry_buttom010
+  - Pigeonry_sys002
+  - Pigeonry_button_02
+  - Pigeonry_store
+  - Pigeonry_sys003
+  - Line
+  - Pigeonry_ column001
+  m_RenderDataMap: {}
+  m_Tag: Lobby
+  m_IsVariant: 0
