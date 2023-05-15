@@ -51,7 +51,9 @@ SpriteAtlas:
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 134469303734cae4e9a1abd669551652, type: 3}
+  - {fileID: 21300000, guid: d72a21b0bff5d394bafdd63db1cbbbcb, type: 3}
   - {fileID: 21300000, guid: 3dc6c0e0566428f4593141de4313b83f, type: 3}
+  - {fileID: 21300000, guid: fba70c21f1a00ae498d9c8fc123aab9b, type: 3}
   - {fileID: 21300000, guid: 6c5c1ab1e496093429c7fefb44c9f1be, type: 3}
   - {fileID: 21300000, guid: d1ac61e15b8190247aecfb35f3ce1756, type: 3}
   - {fileID: 21300000, guid: a50253b2acc917642b34675e8076fb8d, type: 3}
@@ -85,19 +87,25 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 5ea0bcda42535954c95d13ebba708c8b, type: 3}
   - {fileID: 21300000, guid: 8b0d113b049556442817d1102b6557ee, type: 3}
   - {fileID: 21300000, guid: 5127fe6b79fd3cf43866f7f3f4370c79, type: 3}
+  - {fileID: 21300000, guid: 399f2e0ce3d12e64db035dab1ab03d70, type: 3}
   - {fileID: 21300000, guid: 05207f7c026859945a4d801e8593d581, type: 3}
+  - {fileID: 21300000, guid: 6232408ce9b28e74baff440433a37771, type: 3}
   - {fileID: 175757335, guid: e367ccacf7be80a47b61babf2a4a4988, type: 3}
   - {fileID: 21300000, guid: e024b1ec7fa40b34bb99196919128b5a, type: 3}
   - {fileID: 21300000, guid: 7dac7b6d71d662047ab9e281928343cd, type: 3}
+  - {fileID: 21300000, guid: 8c8d2f8d60715f54eae55332088daba7, type: 3}
   - {fileID: 21300000, guid: 995e8acdabab7864088e8f9ee286c6d2, type: 3}
   - {fileID: 21300000, guid: bf42738e72afb04408116d38ff439872, type: 3}
   - {fileID: 21300000, guid: be8a70ae8e33f9c46a4565116e15babf, type: 3}
   - {fileID: 21300000, guid: 31f74c3f999bff14eb1e0f58fdaa8bf0, type: 3}
+  - {fileID: 21300000, guid: 5e29044fb054a8642bd7a3010eeb097a, type: 3}
   - {fileID: 21300000, guid: 3304196f1ffb3f64ba4bae5da83f5821, type: 3}
   - {fileID: 21300000, guid: 63aeccaf3c1027749ae2edbeb6a634ff, type: 3}
   m_PackedSpriteNamesToIndex:
   - form_button_01
+  - F
   - form_form_009
+  - D
   - Group 130
   - form_button_05
   - Group 129
@@ -131,14 +139,18 @@ SpriteAtlas:
   - img_061
   - form_button_02
   - img_056c-2
+  - C
   - background_1
+  - B
   - Group 268_0
   - form_form_006
   - form_bar03
+  - A
   - img_056D-2
   - img_059
   - Group 203
   - form_bar02
+  - E
   - img_062
   - img_058
   m_RenderDataMap: {}
