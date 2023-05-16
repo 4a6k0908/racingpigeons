@@ -121,7 +121,7 @@ namespace Core.UI.Lobby.PigeonList
         // 到 2-1-3
         public void Button_To_Half()
         {
-            ChangeMode(PigeonListViewMode.HalfPigeon);
+            ChangeMode(PigeonListViewMode.HalfPigeon); 
         }
 
         // 如果目前為 2-1-3 那會到 2-1-2，其餘狀況到 2-1-1
