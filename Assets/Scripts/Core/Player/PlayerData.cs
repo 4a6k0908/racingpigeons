@@ -7,7 +7,7 @@ using Core.User.Models;
 using Cysharp.Threading.Tasks;
 using Zenject;
 
-namespace Core.Player.Models
+namespace Core.Player
 {
     public class PlayerData
     {

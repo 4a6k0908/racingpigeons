@@ -3,7 +3,7 @@ using Core.Aws;
 using Core.Aws.Login;
 using Core.Aws.Models;
 using Core.MainScene;
-using Core.Player.Models;
+using Core.Player;
 using Core.Save;
 using Cysharp.Threading.Tasks;
 using NUnit.Framework;

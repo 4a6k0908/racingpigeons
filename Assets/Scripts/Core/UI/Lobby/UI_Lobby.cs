@@ -3,7 +3,7 @@ using AnimeTask;
 using Core.CameraSystem;
 using Core.LobbyScene;
 using Core.MainScene;
-using Core.Player.Models;
+using Core.Player;
 using Core.UI.Lobby.PigeonList;
 using TMPro;
 using UnityEngine;

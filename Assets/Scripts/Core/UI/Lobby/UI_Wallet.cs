@@ -1,5 +1,5 @@
 ﻿using Core.MainScene;
-using Core.Player.Models;
+using Core.Player;
 using Core.User.Models;
 using TMPro;
 using UnityEngine;
