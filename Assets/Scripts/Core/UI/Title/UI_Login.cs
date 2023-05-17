@@ -3,7 +3,7 @@ using AnimeTask;
 using Core.Aws.Login;
 using Core.Aws.Models;
 using Core.NotifySystem;
-using Core.Player.Models;
+using Core.Player;
 using Core.SceneSystem;
 using Core.SoundSystem;
 using Core.TitleScene;

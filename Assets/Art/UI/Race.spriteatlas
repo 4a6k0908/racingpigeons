@@ -110,7 +110,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: db76d04ee3fe7fe4c91860dae4ad50bc, type: 3}
   - {fileID: 21300000, guid: 7e1f946e523f9a4418ed4ef1ca64a422, type: 3}
   - {fileID: 21300000, guid: 4203f18e6bf113a44babf3a6b7b6b7a0, type: 3}
-  - {fileID: 21300000, guid: c5973a8efc05d7a46b9294dfead937bd, type: 3}
   - {fileID: 21300000, guid: 24c3dc4f7d6d4d1409efb560f3e16149, type: 3}
   - {fileID: 21300000, guid: f739d7df848876e4da5f1e040aaa6c35, type: 3}
   m_PackedSpriteNamesToIndex:
@@ -174,7 +173,6 @@ SpriteAtlas:
   - "buttom-\u9818\u53D6\u734E\u52F5"
   - img_110
   - "\u8CFD\u5C40\u5217\u8868\u6A19\u984C\u6846"
-  - "\u7121\u9053\u5177\u5E95\u8272"
   - "logo-\u597D\u53CB\u8CFD"
   - "logo-\u9326\u6A19\u8CFD"
   m_RenderDataMap: {}

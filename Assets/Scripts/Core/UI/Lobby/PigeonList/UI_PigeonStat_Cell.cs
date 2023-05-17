@@ -105,7 +105,7 @@ namespace Core.UI.Lobby.PigeonList
                     >= 200 and < 300 => gemSprites[2],
                     >= 300 and < 400 => gemSprites[3],
                     >= 400 and < 500 => gemSprites[4],
-                    _                => gemSprites[5],
+                    _                => gemSprites[5]
                 };
 
                 levelText.text = stat switch {

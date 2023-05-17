@@ -3,7 +3,7 @@ using Core.CameraSystem;
 using Core.LobbyScene;
 using Core.MainScene;
 using Core.NotifySystem;
-using Core.Player.Models;
+using Core.Player;
 using Core.SceneSystem;
 using Core.SoundSystem;
 using Core.TitleScene;

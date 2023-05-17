@@ -2,7 +2,7 @@
 using Core.Aws.Login;
 using Core.Aws.Models;
 using Core.NotifySystem;
-using Core.Player.Models;
+using Core.Player;
 using UnityEngine;
 using Zenject;
 

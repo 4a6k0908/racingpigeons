@@ -3,7 +3,7 @@ using System.Threading;
 using AnimeTask;
 using Core.LobbyScene;
 using Core.NotifySystem;
-using Core.Player.Models;
+using Core.Player;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
