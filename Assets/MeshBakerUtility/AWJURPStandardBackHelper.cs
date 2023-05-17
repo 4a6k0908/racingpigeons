@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class SortRendererByMaterial : MonoBehaviour
+public class AWJURPStandardBackHelper : MonoBehaviour
 {
-    public Shader keyCheckShader;
+    Shader keyCheckShader;
     public Material specifyMat;
     public GameObject target;
+    public AWJ_Core asjc;
 
     public MB3_TextureBaker[] meshBakers;
     [System.Serializable]
@@ -19,15 +21,29 @@ public class SortRendererByMaterial : MonoBehaviour
     }
 
     public RendererGroup[] groups;
+    public Renderer[] errorObjects;
+    public Renderer[] multMaterialObjects;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        keyCheckShader = Shader.Find("Universal Render Pipeline/Lit");
     }
 
+    public void Check()
+    {
+        Renderer[] rnds = target.GetComponentsInChildren<Renderer>();
+        Debug.Log("find " + rnds.Length + " renderers");
+        asjc = new AWJ_Core();
+        asjc.Sort(target, rnds);
+        errorObjects = asjc.GetErrorRenderer();
+        multMaterialObjects = asjc.GetMultMatRenderer();
+    }
     public void Sort()
     {
+        Renderer[] rnds = target.GetComponentsInChildren<Renderer>();
+        Debug.Log("find " + rnds.Length + " renderers");
+
         groups = new RendererGroup[4];
         groups[0].tag = "keyOpaque";
         groups[1].tag = "keyTransparent";
@@ -39,8 +55,6 @@ public class SortRendererByMaterial : MonoBehaviour
         List<GameObject> kot = new List<GameObject>();
         List<GameObject> ksp = new List<GameObject>();
 
-        Renderer[] rnds = target.GetComponentsInChildren<Renderer>();
-        Debug.Log("find " + rnds.Length + " renderers");
         for (int i = 0; i < rnds.Length; i++)
         {
             Material[] mats = rnds[i].sharedMaterials;
@@ -71,6 +85,9 @@ public class SortRendererByMaterial : MonoBehaviour
         groups[2].objects = kot.ToArray();
         groups[3].objects = ksp.ToArray();
 
+        if (meshBakers == null || meshBakers.Length == 0)
+            return;
+
         for (int i = 0; i < groups.Length; i++)
             groups[i].meshBaker = meshBakers[i];
 
@@ -78,8 +95,9 @@ public class SortRendererByMaterial : MonoBehaviour
         groups[1].meshBaker.objsToMesh = ktr;
         groups[2].meshBaker.objsToMesh = kot;
         groups[3].meshBaker.objsToMesh = ksp;
-
     }
+
+
 
 
     public static Material SetURPStandardToTransparent(Material _mat)
