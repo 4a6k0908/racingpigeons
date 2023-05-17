@@ -27,12 +27,11 @@ public class AWJURPStandardBackHelper : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        keyCheckShader = Shader.Find("Universal Render Pipeline/Lit");
     }
 
     public void Check()
     {
-        Renderer[] rnds = target.GetComponentsInChildren<Renderer>();
+        Renderer[] rnds = target.GetComponentsInChildren<Renderer>(true);
         Debug.Log("find " + rnds.Length + " renderers");
         asjc = new AWJ_Core();
         asjc.Sort(target, rnds);
@@ -41,7 +40,8 @@ public class AWJURPStandardBackHelper : MonoBehaviour
     }
     public void Sort()
     {
-        Renderer[] rnds = target.GetComponentsInChildren<Renderer>();
+        keyCheckShader = Shader.Find("Universal Render Pipeline/Lit");
+        Renderer[] rnds = target.GetComponentsInChildren<Renderer>(true);
         Debug.Log("find " + rnds.Length + " renderers");
 
         groups = new RendererGroup[4];
@@ -57,6 +57,7 @@ public class AWJURPStandardBackHelper : MonoBehaviour
 
         for (int i = 0; i < rnds.Length; i++)
         {
+            rnds[i].gameObject.SetActive(true);
             Material[] mats = rnds[i].sharedMaterials;
             for (int j = 0; j < mats.Length; j++)
             {
@@ -122,5 +123,11 @@ public class AWJURPStandardBackHelper : MonoBehaviour
             return true;
         else
             return false;
+    }
+
+    public void ToggleActive(GameObject[] _objs)
+    {
+        for (int i = 0; i < _objs.Length; i++)
+            _objs[i].SetActive(!_objs[i].activeSelf);
     }
 }

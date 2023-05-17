@@ -21,13 +21,30 @@ public class AWJURPStandardBackHelperEditor : Editor
         }
         if (GUILayout.Button("Check Materials"))
             so.Check();
-        if (so.errorObjects.Length != 0 || so.multMaterialObjects.Length!=0)
+        if (so.errorObjects.Length != 0 || so.multMaterialObjects.Length != 0)
         {
-            EditorGUILayout.HelpBox("Please fix that object", MessageType.Error);
-            GUI.enabled = false;
+            EditorGUILayout.HelpBox("Please fix that object otherwise it might be error", MessageType.Error);
+            if (GUILayout.Button("Ignore... force Sort"))
+                so.Sort();
         }
-        if (GUILayout.Button("Help me Sort Materials"))
-            so.Sort();
+        else
+        {
+            if (GUILayout.Button("Help me Sort Materials"))
+                so.Sort();
+        }
+        GUILayout.BeginHorizontal();
+        int b = so.groups.Length;
+        for (int i = 0; i < b; i++)
+        {
+            if (GUILayout.Button("Toggle " + i))
+                so.ToggleActive(so.groups[i].objects);
+            if (i % 2 == 1)
+            {
+                GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal();
+            }
+        }
+        GUILayout.EndHorizontal();
         GUI.enabled = true;
         DrawDefaultInspector();
     }
