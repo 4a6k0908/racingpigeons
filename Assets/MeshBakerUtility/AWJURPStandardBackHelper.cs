@@ -45,9 +45,9 @@ public class AWJURPStandardBackHelper : MonoBehaviour
         Debug.Log("find " + rnds.Length + " renderers");
 
         groups = new RendererGroup[4];
-        groups[0].tag = "keyOpaque";
-        groups[1].tag = "keyTransparent";
-        groups[2].tag = "keyOther";
+        groups[0].tag = "Opaque";
+        groups[1].tag = "Transparent";
+        groups[2].tag = "Other";
         groups[3].tag = "Specify";
 
         List<GameObject> kop = new List<GameObject>();
