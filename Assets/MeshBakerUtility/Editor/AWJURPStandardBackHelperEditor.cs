@@ -17,7 +17,11 @@ public class AWJURPStandardBackHelperEditor : Editor
     GameObject newPrefab;
     public override void OnInspectorGUI()
     {
-        if(so.target == null)
+        Texture2D texture = (Texture2D) EditorGUIUtility.Load("Assets/MeshBakerUtility/Editor/logo.png");
+        float r = 1f / 2;
+        EditorGUI.DrawPreviewTexture(new Rect(20, 10, EditorGUIUtility.currentViewWidth, EditorGUIUtility.currentViewWidth * r), texture);
+        GUILayout.Space(EditorGUIUtility.currentViewWidth * r + 20);
+        if (so.target == null)
         {
             EditorGUILayout.HelpBox("Please assign the Target", MessageType.Error);
             GUI.enabled = false;

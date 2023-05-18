@@ -10,9 +10,9 @@ FBXHeaderExtension:  {
 		Month: 5
 		Day: 18
 		Hour: 14
-		Minute: 42
-		Second: 20
-		Millisecond: 988
+		Minute: 53
+		Second: 52
+		Millisecond: 842
 	}
 	Creator: "FBX SDK/FBX Plugins version 2020.3.2"
 	SceneInfo: "SceneInfo::GlobalInfo", "UserData" {
@@ -28,8 +28,8 @@ FBXHeaderExtension:  {
 			Comment: ""
 		}
 		Properties70:  {
-			P: "DocumentUrl", "KString", "Url", "", "Assets\Art\Scene\compress\Model\uuhrchi7_GameObject_keyTransparent.fbx"
-			P: "SrcDocumentUrl", "KString", "Url", "", "Assets\Art\Scene\compress\Model\uuhrchi7_GameObject_keyTransparent.fbx"
+			P: "DocumentUrl", "KString", "Url", "", "Assets\Art\Scene\compress\Model\tgso7jqj_GameObject_keyTransparent.fbx"
+			P: "SrcDocumentUrl", "KString", "Url", "", "Assets\Art\Scene\compress\Model\tgso7jqj_GameObject_keyTransparent.fbx"
 			P: "Original", "Compound", "", ""
 			P: "Original|ApplicationVendor", "KString", "", "", ""
 			P: "Original|ApplicationName", "KString", "", "", "Unity FBX Exporter"
@@ -75,7 +75,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 1530458909104, "Scene", "Scene" {
+	Document: 2667855474032, "Scene", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", ""
@@ -270,7 +270,7 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	Geometry: 1529941162736, "Geometry::Scene", "Mesh" {
+	Geometry: 2666726063760, "Geometry::Scene", "Mesh" {
 		Vertices: *2034 {
 			a: -608.05926322937,-108.509767055511,425.973701477051,-672.813272476196,-94.929051399231,485.379362106323,-708.503580093384,-84.2904388904572,432.588863372803,-627.331686019897,-81.5764784812927,354.177236557007,-767.136144638062,-82.7015221118927,404.026317596436,-550.949335098267,-189.094924926758,364.916086196899,-688.77477645874,-123.824977874756,306.233334541321,-568.76015663147,-134.37705039978,290.474057197571,-518.135690689087,-241.028046607971,319.055986404419,-649.709272384644,-171.965754032135,241.275191307068,-526.161766052246,-212.285017967224,249.436187744141,-628.736400604248,-231.801295280457,228.752207756042,-617.608642578125,-12.496055662632,475.534105300903,-726.874494552612,-4.67892773449421,490.838050842285,-736.975431442261,-1.86502672731876,399.92082118988,-600.562906265259,14.0208974480629,372.661399841309,-785.640811920166,-14.2926067113876,320.571208000183,-506.072807312012,-110.145592689514,464.263486862183,-643.646955490112,-31.7585378885269,296.026587486267,-481.352949142456,-43.6381667852402,355.094981193542,-434.789228439331,-174.364984035492,446.343421936035,-545.955228805542,-115.753412246704,250.357174873352,-406.765747070312,-142.902517318726,354.500079154968,-505.958127975464,-192.020285129547,253.481674194336,-729.733753204346,-68.7285363674164,289.605164527893,-669.83323097229,-49.2033809423447,356.131482124329,-719.234943389893,-29.3376207351685,394.791436195374,-796.881151199341,-33.4361910820007,308.585405349731,-745.220375061035,-16.8929740786552,458.984661102295,-795.67985534668,-105.474054813385,206.09712600708,-826.412010192871,-46.7949211597443,375.924944877625,-866.587543487549,-90.6341552734375,247.936367988586,-845.780849456787,-175.886702537537,184.581780433655,-907.137870788574,-80.9835374355316,315.905141830444,-908.929443359375,-174.649250507355,221.219444274902,-929.586887359619,-143.556785583496,305.796265602112,-609.52320098877,-36.3704055547714,338.501906394958,-546.733474731445,-104.454410076141,413.414001464844,-616.236686706543,-119.769406318665,454.022026062012,
 -696.672773361206,-16.7789235711098,379.608774185181,-661.778354644775,-171.69144153595,507.500743865967,-677.216911315918,38.5640740394592,232.70857334137,-748.513555526733,-89.1392052173615,407.151031494141,-774.772500991821,21.1478367447853,267.046189308167,-739.24560546875,22.6456627249718,135.577750205994,-839.620685577393,-33.4464430809021,318.038439750671,-826.539897918701,-0.559905124828219,152.92774438858,-868.723106384277,-61.6921901702881,241.036248207092,-631.600046157837,-57.1207404136658,347.783517837524,-656.880044937134,-22.1656054258347,429.64563369751,-717.610883712769,-29.4554471969604,406.426334381104,-691.68586730957,-55.5456578731537,294.50376033783,-783.027982711792,-36.6675615310669,419.068813323975,-591.177845001221,-108.210277557373,255.900049209595,-752.981519699097,-88.0031049251556,313.173174858093,-663.730096817017,-129.452002048492,218.421578407288,-578.185176849365,-190.497267246246,222.051048278809,-738.563394546509,-145.752680301666,222.178983688354,-638.478565216064,-220.197010040283,191.601884365082,-722.412443161011,-210.684514045715,215.260720252991,-748.994445800781,-67.4771070480347,431.640529632568,-715.140342712402,-28.033572435379,361.356234550476,-661.205625534058,-31.9241791963577,393.483877182007,-700.980615615845,-64.6625697612762,492.088508605957,-597.314929962158,-33.4349423646927,393.001508712769,-778.9231300354,-167.790687084198,475.363779067993,-628.955602645874,-112.342286109924,490.051412582397,-729.652547836304,-140.654444694519,548.830461502075,-791.992807388306,-234.161829948425,507.190322875977,-639.53914642334,-182.315945625305,541.436958312988,-754.766750335693,-230.227398872375,571.201944351196,-656.192779541016,-243.465495109558,538.26322555542,-643.005037307739,-79.3105483055115,339.823412895203,-598.312044143677,-37.5869959592819,428.631544113159,-666.95294380188,-35.388058423996,460.759782791138,-732.371854782104,-65.8342242240906,344.517803192139,-712.717723846436,-33.6374372243881,527.882719039917,-684.735012054443,-141.859018802643,231.100678443909,
@@ -557,7 +557,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 1530463332752, "Model::CombinedMesh_MeshBaker_meshkeyTransparentkeyTransparentkeyTransparent", "Null" {
+	Model: 2671161551840, "Model::CombinedMesh_MeshBaker_meshkeyTransparent", "Null" {
 		Version: 232
 		Properties70:  {
 			P: "RotationOrder", "enum", "", "",4
@@ -568,7 +568,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Model: 1530463360752, "Model::MeshBaker_mesh_mesh", "Mesh" {
+	Model: 2671161557840, "Model::MeshBaker_mesh_mesh", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationOrder", "enum", "", "",4
@@ -580,7 +580,7 @@ Objects:  {
 		Shading: W
 		Culling: "CullingOff"
 	}
-	Material: 1530460360272, "Material::transparent_mat", "" {
+	Material: 2673408872064, "Material::transparent_mat", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
@@ -593,7 +593,7 @@ Objects:  {
 			P: "Opacity", "double", "Number", "",1
 		}
 	}
-	Video: 1530653240864, "Video::DiffuseColor_Texture", "Clip" {
+	Video: 2670198772288, "Video::DiffuseColor_Texture", "Clip" {
 		Type: "Clip"
 		Properties70:  {
 			P: "Path", "KString", "XRefUrl", "", "D:\UnityPrg\racingpigeons\Assets\Art\Scene\compress\transparent-mat-_BaseMap-atlas-0.png"
@@ -603,7 +603,7 @@ Objects:  {
 		Filename: "D:\UnityPrg\racingpigeons\Assets\Art\Scene\compress\transparent-mat-_BaseMap-atlas-0.png"
 		RelativeFilename: "..\transparent-mat-_BaseMap-atlas-0.png"
 	}
-	Video: 1530653239424, "Video::NormalMap_Texture", "Clip" {
+	Video: 2667549788784, "Video::NormalMap_Texture", "Clip" {
 		Type: "Clip"
 		Properties70:  {
 			P: "Path", "KString", "XRefUrl", "", "D:\UnityPrg\racingpigeons\Assets\Art\Scene\compress\transparent-mat-_BumpMap-atlas-3.png"
@@ -613,7 +613,7 @@ Objects:  {
 		Filename: "D:\UnityPrg\racingpigeons\Assets\Art\Scene\compress\transparent-mat-_BumpMap-atlas-3.png"
 		RelativeFilename: "..\transparent-mat-_BumpMap-atlas-3.png"
 	}
-	Texture: 1530653236064, "Texture::DiffuseColor_Texture", "" {
+	Texture: 2670198777568, "Texture::DiffuseColor_Texture", "" {
 		Type: "TextureVideoClip"
 		Version: 202
 		TextureName: "Texture::DiffuseColor_Texture"
@@ -625,7 +625,7 @@ Objects:  {
 		Texture_Alpha_Source: "None"
 		Cropping: 0,0,0,0
 	}
-	Texture: 1530653219744, "Texture::NormalMap_Texture", "" {
+	Texture: 2670198775648, "Texture::NormalMap_Texture", "" {
 		Type: "TextureVideoClip"
 		Version: 202
 		TextureName: "Texture::NormalMap_Texture"
@@ -644,35 +644,35 @@ Objects:  {
 
 Connections:  {
 	
-	;Model::CombinedMesh_MeshBaker_meshkeyTransparentkeyTransparentkeyTransparent, Model::RootNode
-	C: "OO",1530463332752,0
+	;Model::CombinedMesh_MeshBaker_meshkeyTransparent, Model::RootNode
+	C: "OO",2671161551840,0
 	
-	;Model::MeshBaker_mesh_mesh, Model::CombinedMesh_MeshBaker_meshkeyTransparentkeyTransparentkeyTransparent
-	C: "OO",1530463360752,1530463332752
+	;Model::MeshBaker_mesh_mesh, Model::CombinedMesh_MeshBaker_meshkeyTransparent
+	C: "OO",2671161557840,2671161551840
 	
 	;Material::transparent_mat, Model::MeshBaker_mesh_mesh
-	C: "OO",1530460360272,1530463360752
+	C: "OO",2673408872064,2671161557840
 	
 	;Geometry::Scene, Model::MeshBaker_mesh_mesh
-	C: "OO",1529941162736,1530463360752
+	C: "OO",2666726063760,2671161557840
 	
 	;Texture::DiffuseColor_Texture, Material::transparent_mat
-	C: "OO",1530653236064,1530460360272
+	C: "OO",2670198777568,2673408872064
 	
 	;Texture::NormalMap_Texture, Material::transparent_mat
-	C: "OO",1530653219744,1530460360272
+	C: "OO",2670198775648,2673408872064
 	
 	;Texture::DiffuseColor_Texture, Material::transparent_mat
-	C: "OP",1530653236064,1530460360272, "DiffuseColor"
+	C: "OP",2670198777568,2673408872064, "DiffuseColor"
 	
 	;Texture::NormalMap_Texture, Material::transparent_mat
-	C: "OP",1530653219744,1530460360272, "NormalMap"
+	C: "OP",2670198775648,2673408872064, "NormalMap"
 	
 	;Video::DiffuseColor_Texture, Texture::DiffuseColor_Texture
-	C: "OO",1530653240864,1530653236064
+	C: "OO",2670198772288,2670198777568
 	
 	;Video::NormalMap_Texture, Texture::NormalMap_Texture
-	C: "OO",1530653239424,1530653219744
+	C: "OO",2667549788784,2670198775648
 }
 ;Takes section
 ;----------------------------------------------------
