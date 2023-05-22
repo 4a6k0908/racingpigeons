@@ -66,8 +66,6 @@ namespace Core.UI.Lobby.PigeonList
         [SerializeField] private UI_PigeonStat_Scroller pigeonStatScroller; // 鴿子滾動物件
 
         [SerializeField] private RectTransform pigeonBookTrans;   // 能力背景的位置
-        [SerializeField] private Image         pigeonBookImg;     // 能力背景的圖
-        [SerializeField] private Sprite[]      pigeonBookSprites; // 能力背景的更換圖片
 
         [SerializeField] private GameObject    pigeon3DRenderObj;      // 3D RenderTexture 得物件 
         [SerializeField] private RectTransform pigeon3DRenderTexTrans; // 3D RenderTexture 的位置 
@@ -139,8 +137,6 @@ namespace Core.UI.Lobby.PigeonList
         // 更改能力排序
         public void Button_Change_Ability_Sort(int sort)
         {
-            pigeonBookImg.sprite = pigeonBookSprites[sort];
-
             PigeonListSort nextSort = (PigeonListSort)sort;
 
             if (currentSort == nextSort)
@@ -269,8 +265,6 @@ namespace Core.UI.Lobby.PigeonList
                 return;
 
             pigeonStatScroller.Open(currentFilter, currentSort, currentOrder);
-            
-            pigeonBookImg.sprite = pigeonBookSprites[(int) currentSort];
         }
     }
 }

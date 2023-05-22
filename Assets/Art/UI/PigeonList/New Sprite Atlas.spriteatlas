@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: New Sprite Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 2baec2f44bb17dc4492cce1f2d7f715e, type: 3}
+    - {fileID: 2800000, guid: 7c071c140b1c3914ca7c0518d071574d, type: 3}
+    - {fileID: 2800000, guid: 7ef5c447494bab1458a1dbf2658edf88, type: 3}
+    - {fileID: 2800000, guid: 9bb73260e9e406c41b9c94e635680526, type: 3}
+    - {fileID: 2800000, guid: 1165d2fa34dc0724689f3e1e604376b9, type: 3}
+    - {fileID: 2800000, guid: c8b89be1e79833a43bba10ba7c06a734, type: 3}
+    - {fileID: 2800000, guid: 9160b8c815f00e54eb192989614e94bc, type: 3}
+    - {fileID: 2800000, guid: 8e914ab4f2857cf4296eefc3a2bd3e8c, type: 3}
+    - {fileID: 2800000, guid: adac73d158e802649bdc106d3f5581c7, type: 3}
+    - {fileID: 2800000, guid: a1060de7b36dea141a3241a484cc6999, type: 3}
+    - {fileID: 2800000, guid: cc268a7dc5127c1488631881d023af70, type: 3}
+    - {fileID: 2800000, guid: 7d7254677c3584e4cba78692c28fdc90, type: 3}
+    - {fileID: 2800000, guid: 2b9cb241e5316984d83daaefbb57875f, type: 3}
+    - {fileID: 2800000, guid: 54f4d706071a3bb41a5156b4ec29c918, type: 3}
+    - {fileID: 2800000, guid: 8a3638bfe992e644aab880bc7f6b8ed6, type: 3}
+    - {fileID: 2800000, guid: 895d3b160e2f9a744b073a3340dd667b, type: 3}
+    - {fileID: 2800000, guid: da51bae04e3979946811cb1b0bd1213e, type: 3}
+    - {fileID: 2800000, guid: 89534e74d3470184096cf0bb4311e1de, type: 3}
+    - {fileID: 2800000, guid: 17ec72a4798dec74892ad0fd1b4fe189, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 9bb73260e9e406c41b9c94e635680526, type: 3}
+  - {fileID: 21300000, guid: da51bae04e3979946811cb1b0bd1213e, type: 3}
+  - {fileID: 21300000, guid: 2b9cb241e5316984d83daaefbb57875f, type: 3}
+  - {fileID: 21300000, guid: adac73d158e802649bdc106d3f5581c7, type: 3}
+  - {fileID: 21300000, guid: c8b89be1e79833a43bba10ba7c06a734, type: 3}
+  - {fileID: 21300000, guid: 7c071c140b1c3914ca7c0518d071574d, type: 3}
+  - {fileID: 21300000, guid: 89534e74d3470184096cf0bb4311e1de, type: 3}
+  - {fileID: 21300000, guid: 17ec72a4798dec74892ad0fd1b4fe189, type: 3}
+  - {fileID: 21300000, guid: 8e914ab4f2857cf4296eefc3a2bd3e8c, type: 3}
+  - {fileID: 21300000, guid: 2baec2f44bb17dc4492cce1f2d7f715e, type: 3}
+  - {fileID: 21300000, guid: 54f4d706071a3bb41a5156b4ec29c918, type: 3}
+  - {fileID: 21300000, guid: 895d3b160e2f9a744b073a3340dd667b, type: 3}
+  - {fileID: 21300000, guid: 7ef5c447494bab1458a1dbf2658edf88, type: 3}
+  - {fileID: 21300000, guid: 7d7254677c3584e4cba78692c28fdc90, type: 3}
+  - {fileID: 21300000, guid: a1060de7b36dea141a3241a484cc6999, type: 3}
+  - {fileID: 21300000, guid: 9160b8c815f00e54eb192989614e94bc, type: 3}
+  - {fileID: 21300000, guid: 1165d2fa34dc0724689f3e1e604376b9, type: 3}
+  - {fileID: 21300000, guid: cc268a7dc5127c1488631881d023af70, type: 3}
+  - {fileID: 21300000, guid: 8a3638bfe992e644aab880bc7f6b8ed6, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - form_005
+  - form_011b
+  - form_009b
+  - form_007b
+  - form_006
+  - form_004
+  - form_012
+  - form_012b
+  - form_007
+  - form_003
+  - form_010
+  - form_011
+  - form_004b
+  - form_009
+  - form_008
+  - form_006b
+  - form_005b
+  - form_008b
+  - form_010b
+  m_RenderDataMap: {}
+  m_Tag: New Sprite Atlas
+  m_IsVariant: 0
