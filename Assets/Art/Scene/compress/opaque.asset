@@ -76,8 +76,8 @@ MonoBehaviour:
   - material: {fileID: 2100000, guid: 02635edff7ee6a44e8994f8aa0f6cd89, type: 2}
     atlasRect:
       serializedVersion: 2
-      x: 0.37158203
-      y: 0.93652344
+      x: 0.62158203
+      y: 0.736084
       width: 0.24926758
       height: 0.04736328
     srcObjName: Box019
@@ -105,8 +105,8 @@ MonoBehaviour:
   - material: {fileID: 2100000, guid: 482bb937cfbd8f44abfd71cf2d6258d6, type: 2}
     atlasRect:
       serializedVersion: 2
-      x: 0.37158203
-      y: 0.86938477
+      x: 0.62158203
+      y: 0.6689453
       width: 0.24926758
       height: 0.06616211
     srcObjName: Box027
@@ -221,7 +221,7 @@ MonoBehaviour:
   - material: {fileID: 2100000, guid: 8f390faf414ce6743b42d8f0fe19f15e, type: 2}
     atlasRect:
       serializedVersion: 2
-      x: 0.6218262
+      x: 0.50219727
       y: 0.86938477
       width: 0.14331055
       height: 0.032470703
@@ -395,10 +395,10 @@ MonoBehaviour:
   - material: {fileID: 2100000, guid: 48961e0618de4c345be2df7402f1c625, type: 2}
     atlasRect:
       serializedVersion: 2
-      x: 0.87158203
-      y: 0.80249023
+      x: 0.8718262
+      y: 0.6689453
       width: 0.12475586
-      height: 0.06591797
+      height: 0.06567383
     srcObjName: Cylinder005
     textureArraySliceIdx: -1
     allPropsUseSameTiling: 1
@@ -482,8 +482,8 @@ MonoBehaviour:
   - material: {fileID: 2100000, guid: 9964be53c2507414dbe9dae9572b3392, type: 2}
     atlasRect:
       serializedVersion: 2
-      x: 0.8691406
-      y: 0.6689453
+      x: 0.37158203
+      y: 0.86938477
       width: 0.12963867
       height: 0.06591797
     srcObjName: Object013
@@ -540,8 +540,8 @@ MonoBehaviour:
   - material: {fileID: 2100000, guid: ed9279f5b7328074b88cf0a1c57a0d24, type: 2}
     atlasRect:
       serializedVersion: 2
-      x: 0.8691406
-      y: 0.73583984
+      x: 0.37158203
+      y: 0.9362793
       width: 0.12915039
       height: 0.059326172
     srcObjName: Object015
@@ -600,9 +600,9 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0.62158203
       y: 0.53515625
-      width: 0.2709961
+      width: 0.2705078
       height: 0.1328125
-    srcObjName: flag
+    srcObjName: Railing001
     textureArraySliceIdx: -1
     allPropsUseSameTiling: 1
     allPropsUseSameTiling_sourceMaterialTiling:
@@ -615,37 +615,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: -0.08333331
       y: 0
-      width: 1.0842478
+      width: 1.0823333
       height: 1
-    propsUseDifferntTiling_srcUVsamplingRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    tilingTreatment: 1
-  - material: {fileID: 2100000, guid: e9ed03ddb840df842891a029b2b78009, type: 2}
-    atlasRect:
-      serializedVersion: 2
-      x: 0.62158203
-      y: 0.6689453
-      width: 0.24658203
-      height: 0.10107422
-    srcObjName: flag
-    textureArraySliceIdx: -1
-    allPropsUseSameTiling: 1
-    allPropsUseSameTiling_sourceMaterialTiling:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 1
-      height: 1
-    allPropsUseSameTiling_samplingEncapsulatinRect:
-      serializedVersion: 2
-      x: 0.00682969
-      y: 0.12005119
-      width: 0.98634094
-      height: 0.75989753
     propsUseDifferntTiling_srcUVsamplingRect:
       serializedVersion: 2
       x: 0
@@ -678,6 +649,5 @@ MonoBehaviour:
     - {fileID: 2100000, guid: ed9279f5b7328074b88cf0a1c57a0d24, type: 2}
     - {fileID: 2100000, guid: 24e643529047fd2428a74ca9f813a1ea, type: 2}
     - {fileID: 2100000, guid: 67146e6083fb27f4e82979f5b5f8e9d3, type: 2}
-    - {fileID: 2100000, guid: e9ed03ddb840df842891a029b2b78009, type: 2}
   resultMaterialsTexArray: []
   doMultiMaterial: 0
