@@ -131,6 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9019358400757870088}
+  - component: {fileID: 1207422200}
   m_Layer: 0
   m_Name: Normal
   m_TagString: Untagged
@@ -153,6 +154,20 @@ Transform:
   m_Father: {fileID: 9019358401165483965}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 5.116, y: 32.799, z: 2.258}
+--- !u!114 &1207422200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9019358400757870089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d9f23b4af987c14896079d24738e301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 0.02
+  drag: 50
 --- !u!1 &9019358400864495047
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,6 +177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9019358400864495046}
+  - component: {fileID: 1655620403}
   m_Layer: 0
   m_Name: Cage
   m_TagString: Untagged
@@ -184,6 +200,20 @@ Transform:
   m_Father: {fileID: 9019358401165483965}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1655620403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9019358400864495047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d9f23b4af987c14896079d24738e301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 0.02
+  drag: 50
 --- !u!1 &9019358401000872377
 GameObject:
   m_ObjectHideFlags: 0

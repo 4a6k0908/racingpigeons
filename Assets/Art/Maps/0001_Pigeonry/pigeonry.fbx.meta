@@ -7,6 +7,91 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: I_Coconuttree_001
+    second: {fileID: 2100000, guid: aaf17257a3fbc5745b4cec9f4cf5fdda, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: I_Coconuttree_2_002
+    second: {fileID: 2100000, guid: 28daadd4116e54a4384e5d5832743886, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #23
+    second: {fileID: 2100000, guid: b5cc9f7aa3c0d9e4eae1981981576833, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #24
+    second: {fileID: 2100000, guid: 73df67c4ad7ad404096dc968a3c5cad0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #25
+    second: {fileID: 2100000, guid: 43186b5b3b035224a995fde72aa7226d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #70
+    second: {fileID: 2100000, guid: 2da72a5c1fe5b8d4ebe2db58d46935d5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #74
+    second: {fileID: 2100000, guid: 02635edff7ee6a44e8994f8aa0f6cd89, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #77
+    second: {fileID: 2100000, guid: 1b7938fd18bb0b34e8b8e53abcbff802, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #78
+    second: {fileID: 2100000, guid: 2da72a5c1fe5b8d4ebe2db58d46935d5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #79
+    second: {fileID: 2100000, guid: 482bb937cfbd8f44abfd71cf2d6258d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #80
+    second: {fileID: 2100000, guid: beb625bf1b1c1734dab0348244f2dd1a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #81
+    second: {fileID: 2100000, guid: 67146e6083fb27f4e82979f5b5f8e9d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #82
+    second: {fileID: 2100000, guid: 02635edff7ee6a44e8994f8aa0f6cd89, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: QAZ01
+    second: {fileID: 2100000, guid: 24e643529047fd2428a74ca9f813a1ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: QAZ02
+    second: {fileID: 2100000, guid: 9964be53c2507414dbe9dae9572b3392, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: QAZ03
+    second: {fileID: 2100000, guid: a7cca6b0bbdca81468b2f7bb32c8d442, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: QAZ04
+    second: {fileID: 2100000, guid: ed9279f5b7328074b88cf0a1c57a0d24, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: buildingA
     second: {fileID: 2100000, guid: 8f390faf414ce6743b42d8f0fe19f15e, type: 2}
   - first:
@@ -27,7 +112,7 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: ground
+      name: concrete
     second: {fileID: 2100000, guid: 1ad7f880403bd6b4d89d181750d45d97, type: 2}
   - first:
       type: UnityEngine:Material
@@ -42,8 +127,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: steel
-    second: {fileID: 2100000, guid: 67146e6083fb27f4e82979f5b5f8e9d3, type: 2}
+      name: net
+    second: {fileID: 2100000, guid: 2996f64ce10beb5418fc946ac20f576b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
