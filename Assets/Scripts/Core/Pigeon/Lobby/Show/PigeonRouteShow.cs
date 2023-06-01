@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core.Pigeon.Lobby.Show
+namespace Core.Effects.Lobby.Show
 {
     public class PigeonRouteShow : MonoBehaviour
     {

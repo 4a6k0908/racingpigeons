@@ -4,7 +4,7 @@ using UnityEngine;
 using Animator = UnityEngine.Animator;
 using Random = UnityEngine.Random;
 
-namespace Core.Pigeon.Lobby.Show
+namespace Core.Effects.Lobby.Show
 {
     public class PigeonRoofAndGroundShow : MonoBehaviour
     {

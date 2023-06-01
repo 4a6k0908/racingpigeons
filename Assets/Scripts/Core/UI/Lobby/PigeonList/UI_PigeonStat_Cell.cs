@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Core.Pigeon.Models;
+using Core.Effects.Models;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;

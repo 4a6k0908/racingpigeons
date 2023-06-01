@@ -36,6 +36,7 @@ namespace Core.Installers
             Container.DeclareSignal<OnTitleStateChange>();
 
             Container.DeclareSignal<OnLobbyStateChange>();
+            Container.DeclareSignal<OnEffectsUpdate>();
         }
 
         private void BindCamera()

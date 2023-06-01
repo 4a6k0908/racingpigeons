@@ -16,7 +16,11 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 9dd1939185e73ed4da7c30f6460b0f4e
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 76e4df1134a986e4b96d1b1325842dc5
+    m_Address: Assets/Scenes/Train.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: cce084245c2850544ada4698781f5da6, type: 2}
   m_SchemaSet:

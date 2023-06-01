@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine.Serialization;
 
-namespace Core.Pigeon.Models
+namespace Core.Effects.Models
 {
     // 大廳、比賽場景中的鴿子的資料
     [Serializable]

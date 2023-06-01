@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Core.Pigeon.Lobby;
-using Core.Pigeon.Models;
+using Core.Effects.Lobby;
+using Core.Effects.Models;
 using UnityEngine;
 using UnityEngine.UI.Extensions;
 using UnityEngine.UI.Extensions.EasingCore;

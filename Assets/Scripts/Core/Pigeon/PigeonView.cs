@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace Core.Pigeon
+namespace Core.Effects
 {
     public class PigeonView : MonoBehaviour
     {

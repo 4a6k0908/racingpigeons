@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Security.Cryptography;
 using System.Collections.Specialized;
-using RootMotion.FinalIK;
+//using RootMotion.FinalIK;
 
 public class LookAtAngleDetect : MonoBehaviour
 {
@@ -14,7 +14,7 @@ public class LookAtAngleDetect : MonoBehaviour
     public float minAngle = -8.5f;
 
     GameObject objPivot;
-
+    /*
     private LookAtController lookAtController;
 
     private void Start()
@@ -45,5 +45,5 @@ public class LookAtAngleDetect : MonoBehaviour
         {
             lookAtController.weight = 0.001f;
         }
-    }
+    }*/
 }

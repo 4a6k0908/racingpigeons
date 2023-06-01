@@ -2,7 +2,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Core.Pigeon.Lobby
+namespace Core.Effects.Lobby
 {
     public class Pigeon3DRenderTexture : MonoBehaviour
     {
