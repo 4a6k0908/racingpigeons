@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using AnimeTask;
 using Core.LobbyScene;
@@ -7,8 +8,10 @@ using Core.Player;
 using Core.UI.Lobby.PigeonList;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using Zenject;
+using static Core.Effects.Models.EffectModel.GQL_GetEffectList.Data;
 
 namespace Core.UI.Lobby.Train
 {/*
@@ -90,19 +93,17 @@ namespace Core.UI.Lobby.Train
         }
 
         [Inject]
-        public void Inject(SignalBus signalBus, LobbyStateHandler lobbyStateHandler, INotifyService notifyService, PlayerData playerData)
+        public void Inject(SignalBus signalBus, PlayerData playerData, LobbyStateHandler lobbyStateHandler, INotifyService notifyService)
         {
             this.signalBus         = signalBus;
-            this.lobbyStateHandler = lobbyStateHandler;
-            this.notifyService     = notifyService;
             this.playerData        = playerData;
-            Debug.Log("Inject");
+            this.notifyService = notifyService;
+            this.lobbyStateHandler = lobbyStateHandler;
         }
 
         private void OnEnable()
         {
             signalBus.Subscribe<OnLobbyStateChange>(OnLobbyStateChange);
-            Debug.Log("OnOK");
         }
 
         private void OnDisable()
@@ -235,11 +236,19 @@ namespace Core.UI.Lobby.Train
             operationBtnGroupObj.SetActive(currentViewMode == PigeonListViewMode.FullPigeon);
         }
 
+        public List<Effect> EffectsOutPut(List<Effect> _les)
+        {
+            for(int i=0; i<_les.Count; i++)
+            {
+                int index = i;
+                _les[i].add_delegates = new UnityAction(delegate { Debug.Log(_les[index].effect_id); });
+            }
+            return _les;
+        } 
+
         // 遊戲狀態更改時觸發
         private void OnLobbyStateChange(OnLobbyStateChange e)
         {
-            Debug.Log("CH");
-            Debug.Log(e.currentState);
             if (e.currentState == LobbyState.Train)
             {
                 SetActive(true);
@@ -260,7 +269,7 @@ namespace Core.UI.Lobby.Train
                     await playerData.SyncGetTrainList();
                     notifyService.DoClose();
 
-                    trainScroller.UpdateData(playerData.GetEffects());
+                    trainScroller.UpdateData(EffectsOutPut(playerData.GetEffects()));
                     // pigeonStatScroller.SetTestOriginData();
                 }
                 catch (Exception e)

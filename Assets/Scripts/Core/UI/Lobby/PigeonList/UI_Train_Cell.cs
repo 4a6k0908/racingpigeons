@@ -15,33 +15,35 @@ namespace Core.UI.Lobby.Train
         //[SerializeField] private Image           avatarImg; // 鴿子的 Avatar
         [SerializeField] private TextMeshProUGUI nameText;  // 鴿子的名字
 
-        [SerializeField] private Button     selectBtn;
+        [SerializeField] private Button btnMain;
         [SerializeField] private GameObject selectedObj;
 
-
+        Animator anim;
         //private UI_Train uiTrain;
 
         private void Awake()
         {
             // TODO: 待優化
             //uiTrain = FindObjectOfType<UI_Train>();
+            anim = this.gameObject.GetComponentInChildren<Animator>();
         }
 
         public override void Initialize()
         {
             Context.OnCellClicked += OnCellClicked;
-            
-            selectBtn.onClick.AddListener(() =>
-            {
-                Context.OnCellClicked?.Invoke(Index);
-            });
         }
 
         // 更換鴿子資訊
-        public override void UpdateContent(Effect pigeonStat)
+        public override void UpdateContent(Effect eff)
         {
-            nameText.text = pigeonStat.effect_name;
-
+            nameText.text = eff.effect_name;
+            btnMain.onClick.RemoveAllListeners();
+            btnMain.onClick.AddListener(delegate {
+                Context.OnCellClicked?.Invoke(Index);
+                if (anim)
+                    anim.Play(0);
+            });
+            btnMain.onClick.AddListener(eff.add_delegates);
             //genderImg.sprite = genderSprites[pigeonStat.gender];
 
             selectedObj.SetActive(Context.selectedIndex == Index);

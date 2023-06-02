@@ -5,6 +5,7 @@ using Core.Aws.Models;
 using Core.MainScene;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 using static Core.Effects.Models.EffectModel.GQL_GetEffectList.Data;
 
@@ -68,6 +69,8 @@ namespace Core.Effects.Models
                     public string effect_name;
 
                     public string effect_price;
+
+                    public UnityAction add_delegates;
                 }
 
                 public List<Effect> getEffects;
