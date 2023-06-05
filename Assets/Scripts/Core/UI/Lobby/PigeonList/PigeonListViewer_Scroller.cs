@@ -7,9 +7,9 @@ using UnityEngine;
 using UnityEngine.UI.Extensions;
 using UnityEngine.UI.Extensions.EasingCore;
 
-namespace Core.UI.Lobby.PigeonList
+namespace Core.UI.Lobby.PigeonListViewer
 {
-    public class UI_PigeonStat_Scroller : FancyScrollRect<PigeonStat, Context>
+    public class PigeonListViewer_Scroller : FancyScrollRect<PigeonStat, Context>
     {
         [SerializeField] private Scroller   scroller;
         [SerializeField] private GameObject cellPrefab;

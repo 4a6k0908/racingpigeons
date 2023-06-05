@@ -62,7 +62,7 @@ namespace Core.UI.Lobby
         // 到鴿子檢視
         public void Button_To_PigeonList(int filter)
         {
-            pigeonListUI.ChangeFilter(filter);
+            pigeonListUI.pigeonViewerPanel.ChangeFilter(filter);
             lobbyStateHandler.ChangeState(LobbyState.PigeonList);
         }
 

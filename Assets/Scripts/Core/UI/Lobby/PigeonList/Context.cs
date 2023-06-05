@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine.UI.Extensions;
 
-namespace Core.UI.Lobby.PigeonList
+namespace Core.UI.Lobby.PigeonListViewer
 {
     public class Context : FancyScrollRectContext
     {
