@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using AnimeTask;
+//using AnimeTask;
 using Core.LobbyScene;
 using Core.NotifySystem;
 using Core.Player;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using Zenject;
 using static Core.Effects.Models.EffectModel.GQL_GetEffectList.Data;
 
@@ -22,14 +23,15 @@ namespace Core.UI.Lobby.Train
 
     public class UI_Train : MonoBehaviour
     {
-        private SignalBus         signalBus;
+        private SignalBus signalBus;
         private LobbyStateHandler lobbyStateHandler;
-        private INotifyService    notifyService;
-        private PlayerData        playerData;
+        private INotifyService notifyService;
+        private PlayerData playerData;
 
         private CanvasGroup canvasGroup;
         [Header("Pages: Equal to view model")]
         public CanvasGroup[] pages;
+        [SerializeField] Button btnBack;
 
         [Header("3-1")]
         [SerializeField] private UI_Train_Scroller trainScroller; // 鴿子滾動物件
@@ -41,13 +43,24 @@ namespace Core.UI.Lobby.Train
         private void Awake()
         {
             canvasGroup = GetComponent<CanvasGroup>();
+            btnBack.onClick.RemoveAllListeners();
+            btnBack.onClick.AddListener(delegate { Button_Previous(); });
+        }
+
+        public void Init_View()
+        {
+            for (int i = 0; i < pages.Length; i++)
+            {
+                pages[i].alpha = 0;
+                pages[i].blocksRaycasts = pages[i].interactable = false;
+            }
         }
 
         [Inject]
         public void Inject(SignalBus signalBus, PlayerData playerData, LobbyStateHandler lobbyStateHandler, INotifyService notifyService)
         {
-            this.signalBus         = signalBus;
-            this.playerData        = playerData;
+            this.signalBus = signalBus;
+            this.playerData = playerData;
             this.notifyService = notifyService;
             this.lobbyStateHandler = lobbyStateHandler;
         }
@@ -76,22 +89,26 @@ namespace Core.UI.Lobby.Train
 
         public void Button_View(int _index)
         {
-            /*
-            for(int i=0; i<pages.Length; i++)
+            for (int i = 0; i < pages.Length; i++)
             {
-                pages[i].DOFade(1, 0.5f);
-            }*/
+                pages[i].DOFade(i <= _index ? 1 : 0, 0.5f).SetEase(Ease.InExpo);
+                pages[i].blocksRaycasts = pages[i].interactable = i <= _index ? true : false;
+            }
         }
 
         public List<Effect> EffectsOutPut(List<Effect> _les)
         {
-            for(int i=0; i<_les.Count; i++)
+            for (int i = 0; i < _les.Count; i++)
             {
                 int index = i;
-                _les[i].add_delegates = new UnityAction(delegate { Debug.Log(_les[index].effect_id); });
+                _les[i].add_delegates = new UnityAction(delegate
+                {
+                    Button_View(2);
+                    Debug.Log(_les[index].effect_id);
+                });
             }
             return _les;
-        } 
+        }
 
         // 遊戲狀態更改時觸發
         private void OnLobbyStateChange(OnLobbyStateChange e)
@@ -108,6 +125,7 @@ namespace Core.UI.Lobby.Train
 
         private async void SetActive(bool IsActive)
         {
+            Init_View();
             if (IsActive)
             {
                 try
@@ -118,7 +136,8 @@ namespace Core.UI.Lobby.Train
 
                     trainScroller.UpdateData(EffectsOutPut(playerData.GetEffects()));
                     pigeonViewerPanel.InitView(playerData.GetPigeonList());
-                    // pigeonStatScroller.SetTestOriginData();
+
+                    Button_View(0);
                 }
                 catch (Exception e)
                 {
@@ -128,13 +147,18 @@ namespace Core.UI.Lobby.Train
                 }
             }
 
-            canvasGroup.blocksRaycasts = canvasGroup.interactable = IsActive;
+            /*canvasGroup.blocksRaycasts = canvasGroup.interactable = IsActive;
             await Easing.Create<Linear>(IsActive ? 1 : 0, 0.15f).ToColorA(canvasGroup);
+            */
+
+            canvasGroup.DOFade(IsActive ? 1 : 0, 0.2f).SetEase(Ease.InSine).onComplete = () =>
+            {
+                canvasGroup.blocksRaycasts = canvasGroup.interactable = IsActive;
+            };
 
             if (!IsActive)
                 return;
 
-            //pigeonStatScroller.Open(currentFilter, currentSort, currentOrder);
         }
     }
 }

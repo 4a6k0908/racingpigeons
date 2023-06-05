@@ -15,8 +15,8 @@ namespace Core.UI.Lobby.PigeonListViewer
     public enum PigeonListViewMode
     {
         List       = 0, // 2-1-1
-        HalfPigeon = 1, // 2-1-2
-        FullPigeon = 2  // 2-1-3
+        Half = 1, // 2-1-2
+        Figure = 2  // 2-1-3
     }
 
     // 鴿子的過濾種類
@@ -59,6 +59,12 @@ namespace Core.UI.Lobby.PigeonListViewer
 
         private CanvasGroup canvasGroup;
 
+        [Header("Button")]
+        [SerializeField] Button btnListView;
+        [SerializeField] Button btnHalfView;
+        [SerializeField] Button btnAuto;
+
+        [Header("Common")]
         [SerializeField] public PigeonListViewer_Scroller pigeonStatScroller; // 鴿子滾動物件
 
         [SerializeField] private RectTransform pigeonBookTrans;   // 能力背景的位置
@@ -66,13 +72,13 @@ namespace Core.UI.Lobby.PigeonListViewer
         [SerializeField] private GameObject    pigeon3DRenderObj;      // 3D RenderTexture 得物件 
         [SerializeField] private RectTransform pigeon3DRenderTexTrans; // 3D RenderTexture 的位置 
 
-        [SerializeField] private RectTransform expandBtnTrans; // 左上角擴展的按鈕位置
         [SerializeField] private GameObject    toListBtnObj;   // 返回檢視模式的按鈕物件
         [SerializeField] private GameObject    operationBtnGroupObj;
 
         [SerializeField] private Toggle[] sortToggles; // 上面的過濾器 Toggle
         [SerializeField] private Toggle[] filterToggles; // 左邊四個的過濾器 Toggle
-        
+
+        RectTransform tranAuto;
 
         private CancellationTokenSource pigeonBookTaskToken;     // 能力背景的移動動畫 Token
         private CancellationTokenSource pigeon3DRenderTaskToken; // 3D RenderTexture 移動動畫 Token
@@ -92,18 +98,28 @@ namespace Core.UI.Lobby.PigeonListViewer
                 int index = i+1;
                 filterToggles[i].onValueChanged.AddListener(delegate { Toggle_Change_Filter(index); });
             }
+
+            btnListView.onClick.RemoveAllListeners();
+            btnHalfView.onClick.RemoveAllListeners();
+            btnAuto.onClick.RemoveAllListeners();
+
+            btnListView.onClick.AddListener(delegate { Button_To_List(); });
+            btnHalfView.onClick.AddListener(delegate { Button_To_Half(); });
+            btnAuto.onClick.AddListener(delegate { Button_Expand(); });
+
+            tranAuto = btnAuto.gameObject.GetComponent<RectTransform>();
         }
 
         // 到 2-1-3
         public void Button_To_Half()
         {
-            ChangeMode(PigeonListViewMode.HalfPigeon); 
+            ChangeMode(PigeonListViewMode.Half); 
         }
 
         // 如果目前為 2-1-3 那會到 2-1-2，其餘狀況到 2-1-1
         public void Button_Expand()
         {
-            ChangeMode(currentViewMode == PigeonListViewMode.HalfPigeon ? PigeonListViewMode.FullPigeon : PigeonListViewMode.List);
+            ChangeMode(currentViewMode == PigeonListViewMode.Half ? PigeonListViewMode.Figure : PigeonListViewMode.List);
         }
 
         // 回到 2-1-1
@@ -184,17 +200,17 @@ namespace Core.UI.Lobby.PigeonListViewer
                     Easing.Create<OutQuint>(20, 0.5f).ToAnchoredPositionX(pigeonBookTrans).ToCancellationToken(pigeonBookTaskToken.Token);
                     Easing.Create<OutQuint>(-600, 0.5f).ToAnchoredPositionX(pigeon3DRenderTexTrans).ToCancellationToken(pigeon3DRenderTaskToken.Token);
                     break;
-                case PigeonListViewMode.HalfPigeon:
+                case PigeonListViewMode.Half:
                     Easing.Create<OutQuint>(700, 0.5f).ToAnchoredPositionX(pigeonBookTrans).ToCancellationToken(pigeonBookTaskToken.Token);
                     Easing.Create<OutQuint>(-600, 0.5f).ToAnchoredPositionX(pigeon3DRenderTexTrans).ToCancellationToken(pigeon3DRenderTaskToken.Token);
 
-                    expandBtnTrans.localEulerAngles = new Vector3(0, 0, 180);
+                    tranAuto.localEulerAngles = new Vector3(0, 0, 180);
                     break;
-                case PigeonListViewMode.FullPigeon:
+                case PigeonListViewMode.Figure:
                     Easing.Create<OutQuint>(2000, 0.5f).ToAnchoredPositionX(pigeonBookTrans).ToCancellationToken(pigeonBookTaskToken.Token);
                     Easing.Create<OutQuint>(0, 0.5f).ToAnchoredPositionX(pigeon3DRenderTexTrans).ToCancellationToken(pigeon3DRenderTaskToken.Token);
 
-                    expandBtnTrans.localEulerAngles = new Vector3(0, 0, 0);
+                    tranAuto.localEulerAngles = new Vector3(0, 0, 0);
                     break;
             }
 
@@ -202,9 +218,9 @@ namespace Core.UI.Lobby.PigeonListViewer
             pigeon3DRenderTexTrans.gameObject.SetActive(currentViewMode != PigeonListViewMode.List);
             
             // TODO: 可以多增加判定優化
-            expandBtnTrans.gameObject.SetActive(currentViewMode != PigeonListViewMode.List);
-            toListBtnObj.SetActive(currentViewMode              == PigeonListViewMode.HalfPigeon);
-            operationBtnGroupObj.SetActive(currentViewMode == PigeonListViewMode.FullPigeon);
+            tranAuto.gameObject.SetActive(currentViewMode != PigeonListViewMode.List);
+            toListBtnObj.SetActive(currentViewMode              == PigeonListViewMode.Half);
+            operationBtnGroupObj.SetActive(currentViewMode == PigeonListViewMode.Figure);
         }
     }
 }

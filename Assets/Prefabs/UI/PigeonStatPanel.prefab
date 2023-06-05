@@ -5442,7 +5442,7 @@ GameObject:
   - component: {fileID: 7784659837690950735}
   - component: {fileID: 7784659837690950734}
   m_Layer: 5
-  m_Name: ExpandBtn
+  m_Name: btnAuto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5549,19 +5549,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7784659837690950735}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Core.UI.Lobby.PigeonList.UI_PigeonList, Core
-        m_MethodName: Button_Expand
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7784659837692507821
 GameObject:
   m_ObjectHideFlags: 0
@@ -8929,6 +8917,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5f889956390e541ae23a843015b57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  btnListView: {fileID: 7784659839105989490}
+  btnHalfView: {fileID: 7784659839237237323}
+  btnAuto: {fileID: 7784659837690950734}
   pigeonStatScroller: {fileID: 7784659838978871938}
   pigeonBookTrans: {fileID: 7784659839012846988}
   pigeon3DRenderObj: {fileID: 7784659838990208263}
@@ -16111,7 +16102,7 @@ GameObject:
   - component: {fileID: 7784659839105989491}
   - component: {fileID: 7784659839105989490}
   m_Layer: 5
-  m_Name: ToListBtn
+  m_Name: btnList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16218,19 +16209,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7784659839105989491}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Core.UI.Lobby.PigeonList.UI_PigeonList, Core
-        m_MethodName: Button_To_List
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7784659839107965258
 GameObject:
   m_ObjectHideFlags: 0
@@ -17614,7 +17593,7 @@ GameObject:
   - component: {fileID: 7784659839237237321}
   - component: {fileID: 7784659839237237323}
   m_Layer: 5
-  m_Name: ToHalfBtn
+  m_Name: btnHalfView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17721,19 +17700,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7784659839237237321}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Core.UI.Lobby.PigeonList.UI_PigeonList, Core
-        m_MethodName: Button_To_Half
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7784659839238152723
 GameObject:
   m_ObjectHideFlags: 0

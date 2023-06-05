@@ -26,7 +26,7 @@ namespace Core.UI.Lobby.PigeonList
         private CanvasGroup canvasGroup;
 
         [SerializeField] public Core.UI.Lobby.PigeonListViewer.PigeonListViewer pigeonViewerPanel; // 鴿子滾動物件
-        [SerializeField] Button btnColse;
+        [SerializeField] Button btnClose;
         [SerializeField] Button btnBack;
         [SerializeField] Button btnSignRace;
         [SerializeField] Button btnPigeonShed;
@@ -35,12 +35,12 @@ namespace Core.UI.Lobby.PigeonList
         {
             canvasGroup = GetComponent<CanvasGroup>();
 
-            btnColse.onClick.RemoveAllListeners();
+            btnClose.onClick.RemoveAllListeners();
             btnBack.onClick.RemoveAllListeners();
             btnSignRace.onClick.RemoveAllListeners();
             btnPigeonShed.onClick.RemoveAllListeners();
 
-            btnColse.onClick.AddListener(delegate { Button_Close(); });
+            btnClose.onClick.AddListener(delegate { Button_Close(); });
             btnBack.onClick.AddListener(delegate { Button_Previous(); });
             //btnSignRace.onClick.AddListener(delegate { Button_Close(); });
             btnPigeonShed.onClick.AddListener(delegate { Button_Close(); });
