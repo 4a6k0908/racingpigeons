@@ -34,6 +34,8 @@ namespace Core.UI.Lobby.Train
         [SerializeField] Button btnBack;
 
         [Header("3-1")]
+        [SerializeField] private Sprite[] coverSprites;
+        [SerializeField] private Image sprCover;
         [SerializeField] private UI_Train_Scroller trainScroller; // 鴿子滾動物件
 
         [Header("3-3")]
@@ -96,6 +98,11 @@ namespace Core.UI.Lobby.Train
             }
         }
 
+        void coverChange(int _index)
+        {
+            sprCover.sprite = coverSprites[_index];
+        }
+
         public List<Effect> EffectsOutPut(List<Effect> _les)
         {
             for (int i = 0; i < _les.Count; i++)
@@ -105,6 +112,7 @@ namespace Core.UI.Lobby.Train
                 {
                     Button_View(2);
                     Debug.Log(_les[index].effect_id);
+                    coverChange(int.Parse(_les[index].effect_id) - 1);
                 });
             }
             return _les;

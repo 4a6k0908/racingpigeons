@@ -13,11 +13,11 @@ namespace Core.UI.Lobby.Train
     public class UI_Train_Cell : FancyScrollRectCell<Effect, Context>
     {
         //[SerializeField] private Image           avatarImg; // 鴿子的 Avatar
-        [SerializeField] private TextMeshProUGUI nameText;  // 鴿子的名字
-
+        [SerializeField] private Text txtName;  // 鴿子的名字
+        [SerializeField] private Image sprTrain;  // 鴿子的名字
         [SerializeField] private Button btnMain;
-        [SerializeField] private GameObject selectedObj;
-
+        [SerializeField] private GameObject idcSelected;
+        [SerializeField] private Sprite[] trainSprites;
         Animator anim;
         //private UI_Train uiTrain;
 
@@ -36,7 +36,7 @@ namespace Core.UI.Lobby.Train
         // 更換鴿子資訊
         public override void UpdateContent(Effect eff)
         {
-            nameText.text = eff.effect_name;
+            txtName.text = eff.effect_name;
             btnMain.onClick.RemoveAllListeners();
             btnMain.onClick.AddListener(delegate {
                 Context.OnCellClicked?.Invoke(Index);
@@ -44,14 +44,14 @@ namespace Core.UI.Lobby.Train
                     anim.Play(0);
             });
             btnMain.onClick.AddListener(eff.add_delegates);
-            //genderImg.sprite = genderSprites[pigeonStat.gender];
+            sprTrain.sprite = trainSprites[int.Parse(eff.effect_id) - 1];
 
-            selectedObj.SetActive(Context.selectedIndex == Index);
+            idcSelected.SetActive(Context.selectedIndex == Index);
         }
 
         private void OnCellClicked(int clickIndex)
         {
-            selectedObj.SetActive(Index == clickIndex);
+            idcSelected.SetActive(Index == clickIndex);
         }
         
         public void Button_View()
