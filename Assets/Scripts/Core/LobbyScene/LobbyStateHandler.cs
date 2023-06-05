@@ -9,6 +9,7 @@ namespace Core.LobbyScene
         Lobby      = 0,
         PigeonList = 1,
         Race       = 5,
+        Train = 3
     }
 
     public class LobbyStateHandler

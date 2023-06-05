@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using Core.Pigeon.Models;
+using Core.Effects.Models;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
 
-namespace Core.UI.Lobby.PigeonList
+namespace Core.UI.Lobby.PigeonListViewer
 {
-    public class UI_PigeonStat_Cell : FancyScrollRectCell<PigeonStat, Context>
+    public class PigeonListViewer_Cell : FancyScrollRectCell<PigeonStat, Context>
     {
         [SerializeField] private Image           avatarImg; // 鴿子的 Avatar
         [SerializeField] private TextMeshProUGUI nameText;  // 鴿子的名字
@@ -39,12 +39,12 @@ namespace Core.UI.Lobby.PigeonList
         [SerializeField] private Image tiredBarImg;   // 疲勞條
         [SerializeField] private Image expBarImg;     // 經驗質
 
-        private UI_PigeonList uiPigeonList;
+        //private UI_PigeonList uiPigeonList;
 
         private void Awake()
         {
             // TODO: 待優化
-            uiPigeonList = FindObjectOfType<UI_PigeonList>();
+            //uiPigeonList = FindObjectOfType<UI_PigeonList>();
         }
 
         public override void Initialize()
@@ -85,10 +85,10 @@ namespace Core.UI.Lobby.PigeonList
             selectedObj.SetActive(Index == clickIndex);
         }
         
-        public void Button_View()
+        /*public void Button_View()
         {
-            uiPigeonList.ChangeMode(PigeonListViewMode.HalfPigeon);
-        }
+            uiPigeonList.pigeonStat.ChangeMode(PigeonListViewMode.HalfPigeon);
+        }*/
 
         [Serializable]
         private class AbilityData

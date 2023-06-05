@@ -1,4 +1,4 @@
-﻿namespace Core.Pigeon
+﻿namespace Core.Effects
 {
     public class PigeonStateHandler
     {

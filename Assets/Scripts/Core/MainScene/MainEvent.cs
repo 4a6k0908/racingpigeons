@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Core.Pigeon.Models;
+using Core.Effects.Models;
 using Core.User.Models;
 
 namespace Core.MainScene
@@ -31,6 +31,16 @@ namespace Core.MainScene
         public OnPigeonListUpdate(List<PigeonStat> pigeonStats)
         {
             this.pigeonStats = pigeonStats;
+        }
+    }
+
+    public struct OnEffectsUpdate
+    {
+        public readonly List<EffectModel.GQL_GetEffectList.Data.Effect> effects;
+
+        public OnEffectsUpdate(List<EffectModel.GQL_GetEffectList.Data.Effect> effects)
+        {
+            this.effects = effects;
         }
     }
 }

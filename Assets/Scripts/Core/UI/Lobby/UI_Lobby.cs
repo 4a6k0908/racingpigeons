@@ -3,7 +3,9 @@ using AnimeTask;
 using Core.CameraSystem;
 using Core.LobbyScene;
 using Core.MainScene;
+using Core.NotifySystem;
 using Core.Player;
+using Core.SceneSystem;
 using Core.UI.Lobby.PigeonList;
 using TMPro;
 using UnityEngine;
@@ -16,6 +18,8 @@ namespace Core.UI.Lobby
         private SignalBus         signalBus;
         private LobbyStateHandler lobbyStateHandler;
         private ICameraService    cameraService;
+        private INotifyService notifyService;     // 彈窗功能
+        private ISceneService sceneService;      // 場景轉換功能
 
         private CanvasGroup   canvasGroup;
 
@@ -32,8 +36,10 @@ namespace Core.UI.Lobby
         }
 
         [Inject]
-        public void Inject(SignalBus signalBus, LobbyStateHandler lobbyStateHandler, ICameraService cameraService, PlayerData playerData)
+        public void Inject(ISceneService sceneService, INotifyService notifyService, SignalBus signalBus, LobbyStateHandler lobbyStateHandler, ICameraService cameraService, PlayerData playerData)
         {
+            this.notifyService = notifyService;
+            this.sceneService = sceneService;
             this.signalBus         = signalBus;
             this.lobbyStateHandler = lobbyStateHandler;
             this.cameraService     = cameraService;
@@ -56,13 +62,19 @@ namespace Core.UI.Lobby
         // 到鴿子檢視
         public void Button_To_PigeonList(int filter)
         {
-            pigeonListUI.ChangeFilter(filter);
+            pigeonListUI.pigeonViewerPanel.ChangeFilter(filter);
             lobbyStateHandler.ChangeState(LobbyState.PigeonList);
         }
 
         public void Button_Camera_ChangeView()
         {
             cameraService.DoChangePigeonHouseView();
+        }
+
+        public void Button_To_Train()
+        {
+            //sceneService.DoLoadScene(2);
+            lobbyStateHandler.ChangeState(LobbyState.Train);
         }
 
         private void OnPigeonListUpdate(OnPigeonListUpdate e)

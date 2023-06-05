@@ -7,7 +7,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
-namespace Core.Pigeon.Models
+namespace Core.Effects.Models
 {
     // 處理鴿子資料
     public class PigeonModel

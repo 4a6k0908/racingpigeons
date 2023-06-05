@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace Core.Pigeon.ScriptableObjects
+namespace Core.Effects.ScriptableObjects
 {
     [CreateAssetMenu(menuName = "Data/PigeonData", fileName = "PigeonData")]
     public class PigeonDataScriptableObject : ScriptableObjectInstaller<PigeonDataScriptableObject>

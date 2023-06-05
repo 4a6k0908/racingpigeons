@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core.Pigeon.Models
+namespace Core.Effects.Models
 {
     // 鴿子的狀態
     [Serializable]
